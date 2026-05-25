@@ -918,62 +918,77 @@ function renderMissions() {
   });
 }
 
-// ─── PERFORMANCE CHART (Global Average) ─────────────────────
-function renderPerformance() {
-  const statsEl = document.getElementById('perf-stats');
-  statsEl.innerHTML = '<div style="text-align:center;color:var(--moss-gray);padding:30px;">⏳ Carregando dados gerais...</div>';
+// ─── PERFORMANCE DASHBOARD ──────────────────────────────────
+let perfAnimId = null;
+let perfHoveredBar = -1;
+let perfBarRects = [];
+let perfGeneration = 0;
 
-  requestAnimationFrame(() => buildPerformanceChart());
+function renderPerformance() {
+  perfGeneration++;
+  const statsEl = document.getElementById('perf-stats');
+  // Hide tooltip from any previous render
+  const tooltip = document.getElementById('perf-tooltip');
+  if (tooltip) tooltip.classList.remove('visible');
+  // Clean old canvas listeners
+  const oldCanvas = document.getElementById('perf-chart');
+  if (oldCanvas) {
+    const clone = oldCanvas.cloneNode(true);
+    oldCanvas.parentNode?.replaceChild(clone, oldCanvas);
+  }
+
+  statsEl.innerHTML = Array(5).fill(0).map(() =>
+    '<div class="perf-stat-card"><div class="perf-stat-label">---</div><div class="perf-stat-value">--</div></div>'
+  ).join('') +
+    '<div class="perf-icons-row" style="opacity:0.3;">⏳</div>';
+
+  if (perfAnimId) { cancelAnimationFrame(perfAnimId); perfAnimId = null; }
+
+  requestAnimationFrame(() => buildPerfDashboard());
 }
 
-async function buildPerformanceChart() {
+async function buildPerfDashboard() {
   const statsEl = document.getElementById('perf-stats');
   const canvas = document.getElementById('perf-chart');
-  if (!statsEl || !canvas) return;
+  const tooltip = document.getElementById('perf-tooltip');
+  if (!statsEl || !canvas || !tooltip) return;
 
   const rect = canvas.getBoundingClientRect();
   if (rect.width === 0 || rect.height === 0) {
-    statsEl.innerHTML = '<div style="text-align:center;color:var(--moss-gray);padding:30px;">Aguardando carregamento...</div>';
-    setTimeout(() => buildPerformanceChart(), 200);
+    setTimeout(() => buildPerfDashboard(), 200);
     return;
   }
 
+  const gen = perfGeneration;
+
   let perfData = null;
-
-  // Try Supabase first
   if (SUPABASE_CONFIG.enabled) {
-    try {
-      perfData = await supabaseClient.getGlobalPerformance();
-    } catch (_) {}
+    try { perfData = await supabaseClient.getGlobalPerformance(); } catch (_) {}
   }
-
-  // Fallback to local user data summary
   if (!perfData && state.performanceHistory.length > 0) {
     const byBiome = {};
     state.performanceHistory.forEach(d => {
       const b = d.biome || 'geral';
       if (!byBiome[b]) byBiome[b] = { sum: 0, count: 0 };
-      byBiome[b].sum += d.score;
-      byBiome[b].count++;
+      byBiome[b].sum += d.score; byBiome[b].count++;
     });
-
     perfData = {
       overallAvg: Math.round(state.performanceHistory.reduce((s, d) => s + d.score, 0) / state.performanceHistory.length),
-      totalQuizzes: state.performanceHistory.length,
-      totalUsers: 1,
-      biomeAverages: Object.entries(byBiome).map(([biome, d]) => ({
-        biome,
-        avg: Math.round(d.sum / d.count),
-        count: d.count,
-      })),
+      totalQuizzes: state.performanceHistory.length, totalUsers: 1,
+      biomeAverages: Object.entries(byBiome).map(([b, d]) => ({ biome: b, avg: Math.round(d.sum / d.count), count: d.count })),
     };
   }
-
   if (!perfData || !perfData.biomeAverages.length) {
-    statsEl.innerHTML = '<div style="text-align:center;color:var(--moss-gray);padding:30px;">Nenhum dado disponível ainda. Jogue alguns quizzes! 🌱</div>';
+    statsEl.innerHTML = '<div style="text-align:center;color:var(--moss-gray);padding:30px;">Nenhum dado disponível ainda 🌱</div>';
     return;
   }
 
+  if (gen !== perfGeneration) return;
+
+  const data = perfData.biomeAverages.sort((a, b) => b.avg - a.avg);
+  const overall = Math.min(perfData.overallAvg, 100);
+
+  // ── Canvas setup ──
   const dpr = window.devicePixelRatio || 1;
   canvas.width = rect.width * dpr;
   canvas.height = rect.height * dpr;
@@ -981,144 +996,335 @@ async function buildPerformanceChart() {
   c.scale(dpr, dpr);
   const W = rect.width, H = rect.height;
 
-  const data = perfData.biomeAverages.sort((a, b) => b.avg - a.avg);
-  const overall = perfData.overallAvg;
-  const pad = { top: 28, bottom: 52, left: 8, right: 8 };
+  const pad = { top: 32, bottom: 56, left: 32, right: 20 };
   const chartW = W - pad.left - pad.right;
   const chartH = H - pad.top - pad.bottom;
-  const itemCount = data.length;
   const barGap = 5;
-  const barW = Math.min(34, (chartW - barGap * Math.max(itemCount - 1, 0)) / Math.max(itemCount, 1));
-
-  // Background
-  const bg = c.createLinearGradient(0, 0, 0, H);
-  bg.addColorStop(0, 'rgba(13, 27, 20, 0.95)');
-  bg.addColorStop(1, 'rgba(10, 14, 26, 0.95)');
-  c.fillStyle = bg;
-  c.fillRect(0, 0, W, H);
-
-  // Title
-  c.fillStyle = 'rgba(255,255,255,0.06)';
-  c.font = '9px monospace';
-  c.textAlign = 'center';
-  c.fillText('MÉDIA DE ACERTOS POR BIOMA', W / 2, 16);
-
-  // Grid
-  for (let i = 0; i <= 4; i++) {
-    const y = pad.top + (chartH / 4) * i;
-    c.strokeStyle = 'rgba(46, 204, 113, 0.05)';
-    c.lineWidth = 1;
-    c.beginPath();
-    c.moveTo(pad.left, y);
-    c.lineTo(W - pad.right, y);
-    c.stroke();
-
-    const pct = Math.round(100 - (100 / 4) * i);
-    c.fillStyle = 'rgba(255,255,255,0.1)';
-    c.font = '7px monospace';
-    c.textAlign = 'left';
-    c.fillText(pct + '%', 2, y + 3);
-  }
-
-  // Overall average line
-  const avgY = pad.top + chartH - (Math.min(overall, 100) / 100) * chartH;
-  c.setLineDash([3, 3]);
-  c.strokeStyle = 'rgba(255, 255, 255, 0.12)';
-  c.lineWidth = 1;
-  c.beginPath();
-  c.moveTo(pad.left, avgY);
-  c.lineTo(W - pad.right, avgY);
-  c.stroke();
-  c.setLineDash([]);
-
-  c.fillStyle = 'rgba(255,255,255,0.15)';
-  c.font = '7px monospace';
-  c.textAlign = 'right';
-  c.fillText('Média ' + overall + '%', W - pad.right, avgY - 3);
-
-  // Bars
-  const totalW = itemCount * barW + Math.max(itemCount - 1, 0) * barGap;
+  const barW = Math.min(38, (chartW - barGap * Math.max(data.length - 1, 0)) / Math.max(data.length, 1));
+  const totalW = data.length * barW + Math.max(data.length - 1, 0) * barGap;
   const startX = pad.left + (chartW - totalW) / 2;
 
-  data.forEach((d, i) => {
-    const x = startX + i * (barW + barGap);
-    const pct = Math.min(d.avg, 100);
-    const barH = (pct / 100) * chartH;
-    const y = pad.top + chartH - barH;
+  // ── Mouse tracking ──
+  let mouseX = W / 2, mouseY = H / 2;
+  function onMove(e) {
+    const r = canvas.getBoundingClientRect();
+    mouseX = (e.clientX - r.left) * (W / r.width);
+    mouseY = (e.clientY - r.top) * (H / r.height);
+    updateTooltip();
+  }
+  function onLeave() {
+    perfHoveredBar = -1;
+    tooltip.classList.remove('visible');
+    canvas.removeEventListener('mousemove', onMove);
+    canvas.removeEventListener('mouseleave', onLeave);
+  }
+  canvas.addEventListener('mousemove', onMove);
+  canvas.addEventListener('mouseleave', onLeave);
 
-    // Glow
-    c.shadowColor = 'rgba(46, 204, 113, 0.1)';
-    c.shadowBlur = 4;
+  function updateTooltip() {
+    let idx = -1;
+    for (let i = 0; i < perfBarRects.length; i++) {
+      const r2 = perfBarRects[i];
+      if (mouseX >= r2.x && mouseX <= r2.x + r2.w && mouseY >= r2.y && mouseY <= r2.y + r2.h) {
+        idx = i; break;
+      }
+    }
+    perfHoveredBar = idx;
+    if (idx >= 0 && perfBarRects[idx]) {
+      const d = data[idx];
+      const bi = PERGUNTAS[d.biome];
+      const icon = bi ? bi.icone : '🌍';
+      const name = bi ? bi.nome : d.biome;
+      tooltip.innerHTML = `
+        <div class="tt-biome">${icon} ${name}</div>
+        <div class="tt-row"><span>Média</span><span class="tt-val">${d.avg}%</span></div>
+        <div class="tt-row"><span>Quizzes</span><span class="tt-val">${d.count}</span></div>
+      `;
+      const r2 = perfBarRects[idx];
+      const tx = r2.x + r2.w / 2;
+      const ty = Math.max(20, r2.y - 10);
+      tooltip.style.left = Math.min(W - 140, Math.max(10, tx - 60)) + 'px';
+      tooltip.style.top = ty + 'px';
+      tooltip.classList.add('visible');
+    } else {
+      tooltip.classList.remove('visible');
+    }
+  }
 
-    const grad = c.createLinearGradient(x, y, x, pad.top + chartH);
-    grad.addColorStop(0, 'rgba(46, 204, 113, 0.8)');
-    grad.addColorStop(1, 'rgba(26, 188, 156, 0.3)');
-    c.fillStyle = grad;
+  // ── Parallax stars ──
+  const stars = [];
+  for (let i = 0; i < 80; i++) {
+    stars.push({
+      x: Math.random() * W, y: Math.random() * H * 0.7,
+      r: Math.random() * 1.5 + 0.5, o: Math.random() * 0.3 + 0.1,
+      s: Math.random() * 0.5 + 0.2,
+    });
+  }
 
-    const r = 2;
+  // ── Mountain silhouette ──
+  const mtPts = [];
+  for (let i = 0; i <= 20; i++) {
+    mtPts.push({
+      x: (i / 20) * W,
+      y: H - 20 - Math.random() * 40 - Math.sin(i * 0.6) * 25 - Math.sin(i * 1.3) * 12,
+    });
+  }
+
+  // ── Animation state ──
+  const startTime = performance.now();
+  const ANIM_DUR = 1200;
+  const BAR_DELAY = 80;
+
+  function easeOutBack(t) {
+    const c1 = 1.70158; const c3 = c1 + 1;
+    return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
+  }
+  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function drawFrame(now) {
+    if (gen !== perfGeneration) return;
+    const elapsed = now - startTime;
+    const progress = Math.min(1, elapsed / ANIM_DUR);
+
+    // ── Clear ──
+    const bgGrad = c.createLinearGradient(0, 0, 0, H);
+    bgGrad.addColorStop(0, 'rgba(10, 18, 26, 0.98)');
+    bgGrad.addColorStop(0.4, 'rgba(13, 27, 20, 0.98)');
+    bgGrad.addColorStop(1, 'rgba(8, 12, 20, 0.98)');
+    c.fillStyle = bgGrad;
+    c.fillRect(0, 0, W, H);
+
+    // ── Parallax stars ──
+    const px = (targetMX || 0) * 4;
+    const py = (targetMY || 0) * 3;
+    stars.forEach(s => {
+      const sx = s.x + px * s.s;
+      const sy = s.y + py * s.s * 0.5;
+      if (sx < 0 || sx > W || sy < 0 || sy > H) return;
+      c.beginPath();
+      c.arc(sx, sy, s.r, 0, Math.PI * 2);
+      c.fillStyle = `rgba(255,255,255,${s.o})`;
+      c.fill();
+    });
+
+    // ── Mountains ──
     c.beginPath();
-    c.moveTo(x + r, y);
-    c.lineTo(x + barW - r, y);
-    c.quadraticCurveTo(x + barW, y, x + barW, y + r);
-    c.lineTo(x + barW, pad.top + chartH);
-    c.lineTo(x, pad.top + chartH);
-    c.lineTo(x, y + r);
-    c.quadraticCurveTo(x, y, x + r, y);
+    c.moveTo(0, H);
+    mtPts.forEach(p => {
+      const my = p.y + (targetMY || 0) * 2;
+      c.lineTo(p.x, my);
+    });
+    c.lineTo(W, H);
     c.closePath();
+    const mtGrad = c.createLinearGradient(0, H - 80, 0, H);
+    mtGrad.addColorStop(0, 'rgba(46,204,113,0.04)');
+    mtGrad.addColorStop(1, 'rgba(46,204,113,0.01)');
+    c.fillStyle = mtGrad;
     c.fill();
-    c.shadowBlur = 0;
 
-    // Value on bar
-    if (barH > 18) {
-      c.fillStyle = 'rgba(255,255,255,0.7)';
-      c.font = 'bold 8px monospace';
-      c.textAlign = 'center';
-      c.fillText(d.avg + '%', x + barW / 2, y + 10);
+    // ── Ground line ──
+    c.strokeStyle = 'rgba(46,204,113,0.06)';
+    c.lineWidth = 1;
+    c.beginPath();
+    c.moveTo(0, H - 1);
+    c.lineTo(W, H - 1);
+    c.stroke();
+
+    // ── Grid ──
+    for (let i = 0; i <= 4; i++) {
+      const y = pad.top + (chartH / 4) * i;
+      c.strokeStyle = `rgba(46,204,113,${0.03 + 0.02 * (1 - i / 4)})`;
+      c.lineWidth = 0.5;
+      c.beginPath();
+      c.moveTo(pad.left, y);
+      c.lineTo(W - pad.right, y);
+      c.stroke();
+
+      const pct = Math.round(100 - (100 / 4) * i);
+      c.fillStyle = 'rgba(255,255,255,0.06)';
+      c.font = '7px monospace';
+      c.textAlign = 'left';
+      c.fillText(pct, 2, y + 3);
     }
 
-    // Icon
-    const biomeInfo = PERGUNTAS[d.biome];
-    const icon = biomeInfo ? biomeInfo.icone : '🌍';
-    c.font = '10px monospace';
-    c.textAlign = 'center';
-    c.fillText(icon, x + barW / 2, pad.top + chartH + 14);
+    // ── Overall avg line (animated) ──
+    const avgY = pad.top + chartH - (overall / 100) * chartH;
+    const lineProg = easeOutCubic(Math.min(1, progress * 1.3));
+    const lineEndX = pad.left + (W - pad.left - pad.right) * lineProg;
 
-    // Count
-    c.fillStyle = 'rgba(255,255,255,0.12)';
-    c.font = '6px monospace';
-    c.fillText(d.count + ' quizzes', x + barW / 2, pad.top + chartH + 28);
-  });
+    c.setLineDash([3, 4]);
+    c.strokeStyle = 'rgba(255,255,255,0.08)';
+    c.lineWidth = 1;
+    c.beginPath();
+    c.moveTo(pad.left, avgY);
+    c.lineTo(lineEndX, avgY);
+    c.stroke();
+    c.setLineDash([]);
 
-  // Stats
+    if (lineProg > 0.3) {
+      c.fillStyle = 'rgba(255,255,255,0.08)';
+      c.font = '6px monospace';
+      c.textAlign = 'right';
+      c.fillText('média ' + overall + '%', Math.max(lineEndX, 50) - 6, avgY - 3);
+    }
+
+    // ── Bars ──
+    perfBarRects = [];
+    data.forEach((d, i) => {
+      const x = startX + i * (barW + barGap);
+      const pct = Math.min(d.avg, 100);
+      const barDelay = i * BAR_DELAY;
+      const barProg = Math.max(0, Math.min(1, (elapsed - barDelay) / (ANIM_DUR * 0.7)));
+      const eased = easeOutBack(Math.min(1, barProg));
+      const barH = (pct / 100) * chartH * eased;
+      const y = pad.top + chartH - barH;
+      const isHover = perfHoveredBar === i;
+
+      // Glow on hover
+      if (isHover) {
+        const glowGrad = c.createRadialGradient(x + barW / 2, y + barH / 2, 0, x + barW / 2, y + barH / 2, barW * 2);
+        glowGrad.addColorStop(0, 'rgba(46,204,113,0.1)');
+        glowGrad.addColorStop(1, 'rgba(46,204,113,0)');
+        c.fillStyle = glowGrad;
+        c.fillRect(x - barW, y - 10, barW * 3, barH + 20);
+      }
+
+      // Bar shadow
+      c.shadowColor = 'rgba(46,204,113,0.08)';
+      c.shadowBlur = isHover ? 12 : 4;
+
+      const grad = c.createLinearGradient(x, y, x, pad.top + chartH);
+      grad.addColorStop(0, `rgba(46,204,113,${isHover ? 0.95 : 0.75})`);
+      grad.addColorStop(0.5, `rgba(26,188,156,${isHover ? 0.6 : 0.4})`);
+      grad.addColorStop(1, `rgba(26,188,156,${isHover ? 0.3 : 0.15})`);
+      c.fillStyle = grad;
+
+      const r = 2;
+      c.beginPath();
+      c.moveTo(x + r, y);
+      c.lineTo(x + barW - r, y);
+      c.quadraticCurveTo(x + barW, y, x + barW, y + r);
+      c.lineTo(x + barW, pad.top + chartH);
+      c.lineTo(x, pad.top + chartH);
+      c.lineTo(x, y + r);
+      c.quadraticCurveTo(x, y, x + r, y);
+      c.closePath();
+      c.fill();
+      c.shadowBlur = 0;
+
+      // Bar highlight line on top
+      if (barH > 4) {
+        c.strokeStyle = `rgba(255,255,255,${isHover ? 0.25 : 0.08})`;
+        c.lineWidth = 1;
+        c.beginPath();
+        c.moveTo(x + 2, y + 1);
+        c.lineTo(x + barW - 2, y + 1);
+        c.stroke();
+      }
+
+      perfBarRects.push({ x, y, w: barW, h: barH });
+
+      // Value label
+      if (barH > 18 && eased > 0.6) {
+        c.fillStyle = 'rgba(255,255,255,0.65)';
+        c.font = 'bold 8px monospace';
+        c.textAlign = 'center';
+        c.fillText(d.avg + '%', x + barW / 2, y + 10);
+      }
+
+      // Icon
+      const bi2 = PERGUNTAS[d.biome];
+      const icon = bi2 ? bi2.icone : '🌍';
+      c.font = '11px monospace';
+      c.textAlign = 'center';
+      c.globalAlpha = 0 + 0.7 * Math.min(1, eased * 1.5);
+      c.fillText(icon, x + barW / 2, pad.top + chartH + 16);
+      c.globalAlpha = 1;
+    });
+
+    // ── Bottom label line ──
+    c.strokeStyle = 'rgba(46,204,113,0.03)';
+    c.lineWidth = 1;
+    c.beginPath();
+    c.moveTo(pad.left, pad.top + chartH + 2);
+    c.lineTo(W - pad.right, pad.top + chartH + 2);
+    c.stroke();
+
+    // ── Continue animation ──
+    if (progress < 1) {
+      perfAnimId = requestAnimationFrame(drawFrame);
+    } else {
+      perfAnimId = null;
+    }
+  }
+
+  perfAnimId = requestAnimationFrame(drawFrame);
+  drawSidebarBase(perfData, data);
+}
+
+function drawSidebarBase(perfData, data) {
   const best = data[0];
   const worst = data[data.length - 1];
-  const iconsRow = data.map(d => PERGUNTAS[d.biome]?.icone || '🌍').join(' ');
+  const iconsRow = data.map(d => PERGUNTAS[d.biome]?.icone || '🌍').join('');
 
-  statsEl.innerHTML = `
-    <div class="perf-stat-card" style="border-color:rgba(46,204,113,0.25)">
-      <span class="perf-stat-label">📊 Média Geral</span>
-      <span class="perf-stat-value">${perfData.overallAvg}%</span>
+  document.getElementById('perf-stats').innerHTML = `
+    <div class="perf-stat-card highlight">
+      <div class="perf-stat-label">📊 Média Geral</div>
+      <div class="perf-stat-value" id="stat-overall">0%</div>
     </div>
     <div class="perf-stat-card">
-      <span class="perf-stat-label">🎯 Quizzes</span>
-      <span class="perf-stat-value">${perfData.totalQuizzes}</span>
+      <div class="perf-stat-label">🎯 Quizzes</div>
+      <div class="perf-stat-value" id="stat-quizzes">0</div>
     </div>
     <div class="perf-stat-card">
-      <span class="perf-stat-label">👥 Jogadores</span>
-      <span class="perf-stat-value">${perfData.totalUsers}</span>
+      <div class="perf-stat-label">👥 Jogadores</div>
+      <div class="perf-stat-value" id="stat-players">0</div>
     </div>
-    <div class="perf-stat-card">
-      <span class="perf-stat-label">🏆 Melhor</span>
-      <span class="perf-stat-value" style="color:var(--emerald-glow)">${best ? best.avg + '%' : '-'}</span>
+    <div class="perf-stat-card highlight">
+      <div class="perf-stat-label">🏆 Melhor Bioma</div>
+      <div class="perf-stat-value" id="stat-best">${best ? best.avg + '%' : '-'}</div>
+      <div style="font-size:0.6rem;color:var(--moss-gray);">${best ? (PERGUNTAS[best.biome]?.icone || '') + ' ' + (PERGUNTAS[best.biome]?.nome || best.biome) : ''}</div>
     </div>
-    <div class="perf-stat-card">
-      <span class="perf-stat-label">🌱 Melhorar</span>
-      <span class="perf-stat-value" style="color:var(--amber-spark)">${worst && worst.avg < 100 ? worst.avg + '%' : '-'}</span>
+    <div class="perf-stat-card warn">
+      <div class="perf-stat-label">🌱 Melhorar</div>
+      <div class="perf-stat-value" id="stat-worst">${worst && worst.avg < 100 ? worst.avg + '%' : '-'}</div>
+      <div style="font-size:0.6rem;color:var(--moss-gray);">${worst ? (PERGUNTAS[worst.biome]?.icone || '') + ' ' + (PERGUNTAS[worst.biome]?.nome || worst.biome) : ''}</div>
     </div>
-    <div class="perf-stat-card" style="flex-basis:100%;text-align:center;border:none;background:none;">
-      <span style="font-size:1.1rem;letter-spacing:3px;">${iconsRow}</span>
-    </div>
+    <div class="perf-icons-row">${iconsRow}</div>
   `;
+
+  animateStats(perfData, data);
+}
+
+function animateStats(perfData, data) {
+  const elOverall = document.getElementById('stat-overall');
+  const elQuizzes = document.getElementById('stat-quizzes');
+  const elPlayers = document.getElementById('stat-players');
+  if (!elOverall) return;
+
+  const targets = {
+    overall: perfData.overallAvg,
+    quizzes: perfData.totalQuizzes,
+    players: perfData.totalUsers,
+  };
+  const dur = 1000;
+  const t0 = performance.now();
+
+  function tick(now) {
+    const p = Math.min(1, (now - t0) / dur);
+    const ep = 1 - Math.pow(1 - p, 3);
+    if (elOverall) elOverall.textContent = Math.round(ep * targets.overall) + '%';
+    if (elQuizzes) elQuizzes.textContent = Math.round(ep * targets.quizzes);
+    if (elPlayers) elPlayers.textContent = Math.round(ep * targets.players);
+    if (p < 1) requestAnimationFrame(tick);
+    else {
+      if (elOverall) elOverall.textContent = targets.overall + '%';
+      if (elQuizzes) elQuizzes.textContent = targets.quizzes;
+      if (elPlayers) elPlayers.textContent = targets.players;
+    }
+  }
+  requestAnimationFrame(tick);
 }
 
 // ─── SETTINGS ───────────────────────────────────────────────
