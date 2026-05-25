@@ -22,8 +22,7 @@ let state = {
   answersWrong: 0,
   totalQuestions: 10,
   isAnswering: false,
-  timerInterval: null,
-  timeLeft: 45,
+  performanceHistory: [],
 
   rankings: [],
   achievements: [],
@@ -98,9 +97,9 @@ const MEDALS = [
 ];
 
 const DIFFICULTY_CONFIG = {
-  facil: { timer: 60, label: 'Fácil' },
-  medio: { timer: 45, label: 'Médio' },
-  dificil: { timer: 30, label: 'Difícil' },
+  facil: { multiplier: 1, label: 'Fácil' },
+  medio: { multiplier: 1.5, label: 'Médio' },
+  dificil: { multiplier: 2, label: 'Difícil' },
 };
 
 // ─── SOUND (simple oscillator) ──────────────────────────────
@@ -336,7 +335,7 @@ function showScreen(screenId, direction) {
   screenHistory.push(screenId);
 
   const hud = document.getElementById('hud');
-  const showHud = !['screen-initial', 'screen-login', 'screen-result', 'screen-about', 'screen-achievements', 'screen-ranking', 'screen-missions', 'screen-settings', 'screen-biome-select', 'screen-roadmap'].includes(screenId);
+  const showHud = !['screen-initial', 'screen-login', 'screen-result', 'screen-about', 'screen-achievements', 'screen-ranking', 'screen-performance', 'screen-missions', 'screen-settings', 'screen-biome-select', 'screen-roadmap'].includes(screenId);
   hud.style.display = showHud ? 'flex' : 'none';
 
   updateHUD();
@@ -346,6 +345,7 @@ function showScreen(screenId, direction) {
   if (screenId === 'screen-ranking') renderRanking();
   if (screenId === 'screen-missions') renderMissions();
   if (screenId === 'screen-roadmap') renderRoadmap();
+  if (screenId === 'screen-performance') renderPerformance();
 }
 
 // ─── HUD ────────────────────────────────────────────────────
@@ -401,7 +401,6 @@ function startQuiz() {
   }
 
   const biome = PERGUNTAS[state.currentBiome];
-  const diff = DIFFICULTY_CONFIG[state.selectedDifficulty];
 
   const allQuestions = [...biome.perguntas];
   const shuffled = shuffle(allQuestions);
@@ -418,12 +417,11 @@ function startQuiz() {
 
   document.getElementById('quiz-biome-icon').textContent = biome.icone;
   document.getElementById('quiz-biome-name').textContent = biome.nome;
+  document.getElementById('quiz-difficulty').textContent =
+    DIFFICULTY_CONFIG[state.selectedDifficulty]?.label || 'Fácil';
 
   showScreen('screen-quiz');
   loadQuestion();
-
-  state.timeLeft = diff.timer;
-  startTimer();
 }
 
 function loadQuestion() {
@@ -438,7 +436,7 @@ function loadQuestion() {
   document.getElementById('quiz-q-number').textContent = `PERGUNTA ${state.currentIndex + 1}`;
   document.getElementById('quiz-question').textContent = q.pergunta;
   document.getElementById('quiz-progress').textContent = `${state.currentIndex + 1}/${state.totalQuestions}`;
-  document.getElementById('progress-fill').style.width = `${(state.currentIndex / state.totalQuestions) * 100}%`;
+  document.getElementById('progress-fill').style.width = `${((state.currentIndex + 1) / state.totalQuestions) * 100}%`;
 
   const optionsContainer = document.getElementById('quiz-options');
   optionsContainer.innerHTML = '';
@@ -566,30 +564,7 @@ function ecoReact(type) {
   }
 }
 
-function startTimer() {
-  clearInterval(state.timerInterval);
-  const timerEl = document.getElementById('quiz-timer');
-
-  state.timerInterval = setInterval(() => {
-    state.timeLeft--;
-    const mins = Math.floor(state.timeLeft / 60);
-    const secs = state.timeLeft % 60;
-    timerEl.textContent = `⏱️ ${mins}:${secs.toString().padStart(2, '0')}`;
-
-    if (state.timeLeft <= 10) {
-      timerEl.classList.add('warning');
-    }
-
-    if (state.timeLeft <= 0) {
-      clearInterval(state.timerInterval);
-      state.consecutiveCorrect = 0;
-      finishQuiz();
-    }
-  }, 1000);
-}
-
 function cancelQuiz() {
-  clearInterval(state.timerInterval);
   document.getElementById('explanation-overlay').classList.remove('active');
   state.waitingForExplanation = false;
   state.quizFinished = false;
@@ -597,7 +572,6 @@ function cancelQuiz() {
 }
 
 function finishQuiz() {
-  clearInterval(state.timerInterval);
   if (state.quizFinished) return;
   state.quizFinished = true;
   const total = state.totalQuestions;
@@ -671,6 +645,21 @@ function finishQuiz() {
   });
 
   checkAchievements();
+
+  state.performanceHistory.push({
+    date: new Date().toISOString().slice(0, 10),
+    biome: state.currentBiome,
+    biomeLabel: PERGUNTAS[state.currentBiome]?.nome || state.currentBiome,
+    score: percent,
+    xp: xpEarned,
+    level: state.level,
+    correct: state.answersCorrect,
+    total: state.totalQuestions,
+  });
+  if (state.performanceHistory.length > 50) {
+    state.performanceHistory = state.performanceHistory.slice(-50);
+  }
+
   saveGame();
   updateHUD();
 
@@ -929,6 +918,138 @@ function renderMissions() {
   });
 }
 
+// ─── PERFORMANCE CHART ──────────────────────────────────────
+function renderPerformance() {
+  if (state.performanceHistory.length === 0) {
+    document.getElementById('perf-stats').innerHTML =
+      '<div style="text-align:center;color:var(--moss-gray);padding:30px;">Complete alguns quizzes para ver seu desempenho! 🌱</div>';
+    return;
+  }
+
+  const canvas = document.getElementById('perf-chart');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  const c = canvas.getContext('2d');
+  c.scale(dpr, dpr);
+  const W = rect.width, H = rect.height;
+
+  const data = state.performanceHistory;
+  const pad = { top: 30, bottom: 40, left: 45, right: 25 };
+  const chartW = W - pad.left - pad.right;
+  const chartH = H - pad.top - pad.bottom;
+
+  const maxScore = Math.max(...data.map(d => d.score), 100);
+  const count = data.length;
+
+  // Background
+  const bg = c.createLinearGradient(0, 0, 0, H);
+  bg.addColorStop(0, 'rgba(13, 27, 20, 0.95)');
+  bg.addColorStop(1, 'rgba(10, 14, 26, 0.95)');
+  c.fillStyle = bg;
+  c.fillRect(0, 0, W, H);
+
+  // Grid lines
+  c.strokeStyle = 'rgba(46, 204, 113, 0.06)';
+  c.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + (chartH / 4) * i;
+    c.beginPath();
+    c.moveTo(pad.left, y);
+    c.lineTo(W - pad.right, y);
+    c.stroke();
+
+    const label = Math.round(maxScore - (maxScore / 4) * i);
+    c.fillStyle = 'rgba(255,255,255,0.2)';
+    c.font = '9px monospace';
+    c.textAlign = 'right';
+    c.fillText(label + '%', pad.left - 8, y + 3);
+  }
+
+  const points = data.map((d, i) => ({
+    x: pad.left + (i / Math.max(count - 1, 1)) * chartW,
+    y: pad.top + chartH - (d.score / maxScore) * chartH,
+    ...d,
+  }));
+
+  // Area fill (gradient under line)
+  const areaGrad = c.createLinearGradient(0, pad.top, 0, pad.top + chartH);
+  areaGrad.addColorStop(0, 'rgba(46, 204, 113, 0.25)');
+  areaGrad.addColorStop(0.5, 'rgba(26, 188, 156, 0.1)');
+  areaGrad.addColorStop(1, 'rgba(46, 204, 113, 0)');
+  c.beginPath();
+  c.moveTo(points[0].x, pad.top + chartH);
+  points.forEach(p => c.lineTo(p.x, p.y));
+  c.lineTo(points[points.length - 1].x, pad.top + chartH);
+  c.closePath();
+  c.fillStyle = areaGrad;
+  c.fill();
+
+  // Vine line
+  c.beginPath();
+  points.forEach((p, i) => {
+    if (i === 0) c.moveTo(p.x, p.y);
+    else {
+      const cp1x = (points[i - 1].x + p.x) / 2;
+      c.bezierCurveTo(cp1x, points[i - 1].y, cp1x, p.y, p.x, p.y);
+    }
+  });
+  c.strokeStyle = '#2ECC71';
+  c.lineWidth = 2.5;
+  c.shadowColor = 'rgba(46, 204, 113, 0.4)';
+  c.shadowBlur = 8;
+  c.stroke();
+  c.shadowBlur = 0;
+
+  // Glow dots
+  points.forEach((p, i) => {
+    const isLast = i === points.length - 1;
+
+    // Outer glow
+    const grad = c.createRadialGradient(p.x, p.y, 0, p.x, p.y, isLast ? 12 : 8);
+    grad.addColorStop(0, 'rgba(46, 204, 113, 0.6)');
+    grad.addColorStop(1, 'rgba(46, 204, 113, 0)');
+    c.fillStyle = grad;
+    c.beginPath();
+    c.arc(p.x, p.y, isLast ? 12 : 8, 0, Math.PI * 2);
+    c.fill();
+
+    // Dot
+    c.fillStyle = isLast ? '#2ECC71' : 'rgba(46, 204, 113, 0.8)';
+    c.beginPath();
+    c.arc(p.x, p.y, isLast ? 5 : 3.5, 0, Math.PI * 2);
+    c.fill();
+
+    if (isLast) {
+      c.strokeStyle = 'rgba(46, 204, 113, 0.3)';
+      c.lineWidth = 1.5;
+      c.stroke();
+    }
+
+    // Label below
+    if (count <= 15 || i === 0 || i === count - 1 || i % 2 === 0) {
+      c.fillStyle = 'rgba(255,255,255,0.25)';
+      c.font = '7px monospace';
+      c.textAlign = 'center';
+      c.fillText(p.date?.slice(5) || '', p.x, pad.top + chartH + 15);
+    }
+  });
+
+  // Stats below chart
+  const last = data[data.length - 1];
+  const avg = Math.round(data.reduce((s, d) => s + d.score, 0) / data.length);
+  const best = Math.max(...data.map(d => d.score));
+  const totalXp = data.reduce((s, d) => s + d.xp, 0);
+
+  document.getElementById('perf-stats').innerHTML = `
+    <div class="perf-stat-card"><span class="perf-stat-value">${data.length}</span> Quizzes</div>
+    <div class="perf-stat-card"><span class="perf-stat-value">${avg}%</span> Média</div>
+    <div class="perf-stat-card"><span class="perf-stat-value">${best}%</span> Melhor</div>
+    <div class="perf-stat-card"><span class="perf-stat-value">${totalXp}</span> XP Total</div>
+  `;
+}
+
 // ─── SETTINGS ───────────────────────────────────────────────
 function toggleSound(enabled) {
   state.soundEnabled = enabled;
@@ -960,6 +1081,7 @@ function saveGame() {
     biomesPlayed: state.biomesPlayed,
     biomesCompleted: state.biomesCompleted,
     biomeScores: state.biomeScores,
+    performanceHistory: state.performanceHistory,
   };
 
   localStorage.setItem('ecoquest_' + state.playerName, JSON.stringify(data));
@@ -1010,6 +1132,7 @@ async function loadGame(name) {
     state.biomesPlayed = data.biomesPlayed || [];
     state.biomesCompleted = data.biomesCompleted || {};
     state.biomeScores = data.biomeScores || {};
+    state.performanceHistory = data.performanceHistory || [];
 
     if (data.achievementsProgress) {
       data.achievementsProgress.forEach(ap => {
@@ -1036,6 +1159,7 @@ function resetState() {
   state.biomesPlayed = [];
   state.biomesCompleted = {};
   state.biomeScores = {};
+  state.performanceHistory = [];
   ACHIEVEMENTS_DATA.forEach(a => a.progress = 0);
   state.missions.daily.forEach(m => { m.done = 0; m.completed = false; });
   state.missions.weekly.forEach(m => { m.done = 0; m.completed = false; });

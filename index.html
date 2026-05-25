@@ -87,6 +87,7 @@
         <div style="margin-top:12px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
           <button class="btn-crystal secondary small" onclick="showScreen('screen-roadmap')">🗺️ Mapa</button>
           <button class="btn-crystal secondary small" onclick="showScreen('screen-ranking')">🏆 Ranking</button>
+          <button class="btn-crystal secondary small" onclick="showScreen('screen-performance')">📈 Desempenho</button>
           <button class="btn-crystal secondary small" onclick="showScreen('screen-about')">📖 Sobre</button>
         </div>
         <div class="initial-quote">"O conhecimento é a semente que regenera o mundo."</div>
@@ -128,6 +129,11 @@
           <span class="menu-item-icon">🏆</span>
           <div class="menu-item-label">Ranking</div>
           <div class="menu-item-desc">Classificação</div>
+        </div>
+        <div class="menu-item" onclick="showScreen('screen-performance')">
+          <span class="menu-item-icon">📈</span>
+          <div class="menu-item-label">Desempenho</div>
+          <div class="menu-item-desc">Gráfico de evolução</div>
         </div>
         <div class="menu-item" onclick="showScreen('screen-achievements')">
           <span class="menu-item-icon">🎖️</span>
@@ -174,7 +180,7 @@
             <span id="quiz-biome-name">Florestas</span>
           </div>
           <div class="quiz-progress-text" id="quiz-progress">1/10</div>
-          <div class="quiz-timer" id="quiz-timer">⏱️ 0:45</div>
+          <div class="quiz-difficulty" id="quiz-difficulty">🌱 Fácil</div>
         </div>
         <div class="progress-vine">
           <div class="progress-vine-fill" id="progress-fill" style="width:0%"></div>
@@ -315,6 +321,24 @@
               <button class="btn-crystal secondary small" onclick="toggleSound(false)" id="sound-off-btn">🔇 Desligado</button>
             </div>
           </div>
+        </div>
+      </div>
+      <button class="back-btn" onclick="showScreen('screen-menu')">← Voltar</button>
+    </div>
+
+    <!-- SCREEN: PERFORMANCE -->
+    <div class="screen" id="screen-performance">
+      <div class="performance-container">
+        <div class="performance-title">📈 Meu Desempenho</div>
+        <div class="performance-chart-wrapper">
+          <div class="performance-chart-bg">
+            <canvas id="perf-chart" width="700" height="400"></canvas>
+          </div>
+        </div>
+        <div class="performance-stats" id="perf-stats"></div>
+        <div class="performance-legend" id="perf-legend">
+          <span>🌱 Acertos (%)</span>
+          <span class="legend-xp">⭐ XP Ganho</span>
         </div>
       </div>
       <button class="back-btn" onclick="showScreen('screen-menu')">← Voltar</button>

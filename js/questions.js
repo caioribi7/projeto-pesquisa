@@ -6,78 +6,83 @@ const PERGUNTAS = {
     perguntas: [
       {
         pergunta: "Qual é a maior floresta tropical do mundo?",
-        alternativas: ["Floresta Amazônica", "Floresta do Congo", "Floresta da Borneo", "Floresta da Indonésia"],
+        alternativas: ["Floresta Amazônica", "Floresta do Congo", "Floresta de Bornéu", "Floresta da Indonésia"],
         correta: 0,
-        explicacao: "A Amazônia é a maior floresta tropical do mundo, cobrindo cerca de 5,5 milhões de km²."
+        explicacao: "A Amazônia é a maior floresta tropical do mundo."
       },
       {
         pergunta: "O que é desmatamento ilegal?",
         alternativas: [
-          "Corte de árvores autorizado pelo governo",
-          "Remoção de florestas sem permissão legal",
-          "Plantio de novas árvores em áreas urbanas",
-          "Incêndios naturais em florestas"
+          "Cortar árvores com licença",
+          "Cortar árvores sem licença",
+          "Plantar árvores na cidade",
+          "Fogo que vem da natureza"
         ],
         correta: 1,
-        explicacao: "Desmatamento ilegal é a remoção de vegetação nativa sem autorização dos órgãos ambientais competentes."
+        explicacao: "É cortar árvores sem permissão do governo."
       },
       {
-        pergunta: "Quantos por cento da Amazônia foi desmatado até hoje?",
-        alternativas: ["5%", "Cerca de 17%", "50%", "2%"],
+        pergunta: "Quanto da Amazônia já foi desmatado?",
+        alternativas: ["5%", "17%", "50%", "2%"],
         correta: 1,
-        explicacao: "Aproximadamente 17% da Floresta Amazônica foi desmatada, segundo dados do INPE."
+        explicacao: "Quase 17% da Amazônia já foi desmatada."
       },
       {
-        pergunta: "Qual bioma brasileiro é o mais ameaçado atualmente?",
+        pergunta: "Qual bioma brasileiro é o mais ameaçado?",
         alternativas: ["Amazônia", "Cerrado", "Mata Atlântica", "Caatinga"],
         correta: 2,
-        explicacao: "A Mata Atlântica perdeu mais de 90% de sua cobertura original, sendo o bioma mais ameaçado do Brasil."
+        explicacao: "A Mata Atlântica perdeu quase toda sua mata."
       },
       {
         pergunta: "O que é reflorestamento?",
         alternativas: [
-          "Corte de árvores nativas",
-          "Plantio de árvores em áreas desmatadas",
-          "Queimada controlada",
-          "Extrair madeira legalmente"
+          "Cortar muitas árvores",
+          "Plantar árvores de novo",
+          "Queimar a vegetação",
+          "Extrair madeira legal"
         ],
         correta: 1,
-        explicacao: "Reflorestamento é o plantio de árvores em áreas que foram desmatadas para recuperar a vegetação."
+        explicacao: "É plantar árvores onde a mata foi cortada."
       },
       {
         pergunta: "Qual árvore é símbolo nacional do Brasil?",
         alternativas: ["Pau-Brasil", "Ipê", "Jequitibá", "Seringueira"],
         correta: 0,
-        explicacao: "O Pau-Brasil foi declarado árvore nacional pela Lei nº 6.607/1978."
+        explicacao: "O Pau-Brasil é a árvore símbolo do Brasil."
       },
       {
         pergunta: "O que são corredores ecológicos?",
         alternativas: [
-          "Estradas abertas em florestas nativas",
-          "Áreas que conectam fragmentos florestais",
-          "Corredores feitos para conter incêndios",
-          "Trilhas turísticas em parques"
+          "Estradas dentro de florestas",
+          "Áreas que ligam florestas",
+          "Caminhos para parar fogo",
+          "Trilhas para visitantes"
         ],
         correta: 1,
-        explicacao: "Corredores ecológicos são áreas que conectam fragmentos de vegetação para permitir o fluxo de espécies."
+        explicacao: "Eles ligam partes da floresta para os animais."
       },
       {
-        pergunta: "Qual o nome do fenômeno de árvores que perdem folhas em uma estação?",
+        pergunta: "Como se chama quando árvores perdem as folhas?",
         alternativas: ["Caducifólia", "Fotossíntese", "Transpiração", "Germinação"],
         correta: 0,
-        explicacao: "Caducifólia é a queda sazonal de folhas em certas espécies de árvores."
+        explicacao: "É quando as árvores perdem suas folhas."
       },
       {
-        pergunta: "Quantas árvores são necessárias para produzir 1 tonelada de papel?",
+        pergunta: "Quantas árvores fazem 1 tonelada de papel?",
         alternativas: ["5-10 árvores", "2-3 árvores", "15-20 árvores", "1 árvore"],
         correta: 2,
-        explicacao: "São necessárias cerca de 15 a 20 árvores para produzir 1 tonelada de papel virgem."
+        explicacao: "Precisa de 15 a 20 árvores para fazer papel."
       },
       {
-        pergunta: "Qual a principal causa dos incêndios florestais no Brasil?",
-        alternativas: ["Raios", "Ação humana", "Erupções vulcânicas", "Combustão espontânea"],
+        pergunta: "O que mais causa incêndios nas florestas?",
+        alternativas: [
+          "Causado por raios",
+          "Causado por pessoas",
+          "Causado por vulcões",
+          "Causado pelo calor"
+        ],
         correta: 1,
-        explicacao: "A maioria dos incêndios florestais no Brasil é causada por ação humana, intencional ou acidental."
+        explicacao: "Pessoas causam a maioria dos incêndios florestais."
       }
     ]
   },
@@ -87,84 +92,84 @@ const PERGUNTAS = {
     cor: "#1ABC9C",
     perguntas: [
       {
-        pergunta: "Qual a porcentagem da superfície da Terra coberta por oceanos?",
+        pergunta: "Quanto da Terra é coberto por oceanos?",
         alternativas: ["50%", "71%", "80%", "60%"],
         correta: 1,
-        explicacao: "Os oceanos cobrem aproximadamente 71% da superfície da Terra."
+        explicacao: "Os oceanos cobrem 71% da superfície da Terra."
       },
       {
-        pergunta: "O que é a Grande Mancha de Lixo do Pacífico?",
+        pergunta: "O que é a mancha de lixo no Pacífico?",
         alternativas: [
-          "Uma ilha de plástico flutuante no oceano",
-          "Uma concentração de detritos plásticos no oceano",
-          "Um recife de corais artificial",
-          "Uma região com proliferação de algas"
+          "Ilha de plástico boiando",
+          "Plástico juntado no oceano",
+          "Recife de corais artificial",
+          "Algas crescendo no mar"
         ],
         correta: 1,
-        explicacao: "É uma enorme concentração de plástico e detritos no Oceano Pacífico, formada por correntes oceânicas."
+        explicacao: "É muito plástico juntado no Oceano Pacífico."
       },
       {
         pergunta: "Qual o maior animal do oceano?",
         alternativas: ["Tubarão-baleia", "Baleia-azul", "Polvo-gigante", "Lula-colossal"],
         correta: 1,
-        explicacao: "A baleia-azul é o maior animal do planeta, podendo atingir 30 metros de comprimento."
+        explicacao: "A baleia-azul é o maior animal do planeta."
       },
       {
         pergunta: "O que é branqueamento de corais?",
         alternativas: [
-          "Morte natural dos corais pelo envelhecimento",
-          "Descoloração dos corais devido ao estresse térmico",
-          "Poluição química nos recifes de corais",
-          "Crescimento excessivo de algas brancas"
+          "Morte natural dos corais",
+          "Corais perdem a cor",
+          "Poluição química nos corais",
+          "Algas brancas no mar"
         ],
         correta: 1,
-        explicacao: "O branqueamento ocorre quando corais expulsam algas simbióticas devido ao aumento da temperatura da água."
+        explicacao: "Corais perdem a cor quando a água esquenta."
       },
       {
-        pergunta: "Quanto do oxigênio da Terra é produzido pelos oceanos?",
-        alternativas: ["30%", "Mais de 50%", "10%", "70%"],
+        pergunta: "Quanto do oxigênio vem dos oceanos?",
+        alternativas: ["30% do ar", "Mais da metade", "10% do ar", "70% do ar"],
         correta: 1,
-        explicacao: "O fitoplâncton marinho produz mais de 50% do oxigênio da atmosfera terrestre."
+        explicacao: "O mar produz mais da metade do oxigênio."
       },
       {
         pergunta: "O que é a acidificação dos oceanos?",
         alternativas: [
-          "Aquecimento da água do mar",
-          "Aumento da acidez causado por absorção de CO₂",
-          "Poluição da água por ácidos industriais",
-          "Evaporação excessiva dos oceanos"
+          "Aquecer a água do mar",
+          "Tornar o mar mais ácido",
+          "Sujar o mar com ácidos",
+          "Secar toda água do mar"
         ],
         correta: 1,
-        explicacao: "Os oceanos absorvem CO₂ da atmosfera, formando ácido carbônico e aumentando a acidez da água."
+        explicacao: "O mar fica ácido ao absorver CO₂ do ar."
       },
       {
-        pergunta: "Quantos anos leva para um plástico se decompor no oceano?",
-        alternativas: ["10 anos", "50 anos", "Até 450 anos", "2 anos"],
+        pergunta: "Quanto tempo o plástico dura no mar?",
+        alternativas: ["10 anos", "50 anos", "450 anos", "2 anos"],
         correta: 2,
-        explicacao: "O plástico pode levar até 450 anos para se decompor no ambiente marinho."
+        explicacao: "O plástico pode ficar 450 anos no mar."
       },
       {
         pergunta: "Qual oceano é o maior do mundo?",
         alternativas: ["Atlântico", "Índico", "Pacífico", "Ártico"],
         correta: 2,
-        explicacao: "O Oceano Pacífico é o maior, cobrindo aproximadamente 165 milhões de km²."
+        explicacao: "O Oceano Pacífico é o maior de todos."
       },
       {
         pergunta: "O que são manguezais?",
         alternativas: [
-          "Florestas que crescem em água doce",
-          "Ecossistemas costeiros com vegetação adaptada ao sal",
-          "Recifes artificiais feitos pelo homem",
-          "Grandes dunas de areia do litoral"
+          "Mata que cresce em água doce",
+          "Mata na beira do mar salgado",
+          "Recife artificial de pessoas",
+          "Duna de areia na praia"
         ],
         correta: 1,
-        explicacao: "Manguezais são ecossistemas de transição entre terra e mar, com plantas adaptadas à água salgada."
+        explicacao: "São matas na beira do mar salgado."
       },
       {
         pergunta: "Qual poluente marinho mais prejudicial?",
         alternativas: ["Areia", "Plástico", "Conchas", "Sal"],
         correta: 1,
-        explicacao: "O plástico é o poluente mais prejudicial, ingerido por animais marinhos e entrando na cadeia alimentar."
+        explicacao: "O plástico é o pior poluente do mar."
       }
     ]
   },
@@ -176,97 +181,97 @@ const PERGUNTAS = {
       {
         pergunta: "O que é efeito estufa?",
         alternativas: [
-          "Destruição da camada de ozônio na atmosfera",
-          "Fenômeno natural que retém calor na atmosfera",
-          "Poluição do solo causada por agrotóxicos",
-          "Aquecimento direto dos oceanos"
+          "Furar a camada de ozônio",
+          "Calor preso na atmosfera",
+          "Sujar o solo com veneno",
+          "Esquentar a água do mar"
         ],
         correta: 1,
-        explicacao: "O efeito estufa é um fenômeno natural onde gases retêm parte do calor solar, mantendo o planeta aquecido."
+        explicacao: "Efeito estufa prende o calor na atmosfera."
       },
       {
-        pergunta: "Qual o principal gás de efeito estufa emitido por atividades humanas?",
-        alternativas: ["Oxigênio", "Dióxido de Carbono (CO₂)", "Nitrogênio", "Hidrogênio"],
+        pergunta: "Qual gás mais esquenta o planeta?",
+        alternativas: ["Oxigênio (O₂)", "Gás Carbônico (CO₂)", "Nitrogênio (N₂)", "Hidrogênio (H₂)"],
         correta: 1,
-        explicacao: "O CO₂ é o principal gás de efeito estufa emitido pela queima de combustíveis fósseis."
+        explicacao: "CO₂ é o gás que mais aquece a Terra."
       },
       {
         pergunta: "O que é o aquecimento global?",
         alternativas: [
-          "Aumento natural da temperatura do planeta",
-          "Aumento da temperatura média da Terra devido a atividades humanas",
-          "Variação climática normal que sempre existiu",
-          "Aquecimento que ocorre apenas nos oceanos"
+          "Terra mais quente naturalmente",
+          "Terra mais quente por pessoas",
+          "Clima mudando naturalmente",
+          "Mar mais quente que antes"
         ],
         correta: 1,
-        explicacao: "Aquecimento global é o aumento da temperatura média do planeta causado pelo acúmulo de gases estufa."
+        explicacao: "É a Terra ficando mais quente por poluição."
       },
       {
         pergunta: "Qual a diferença entre tempo e clima?",
         alternativas: [
           "São a mesma coisa",
-          "Tempo é o estado atmosférico momentâneo; clima é a média de longo prazo",
-          "Clima é diário; tempo é anual",
-          "Tempo é global; clima é local"
+          "Tempo é hoje; clima são anos",
+          "Clima é hoje; tempo são anos",
+          "Tempo do mundo; clima local"
         ],
         correta: 1,
-        explicacao: "Tempo é o estado atmosférico em um momento específico. Clima é o padrão de longo prazo (30 anos+)."
+        explicacao: "Tempo é hoje. Clima são muitos anos."
       },
       {
         pergunta: "O que são energias renováveis?",
         alternativas: [
-          "Energias que poluem muito",
-          "Fontes de energia que se regeneram naturalmente",
-          "Energias que acabam rápido",
-          "Combustíveis fósseis"
+          "Sujam a natureza",
+          "Nunca acabam na natureza",
+          "Acabam rapidinho",
+          "Vêm do petróleo"
         ],
         correta: 1,
-        explicacao: "Energias renováveis vêm de fontes naturais que se regeneram, como sol, vento e água."
+        explicacao: "Vêm da natureza e nunca se acabam."
       },
       {
-        pergunta: "Qual atividade humana mais contribui para o aquecimento global?",
+        pergunta: "O que mais esquenta a Terra?",
         alternativas: [
-          "Práticas de agricultura orgânica",
-          "Queima de combustíveis fósseis",
-          "Reciclagem de resíduos sólidos",
-          "Plantio de árvores nativas"
+          "Cultivar alimentos naturais",
+          "Queimar gasolina e carvão",
+          "Reciclar latas e papéis",
+          "Plantar mudas de árvores"
         ],
         correta: 1,
-        explicacao: "A queima de combustíveis fósseis para energia e transporte é a maior fonte de emissões de CO₂."
+        explicacao: "Queimar gasolina e carvão aquece o planeta."
       },
       {
         pergunta: "O que é a pegada de carbono?",
         alternativas: [
           "Marca de pé no chão",
-          "Total de emissões de gases estufa causadas por uma atividade",
-          "Carbono presente no solo",
-          "Tipo de poluição visual"
+          "Gases que produzimos",
+          "Carbono que tem no solo",
+          "Fumaça que vemos no ar"
         ],
         correta: 1,
-        explicacao: "Pegada de carbono é a medida total de emissões de gases de efeito estufa geradas por uma atividade."
+        explicacao: "São os gases que jogamos na atmosfera."
       },
       {
-        pergunta: "Qual acordo internacional visa combater as mudanças climáticas?",
+        pergunta: "Qual acordo mundial ajuda o clima?",
         alternativas: ["Tratado de Tordesilhas", "Acordo de Paris", "Protocolo de Kyoto", "Carta da ONU"],
         correta: 1,
-        explicacao: "O Acordo de Paris (2015) é um tratado global para limitar o aquecimento a 1,5-2°C."
+        explicacao: "Acordo de Paris é para salvar o clima."
       },
       {
         pergunta: "O que é neutralidade de carbono?",
         alternativas: [
-          "Emitir mais carbono que o normal",
-          "Equilibrar emissões com remoção de carbono",
-          "Parar completamente de emitir carbono",
-          "Usar apenas carvão vegetal"
+          "Soltar mais gás que o normal",
+          "Soltar e tirar o mesmo tanto",
+          "Não soltar gás nenhum",
+          "Só usar carvão de madeira"
         ],
         correta: 1,
-        explicacao: "Neutralidade de carbono significa equilibrar as emissões com a remoção de carbono da atmosfera."
+        explicacao: "É soltar e tirar a mesma quantidade."
       },
       {
-        pergunta: "Quanto a temperatura global já aumentou desde a Revolução Industrial?",
+        pergunta: "Quanto a Terra já esquentou desde 1800?",
         alternativas: ["0,5°C", "Cerca de 1,1°C", "5°C", "10°C"],
         correta: 1,
-        explicacao: "A temperatura média global já aumentou aproximadamente 1,1°C desde a era pré-industrial."
+        explicacao: "A Terra já esquentou cerca de 1,1°C."
       }
     ]
   },
@@ -276,7 +281,7 @@ const PERGUNTAS = {
     cor: "#F39C12",
     perguntas: [
       {
-        pergunta: "O que significa os 3 Rs da sustentabilidade?",
+        pergunta: "O que significam os 3 Rs?",
         alternativas: [
           "Rezar, Repetir, Renovar",
           "Reduzir, Reutilizar, Reciclar",
@@ -284,81 +289,81 @@ const PERGUNTAS = {
           "Repensar, Reprovar, Recomeçar"
         ],
         correta: 1,
-        explicacao: "Os 3 Rs são: Reduzir (consumir menos), Reutilizar (usar novamente), Reciclar (transformar)."
+        explicacao: "São Reduzir, Reutilizar e Reciclar."
       },
       {
-        pergunta: "Quanto tempo leva para uma lata de alumínio se decompor na natureza?",
+        pergunta: "Quanto tempo uma lata de alumínio dura?",
         alternativas: ["1 ano", "5 anos", "Mais de 100 anos", "200 anos"],
         correta: 2,
-        explicacao: "Latas de alumínio levam de 100 a 500 anos para se decompor na natureza."
+        explicacao: "Latas de alumínio duram mais de 100 anos."
       },
       {
-        pergunta: "Qual material é o mais reciclado no mundo?",
+        pergunta: "Qual material é mais reciclado no mundo?",
         alternativas: ["Plástico", "Vidro", "Papel", "Alumínio"],
         correta: 2,
-        explicacao: "O papel é o material mais reciclado, com taxas de reciclagem acima de 60% em muitos países."
+        explicacao: "O papel é o material mais reciclado."
       },
       {
-        pergunta: "Qual a cor da lixeira de reciclagem para plástico?",
+        pergunta: "Qual a cor da lixeira para plástico?",
         alternativas: ["Azul", "Vermelho", "Verde", "Amarelo"],
         correta: 1,
-        explicacao: "A cor vermelha é usada para plástico na coleta seletiva padrão do Brasil."
+        explicacao: "Vermelho é a cor do plástico na coleta seletiva."
       },
       {
         pergunta: "O que é compostagem?",
         alternativas: [
-          "Processo de reciclar plásticos",
-          "Transformação de resíduos orgânicos em adubo",
-          "Queima de lixo",
-          "Enterrar resíduos sólidos"
+          "Reciclar plásticos",
+          "Transformar lixo em adubo",
+          "Queimar o lixo",
+          "Enterrar os resíduos"
         ],
         correta: 1,
-        explicacao: "Compostagem é a decomposição controlada de matéria orgânica para produzir fertilizante natural."
+        explicacao: "Compostagem vira lixo orgânico em adubo."
       },
       {
         pergunta: "Quantas vezes o vidro pode ser reciclado?",
         alternativas: ["5 vezes", "10 vezes", "Infinitas vezes", "3 vezes"],
         correta: 2,
-        explicacao: "O vidro é 100% reciclável e pode ser reciclado infinitamente sem perder qualidade."
+        explicacao: "O vidro pode ser reciclado para sempre."
       },
       {
         pergunta: "O que é upcycling?",
         alternativas: [
-          "Reciclagem tradicional",
-          "Transformar resíduos em produtos de maior valor",
+          "Reciclagem comum",
+          "Criar algo melhor com lixo",
           "Jogar lixo no lixo",
-          "Queimar resíduos para energia"
+          "Queimar lixo para energia"
         ],
         correta: 1,
-        explicacao: "Upcycling é o reaproveitamento criativo de materiais para criar produtos de maior valor."
+        explicacao: "É fazer algo melhor com materiais velhos."
       },
       {
-        pergunta: "Qual país é líder mundial em reciclagem?",
+        pergunta: "Qual país recicla mais no mundo?",
         alternativas: ["Brasil", "EUA", "Alemanha", "Japão"],
         correta: 2,
-        explicacao: "A Alemanha tem a maior taxa de reciclagem do mundo, com cerca de 68% dos resíduos reciclados."
+        explicacao: "A Alemanha é líder mundial em reciclagem."
       },
       {
         pergunta: "O que são resíduos eletrônicos?",
         alternativas: [
-          "Lixo digital da internet",
-          "Aparelhos eletrônicos descartados",
+          "Lixo da internet",
+          "Aparelhos usados descartados",
           "Cabos de energia",
-          "Pilhas e baterias apenas"
+          "Só pilhas e baterias"
         ],
         correta: 1,
-        explicacao: "Resíduos eletrônicos (e-lixo) são equipamentos elétricos e eletrônicos descartados."
+        explicacao: "São aparelhos elétricos que viram lixo."
       },
       {
-        pergunta: "Qual o destino correto de pilhas e baterias?",
+        pergunta: "Onde jogar pilhas e baterias?",
         alternativas: [
           "Lixo comum",
-          "Pontos de coleta específicos",
+          "Pontos de coleta",
           "Pia da cozinha",
           "Lixeira azul"
         ],
         correta: 1,
-        explicacao: "Pilhas e baterias contêm metais pesados tóxicos e devem ser descartadas em pontos de coleta especiais."
+        explicacao: "Pilhas têm veneno e vão em coleta especial."
       }
     ]
   },
@@ -368,55 +373,55 @@ const PERGUNTAS = {
     cor: "#3498DB",
     perguntas: [
       {
-        pergunta: "Qual porcentagem da água da Terra é doce e disponível para consumo?",
+        pergunta: "Quanta água doce temos para beber?",
         alternativas: ["10%", "Menos de 1%", "5%", "25%"],
         correta: 1,
-        explicacao: "Menos de 1% da água do planeta é doce e acessível para consumo humano."
+        explicacao: "Menos de 1% da água é doce e acessível."
       },
       {
         pergunta: "O que é o ciclo da água?",
         alternativas: [
-          "Processo de tratamento de água",
-          "Circulação contínua da água na natureza",
+          "Tratamento da água",
+          "Água andando na natureza",
           "Movimento das ondas",
-          "Caminho da água nos canos"
+          "Água nos canos"
         ],
         correta: 1,
-        explicacao: "O ciclo da água é o movimento contínuo da água entre atmosfera, solo e oceanos."
+        explicacao: "É a água circulando entre Terra e céu."
       },
       {
-        pergunta: "Quantos litros de água uma pessoa consome por dia em média no Brasil?",
-        alternativas: ["50L", "Cerca de 150L", "500L", "20L"],
+        pergunta: "Quantos litros de água uma pessoa gasta por dia?",
+        alternativas: ["50 litros", "Cerca de 150 litros", "500 litros", "20 litros"],
         correta: 1,
-        explicacao: "O consumo médio diário de água por pessoa no Brasil é de aproximadamente 150 litros."
+        explicacao: "Cada pessoa gasta cerca de 150 litros por dia."
       },
       {
         pergunta: "O que é uma bacia hidrográfica?",
         alternativas: [
-          "Tanque de armazenamento de água",
-          "Região onde a água da chuva escoa para um rio principal",
+          "Tanque de água",
+          "Área que leva água ao rio",
           "Represa artificial",
-          "Área alagada"
+          "Região alagada"
         ],
         correta: 1,
-        explicacao: "Bacia hidrográfica é a área onde a água da chuva escoa para um rio principal e seus afluentes."
+        explicacao: "É onde a chuva escorre para um rio."
       },
       {
-        pergunta: "Qual doença está relacionada à água contaminada?",
+        pergunta: "Qual doença vem da água suja?",
         alternativas: ["Gripe", "Cólera", "Diabetes", "Asma"],
         correta: 1,
-        explicacao: "Cólera é uma doença infecciosa intestinal transmitida por água ou alimentos contaminados."
+        explicacao: "Cólera é doença de água contaminada."
       },
       {
         pergunta: "O que é o lençol freático?",
         alternativas: [
-          "Rio superficial",
-          "Reservatório de água subterrâneo",
+          "Rio na superfície",
+          "Água guardada no subsolo",
           "Lago artificial",
           "Gelo das montanhas"
         ],
         correta: 1,
-        explicacao: "Lençol freático é a camada de água subterrânea que abastece poços e nascentes."
+        explicacao: "É a água que fica debaixo da terra."
       },
       {
         pergunta: "Como economizar água no banho?",
@@ -427,35 +432,35 @@ const PERGUNTAS = {
           "Ligar dois chuveiros"
         ],
         correta: 0,
-        explicacao: "Reduzir o banho para 5 minutos economiza até 70 litros de água por banho."
+        explicacao: "Banho de 5 minutos economiza muita água."
       },
       {
         pergunta: "O que é a água virtual?",
         alternativas: [
-          "Água de chuva",
-          "Água usada indiretamente para produzir bens e serviços",
+          "Água da chuva",
+          "Água gasta para fazer coisas",
           "Água destilada",
           "Água mineral"
         ],
         correta: 1,
-        explicacao: "Água virtual é a quantidade de água usada na produção de alimentos e produtos."
+        explicacao: "É a água usada para produzir alimentos."
       },
       {
-        pergunta: "Quantos litros de água são necessários para produzir 1kg de carne bovina?",
-        alternativas: ["100L", "1.000L", "15.000L", "50L"],
+        pergunta: "Quantos litros para fazer 1kg de carne?",
+        alternativas: ["100 litros", "1.000 litros", "15.000 litros", "50 litros"],
         correta: 2,
-        explicacao: "São necessários cerca de 15.000 litros de água para produzir 1kg de carne bovina."
+        explicacao: "Precisa de 15.000 litros para fazer 1kg de carne."
       },
       {
         pergunta: "O que é dessalinização?",
         alternativas: [
-          "Poluição da água doce",
-          "Processo de remover sal da água do mar",
+          "Sujar a água doce",
+          "Tirar o sal da água do mar",
           "Evaporação natural",
-          "Tratamento de esgoto"
+          "Tratar o esgoto"
         ],
         correta: 1,
-        explicacao: "Dessalinização remove o sal da água do mar para torná-la própria para consumo."
+        explicacao: "Tira o sal do mar para virar água potável."
       }
     ]
   },
@@ -468,96 +473,96 @@ const PERGUNTAS = {
         pergunta: "Qual a principal fonte de energia no Brasil?",
         alternativas: ["Carvão mineral", "Petróleo", "Hidrelétrica", "Nuclear"],
         correta: 2,
-        explicacao: "O Brasil tem uma matriz energética predominantemente hidrelétrica, com mais de 60% da energia vindo de hidrelétricas."
+        explicacao: "O Brasil usa mais energia das hidrelétricas."
       },
       {
         pergunta: "O que é energia solar?",
         alternativas: [
           "Energia do vento",
-          "Energia da luz do sol convertida em eletricidade",
+          "Luz do sol virada em energia",
           "Energia das marés",
           "Energia nuclear"
         ],
         correta: 1,
-        explicacao: "Energia solar é a conversão da luz do sol em eletricidade através de painéis fotovoltaicos."
+        explicacao: "Energia solar vem da luz do sol."
       },
       {
         pergunta: "Qual a vantagem da energia eólica?",
         alternativas: [
           "Polui o ar",
-          "É renovável e não emite gases estufa",
+          "É limpa e não polui",
           "É muito cara",
           "Ocupa pouco espaço"
         ],
         correta: 1,
-        explicacao: "Energia eólica é limpa, renovável e não emite gases de efeito estufa durante a operação."
+        explicacao: "Energia eólica é limpa e não polui."
       },
       {
         pergunta: "O que é biomassa?",
         alternativas: [
           "Energia do vento",
-          "Energia de material orgânico renovável",
+          "Energia de restos de plantas",
           "Energia nuclear",
           "Energia solar"
         ],
         correta: 1,
-        explicacao: "Biomassa é energia obtida de matéria orgânica como madeira, cana-de-açúcar e resíduos agrícolas."
+        explicacao: "Biomassa usa restos de plantas para energia."
       },
       {
         pergunta: "Qual país mais investe em energia solar?",
         alternativas: ["Brasil", "Alemanha", "China", "Austrália"],
         correta: 2,
-        explicacao: "A China é o maior investidor em energia solar do mundo, com capacidade instalada líder global."
+        explicacao: "A China é quem mais investe em energia solar."
       },
       {
         pergunta: "O que são combustíveis fósseis?",
         alternativas: [
           "Energia do sol",
-          "Combustíveis formados por matéria orgânica ao longo de milhões de anos",
+          "Restos antigos viram combustível",
           "Biocombustíveis",
-          "Energia hidrelétrica"
+          "Energia da água"
         ],
         correta: 1,
-        explicacao: "Combustíveis fósseis (petróleo, carvão, gás) são formados por restos de organismos ao longo de eras geológicas."
+        explicacao: "Petróleo e carvão são combustíveis fósseis."
       },
       {
         pergunta: "O que é eficiência energética?",
         alternativas: [
           "Usar mais energia",
-          "Fazer mais com menos energia",
+          "Gastar menos energia",
           "Desligar tudo",
           "Usar energia nuclear"
         ],
         correta: 1,
-        explicacao: "Eficiência energética é realizar a mesma tarefa consumindo menos energia."
+        explicacao: "É fazer a mesma coisa com menos energia."
       },
       {
         pergunta: "Qual a maior usina hidrelétrica do Brasil?",
         alternativas: ["Tucuruí", "Itaipu", "Belo Monte", "Sobradinho"],
         correta: 1,
-        explicacao: "A Usina de Itaipu, na fronteira Brasil-Paraguai, é uma das maiores hidrelétricas do mundo."
+        explicacao: "Itaipu é a maior hidrelétrica do Brasil."
       },
       {
         pergunta: "O que é energia geotérmica?",
         alternativas: [
           "Energia do sol",
-          "Calor do interior da Terra usado para gerar energia",
+          "Calor da Terra vira energia",
           "Energia das ondas",
           "Energia nuclear"
         ],
         correta: 1,
-        explicacao: "Energia geotérmica utiliza o calor natural do interior da Terra para gerar eletricidade."
+        explicacao: "Usa o calor de dentro da Terra."
       },
       {
-        pergunta: "O que é o efeito ilha de calor urbana?",
+        pergunta: "O que é ilha de calor nas cidades?",
         alternativas: [
           "Cidade mais fria que o campo",
-          "Áreas urbanas mais quentes que regiões rurais vizinhas",
+          "Cidade mais quente que o campo",
           "Praias artificiais",
-          "Aquecimento global apenas em cidades"
+          "Só aquecimento global"
         ],
         correta: 1,
-        explicacao: "Ilhas de calor ocorrem em cidades devido à substituição de vegetação por concreto e asfalto."
+        explicacao: "Cidades são mais quentes que o campo."
       }
     ]
   },
@@ -569,92 +574,92 @@ const PERGUNTAS = {
       {
         pergunta: "O que significa biodiversidade?",
         alternativas: [
-          "Apenas variedade de animais",
-          "Variedade de vida em todas as suas formas",
-          "Número de plantas",
-          "Quantidade de florestas"
+          "Só variedade de animais",
+          "Toda forma de vida na Terra",
+          "Só quantidade de plantas",
+          "Só tamanho das florestas"
         ],
         correta: 1,
-        explicacao: "Biodiversidade é a variedade de vida no planeta, incluindo plantas, animais, microrganismos e ecossistemas."
+        explicacao: "É a variedade de vida no planeta."
       },
       {
-        pergunta: "Qual país tem a maior biodiversidade do mundo?",
+        pergunta: "Qual país tem a maior biodiversidade?",
         alternativas: ["Estados Unidos", "Brasil", "Índia", "Austrália"],
         correta: 1,
-        explicacao: "O Brasil possui a maior biodiversidade do planeta, com mais de 20% das espécies mundiais."
+        explicacao: "O Brasil tem a maior biodiversidade do mundo."
       },
       {
         pergunta: "O que é uma espécie endêmica?",
         alternativas: [
-          "Espécie encontrada em todo o mundo",
-          "Espécie exclusiva de uma região geográfica",
+          "Espécie do mundo todo",
+          "Espécie que só existe num lugar",
           "Espécie invasora",
           "Espécie extinta"
         ],
         correta: 1,
-        explicacao: "Espécie endêmica é aquela que ocorre naturalmente apenas em uma região específica."
+        explicacao: "Só existe em uma região específica."
       },
       {
-        pergunta: "Quantas espécies existem estimadamente no planeta?",
+        pergunta: "Quantas espécies existem no planeta?",
         alternativas: ["1 milhão", "8,7 milhões", "100 mil", "500 milhões"],
         correta: 1,
-        explicacao: "Estima-se que existam cerca de 8,7 milhões de espécies no planeta, mas a maioria não foi descoberta."
+        explicacao: "Estima-se 8,7 milhões de espécies no planeta."
       },
       {
         pergunta: "O que é extinção de espécies?",
         alternativas: [
-          "Migração de animais",
-          "Desaparecimento completo de uma espécie",
-          "Redução populacional",
+          "Bichos mudando de lugar",
+          "Espécie que desaparece para sempre",
+          "Diminuição de bichos",
           "Mudança de habitat"
         ],
         correta: 1,
-        explicacao: "Extinção é o desaparecimento total de uma espécie, quando não restam mais indivíduos vivos."
+        explicacao: "É quando uma espécie some para sempre."
       },
       {
         pergunta: "O que são espécies invasoras?",
         alternativas: [
-          "Espécies nativas da região",
-          "Espécies introduzidas que prejudicam o ecossistema local",
-          "Animais migratórios",
-          "Plantas ornamentais"
+          "Espécies da região",
+          "Espécies que chegam e prejudicam",
+          "Animais que migram",
+          "Plantas de jardim"
         ],
         correta: 1,
-        explicacao: "Espécies invasoras são organismos introduzidos em um ambiente onde não são nativos e causam danos."
+        explicacao: "São bichos ou plantas que invadem outro lugar."
       },
       {
-        pergunta: "Qual bioma brasileiro tem a maior biodiversidade?",
+        pergunta: "Qual bioma brasileiro tem mais espécies?",
         alternativas: ["Cerrado", "Mata Atlântica", "Amazônia", "Pantanal"],
         correta: 2,
-        explicacao: "A Amazônia é o bioma com maior biodiversidade do planeta, abrigando milhões de espécies."
+        explicacao: "A Amazônia tem mais espécies que qualquer bioma."
       },
       {
         pergunta: "O que é seleção natural?",
         alternativas: [
-          "Seres humanos escolhem espécies",
-          "Sobrevivência dos mais adaptados ao ambiente",
-          "Criação artificial de espécies",
-          "Extinção em massa"
+          "Pessoas escolhem espécies",
+          "Os mais fortes sobrevivem",
+          "Criação de novas espécies",
+          "Morte de todas espécies"
         ],
         correta: 1,
-        explicacao: "Seleção natural é o processo onde organismos mais adaptados ao ambiente têm maior chance de sobreviver."
+        explicacao: "Os seres mais adaptados sobrevivem na natureza."
       },
       {
-        pergunta: "Quantas abelhas são necessárias para polinizar 1 hectare de lavoura?",
-        alternativas: ["10", "100", "Milhares", "1 milhão"],
+        pergunta: "Quantas abelhas polinizam 1 hectare?",
+        alternativas: ["10 abelhas", "100 abelhas", "Milhares de abelhas", "1 milhão de abelhas"],
         correta: 2,
-        explicacao: "Milhares de abelhas são necessárias para polinizar adequadamente lavouras como maçã e café."
+        explicacao: "Milhares de abelhas são necessárias para polinizar."
       },
       {
         pergunta: "O que é a Lista Vermelha da IUCN?",
         alternativas: [
           "Lista de espécies extintas",
-          "Catálogo de espécies ameaçadas de extinção",
+          "Lista de espécies em perigo",
           "Guia de espécies invasoras",
-          "Lista de animais domésticos"
+          "Lista de bichos de estimação"
         ],
         correta: 1,
-        explicacao: "A Lista Vermelha da IUCN (União Internacional para Conservação da Natureza) classifica espécies ameaçadas de extinção."
+        explicacao: "Mostra quais espécies correm risco de sumir."
       }
     ]
   },
@@ -666,92 +671,92 @@ const PERGUNTAS = {
       {
         pergunta: "O que é poluição do ar?",
         alternativas: [
-          "Apenas fumaça de carros",
-          "Presença de substâncias nocivas na atmosfera",
+          "Só fumaça de carros",
+          "Sujeira no ar que respiramos",
           "Nuvens escuras",
-          "Vento forte"
+          "Vento bem forte"
         ],
         correta: 1,
-        explicacao: "Poluição do ar é a contaminação da atmosfera por substâncias químicas, partículas ou material biológico nocivo."
+        explicacao: "É sujeira no ar que faz mal à saúde."
       },
       {
-        pergunta: "Qual cidade brasileira teve o ar mais poluído em 2024?",
+        pergunta: "Qual cidade brasileira tem o ar mais poluído?",
         alternativas: ["São Paulo", "Rio de Janeiro", "Manaus", "Belo Horizonte"],
         correta: 0,
-        explicacao: "São Paulo frequentemente lidera rankings de poluição do ar no Brasil devido à frota de veículos."
+        explicacao: "São Paulo tem o ar mais poluído do Brasil."
       },
       {
         pergunta: "O que é chuva ácida?",
         alternativas: [
-          "Chuva com pH neutro",
-          "Precipitação com ácidos formados por poluentes atmosféricos",
+          "Chuva normal e limpa",
+          "Chuva com poluição ácida",
           "Chuva de granizo",
           "Chuva radioativa"
         ],
         correta: 1,
-        explicacao: "Chuva ácida ocorre quando poluentes como SO₂ e NOₓ reagem na atmosfera formando ácidos."
+        explicacao: "Chuva ácida tem poluição que forma ácidos."
       },
       {
-        pergunta: "Qual a maior fonte de poluição dos oceanos?",
-        alternativas: ["Navios", "Atividades terrestres (80%)", "Turismo", "Pesca"],
+        pergunta: "Qual a maior fonte de poluição do mar?",
+        alternativas: ["Navios", "Atividades em terra", "Turismo", "Pesca"],
         correta: 1,
-        explicacao: "Cerca de 80% da poluição marinha vem de atividades terrestres, como agricultura e indústria."
+        explicacao: "80% da poluição do mar vem de terra."
       },
       {
         pergunta: "O que são microplásticos?",
         alternativas: [
-          "Plásticos recicláveis",
-          "Fragmentos plásticos menores que 5mm",
-          "Plásticos biodegradáveis",
-          "Embalagens plásticas"
+          "Plástico reciclável",
+          "Pedaços de plástico bem pequenos",
+          "Plástico que se desfaz",
+          "Sacos e garrafas plásticas"
         ],
         correta: 1,
-        explicacao: "Microplásticos são fragmentos de plástico menores que 5mm, originados da decomposição de plásticos maiores."
+        explicacao: "São pedacinhos de plástico menores que 5mm."
       },
       {
         pergunta: "O que é poluição do solo?",
         alternativas: [
-          "Apenas lixo visível",
-          "Contaminação do solo por substâncias químicas ou resíduos",
+          "Só lixo no chão",
+          "Veneno e lixo no solo",
           "Erosão natural",
-          "Compactação do solo"
+          "Terra bem dura"
         ],
         correta: 1,
-        explicacao: "Poluição do solo é a contaminação por produtos químicos, metais pesados, agrotóxicos e resíduos sólidos."
+        explicacao: "É sujeira química e lixo no chão."
       },
       {
         pergunta: "O que é poluição sonora?",
         alternativas: [
-          "Barulho natural da natureza",
-          "Ruído excessivo causado por atividades humanas que prejudica a saúde",
+          "Som da natureza",
+          "Barulho demais das pessoas",
           "Música alta em festas",
           "Som dos animais"
         ],
         correta: 1,
-        explicacao: "Poluição sonora é o excesso de ruído que causa danos à saúde física e mental."
+        explicacao: "É muito barulho que faz mal à saúde."
       },
       {
-        pergunta: "Qual metal pesado é tóxico e encontrado em pilhas?",
+        pergunta: "Qual metal tóxico existe em pilhas?",
         alternativas: ["Ferro", "Cádmio", "Alumínio", "Cobre"],
         correta: 1,
-        explicacao: "O cádmio é um metal pesado altamente tóxico presente em pilhas e baterias."
+        explicacao: "Cádmio é um metal tóxico em pilhas."
       },
       {
-        pergunta: "O que é o esgoto não tratado?",
+        pergunta: "O que é esgoto não tratado?",
         alternativas: [
           "Água limpa",
-          "Resíduos líquidos descartados sem tratamento adequado",
+          "Sujeira líquida sem tratamento",
           "Água da chuva",
           "Água mineral"
         ],
         correta: 1,
-        explicacao: "Esgoto não tratado contém dejetos humanos e químicos que contaminam rios e aquíferos."
+        explicacao: "É esgoto jogado nos rios sem tratamento."
       },
       {
-        pergunta: "Quantas pessoas morrem por ano devido à poluição do ar?",
+        pergunta: "Quantas pessoas morrem por poluição do ar?",
         alternativas: ["1.000", "100.000", "7 milhões", "1 bilhão"],
         correta: 2,
-        explicacao: "A OMS estima que cerca de 7 milhões de mortes prematuras por ano são causadas pela poluição do ar."
+        explicacao: "7 milhões de pessoas morrem por ar poluído."
       }
     ]
   },
@@ -763,112 +768,112 @@ const PERGUNTAS = {
       {
         pergunta: "O que é desenvolvimento sustentável?",
         alternativas: [
-          "Crescer economicamente a qualquer custo",
-          "Suprir necessidades atuais sem comprometer as futuras gerações",
+          "Crescer sem se importar",
+          "Cuidar do hoje sem destruir o amanhã",
           "Parar o desenvolvimento",
-          "Apenas proteger florestas"
+          "Só proteger as florestas"
         ],
         correta: 1,
-        explicacao: "Desenvolvimento sustentável atende às necessidades do presente sem comprometer as gerações futuras."
+        explicacao: "É crescer sem destruir o futuro."
       },
       {
         pergunta: "Quais são os três pilares da sustentabilidade?",
         alternativas: [
-          "Social, Cultural e Político",
-          "Ambiental, Social e Econômico",
-          "Saúde, Educação e Lazer",
-          "Tecnologia, Inovação e Ciência"
+          "Social, Cultural, Político",
+          "Ambiental, Social, Econômico",
+          "Saúde, Educação, Lazer",
+          "Tecnologia, Inovação, Ciência"
         ],
         correta: 1,
-        explicacao: "Os três pilares da sustentabilidade são: ambiental, social e econômico."
+        explicacao: "São ambiental, social e econômico."
       },
       {
         pergunta: "O que é consumo consciente?",
         alternativas: [
           "Comprar sem pensar",
-          "Escolher produtos considerando impactos ambientais e sociais",
-          "Comprar apenas marcas caras",
-          "Consumir tudo que se vê"
+          "Escolher sem prejudicar o planeta",
+          "Comprar só marcas caras",
+          "Comprar tudo que vê"
         ],
         correta: 1,
-        explicacao: "Consumo consciente é a escolha de produtos e serviços considerando seus impactos socioambientais."
+        explicacao: "É comprar pensando no meio ambiente."
       },
       {
         pergunta: "O que é a Agenda 2030 da ONU?",
         alternativas: [
           "Calendário de eventos",
-          "Plano global com 17 Objetivos de Desenvolvimento Sustentável",
-          "Agenda de reuniões ambientais",
+          "Plano com 17 metas para o mundo",
+          "Agenda de reuniões",
           "Plano de reciclagem"
         ],
         correta: 1,
-        explicacao: "A Agenda 2030 é um plano global da ONU com 17 ODS para alcançar um futuro sustentável."
+        explicacao: "São 17 metas para um futuro melhor."
       },
       {
         pergunta: "O que é agricultura sustentável?",
         alternativas: [
-          "Agricultura com muitos agrotóxicos",
-          "Produção de alimentos sem degradar o meio ambiente",
-          "Agricultura em larga escala",
-          "Plantio apenas de soja"
+          "Usar muito veneno",
+          "Plantar sem destruir a natureza",
+          "Plantar em larga escala",
+          "Plantar só uma coisa"
         ],
         correta: 1,
-        explicacao: "Agricultura sustentável produz alimentos respeitando o meio ambiente e a justiça social."
+        explicacao: "É produzir alimentos cuidando da natureza."
       },
       {
         pergunta: "O que é uma cidade sustentável?",
         alternativas: [
           "Cidade com muitos carros",
-          "Cidade planejada para equilibrar desenvolvimento e qualidade de vida",
+          "Cidade boa para viver e para o planeta",
           "Cidade sem indústrias",
-          "Cidade com arranha-céus"
+          "Cidade com prédios enormes"
         ],
         correta: 1,
-        explicacao: "Cidades sustentáveis buscam equilibrar crescimento urbano com qualidade ambiental e social."
+        explicacao: "Une qualidade de vida e cuidado ambiental."
       },
       {
         pergunta: "O que é economia circular?",
         alternativas: [
-          "Economia tradicional",
-          "Modelo que elimina resíduos mantendo materiais em uso contínuo",
-          "Economia baseada em petróleo",
-          "Reciclagem apenas"
+          "Economia comum",
+          "Reutilizar tudo sem gerar lixo",
+          "Economia do petróleo",
+          "Só reciclar"
         ],
         correta: 1,
-        explicacao: "Economia circular mantém produtos e materiais em uso pelo maior tempo possível, reduzindo resíduos."
+        explicacao: "É usar coisas de novo sem desperdiçar."
       },
       {
         pergunta: "O que é certificação ambiental?",
         alternativas: [
           "Multa ambiental",
-          "Selos que atestam práticas sustentáveis de produtos/empresas",
+          "Selo de produto sustentável",
           "Licença para poluir",
-          "Registro de áreas verdes"
+          "Registro de área verde"
         ],
         correta: 1,
-        explicacao: "Certificações ambientais como FSC e ISO 14001 atestam práticas sustentáveis de produtos e empresas."
+        explicacao: "Selo que mostra que algo é sustentável."
       },
       {
         pergunta: "Qual o objetivo do ODS 13?",
         alternativas: [
-          "Erradicar a pobreza",
-          "Ação contra a mudança global do clima",
+          "Acabar com a pobreza",
+          "Combater a mudança do clima",
           "Educação de qualidade",
           "Vida na água"
         ],
         correta: 1,
-        explicacao: "O ODS 13 visa tomar medidas urgentes para combater as mudanças climáticas e seus impactos."
+        explicacao: "ODS 13 é para combater as mudanças climáticas."
       },
       {
-        pergunta: "O que é ESG?",
+        pergunta: "O que significa ESG?",
         alternativas: [
           "Empresa Sem Gerenciamento",
-          "Environmental, Social and Governance (Ambiental, Social e Governança)",
+          "Ambiental, Social e Governança",
           "Economia Sustentável Global",
           "Energia Solar Garantida"
         ],
         correta: 1,
-        explicacao: "ESG são critérios ambientais, sociais e de governança usados para avaliar a sustentabilidade de empresas."
+        explicacao: "São regras para empresas sustentáveis."
       }
     ]
   },
@@ -879,84 +884,84 @@ const PERGUNTAS = {
     ordem: 7,
     perguntas: [
       {
-        pergunta: "Quantas espécies são estimadas como ameaçadas de extinção atualmente?",
+        pergunta: "Quantas espécies estão ameaçadas hoje?",
         alternativas: ["1.000", "10.000", "Mais de 40.000", "100.000"],
         correta: 2,
-        explicacao: "Mais de 40.000 espécies estão listadas como ameaçadas na Lista Vermelha da IUCN."
+        explicacao: "Mais de 40.000 espécies estão em perigo."
       },
       {
-        pergunta: "Qual animal brasileiro é símbolo da luta contra a extinção?",
+        pergunta: "Qual animal brasileiro luta contra a extinção?",
         alternativas: ["Arara-azul", "Tatu-bola", "Mico-leão-dourado", "Lobo-guará"],
         correta: 2,
-        explicacao: "O mico-leão-dourado é um símbolo da conservação no Brasil, após décadas de esforços para salvá-lo."
+        explicacao: "Mico-leão-dourado é símbolo da conservação."
       },
       {
         pergunta: "O que é a IUCN?",
         alternativas: [
-          "Instituto de Urbanismo e Conservação",
-          "União Internacional para Conservação da Natureza",
-          "Organização Mundial dos Animais",
+          "Instituto de Urbanismo",
+          "União de Conservação da Natureza",
+          "Organização dos Animais",
           "Fundo Ambiental Global"
         ],
         correta: 1,
-        explicacao: "A IUCN é a principal autoridade global sobre o status de conservação de espécies."
+        explicacao: "Protege a natureza e as espécies ameaçadas."
       },
       {
-        pergunta: "Qual a principal causa da extinção de espécies hoje?",
-        alternativas: ["Caça esportiva", "Perda de habitat", "Mudanças naturais", "Poluição sonora"],
+        pergunta: "Qual a maior causa de extinção hoje?",
+        alternativas: ["Caça de animais", "Perda do lar dos bichos", "Mudanças naturais", "Barulho demais"],
         correta: 1,
-        explicacao: "A perda de habitat devido a atividades humanas é a principal causa de extinção de espécies."
+        explicacao: "Bichos perdem suas casas pelas ações humanas."
       },
       {
         pergunta: "O que é uma espécie criticamente ameaçada?",
         alternativas: [
-          "Espécie sem risco",
-          "Espécie com risco extremamente alto de extinção na natureza",
+          "Espécie sem nenhum risco",
+          "Espécie com risco muito alto",
           "Espécie já extinta",
-          "Espécie em recuperação"
+          "Espécie se recuperando"
         ],
         correta: 1,
-        explicacao: "Criticamente ameaçada é a categoria mais grave antes da extinção na natureza."
+        explicacao: "Tem risco muito grande de desaparecer."
       },
       {
-        pergunta: "Qual animal está criticamente ameaçado na Mata Atlântica?",
+        pergunta: "Qual animal está ameaçado na Mata Atlântica?",
         alternativas: ["Capivara", "Tamanduá-bandeira", "Muriqui-do-norte", "Tucano"],
         correta: 2,
-        explicacao: "O muriqui-do-norte é um dos primatas mais ameaçados do mundo, restrito à Mata Atlântica."
+        explicacao: "Muriqui-do-norte é um dos primatas mais ameaçados."
       },
       {
         pergunta: "O que é a CITES?",
         alternativas: [
-          "Tratado sobre comércio internacional de espécies ameaçadas",
-          "Lei de proteção animal brasileira",
-          "Conferência sobre energia",
-          "Acordo climático global"
+          "Controle do comércio de espécies",
+          "Lei brasileira de animais",
+          "Conferência de energia",
+          "Acordo do clima"
         ],
         correta: 0,
-        explicacao: "CITES regula o comércio internacional de espécies ameaçadas de extinção."
+        explicacao: "Regula o comércio de espécies ameaçadas."
       },
       {
-        pergunta: "Quantas onças-pintadas restam na Amazônia?",
-        alternativas: ["10.000+", "Menos de 500", "Cerca de 2.000", "100.000"],
+        pergunta: "Quantas onças-pintadas existem na Amazônia?",
+        alternativas: ["Mais de 10.000", "Menos de 500", "Cerca de 2.000", "100.000"],
         correta: 0,
-        explicacao: "Estima-se que existam mais de 10.000 onças-pintadas na Amazônia brasileira."
+        explicacao: "Existem mais de 10.000 onças na Amazônia."
       },
       {
         pergunta: "O que é extinção em massa?",
         alternativas: [
-          "Evento natural raro",
-          "Extinção de várias espécies em curto período geológico",
-          "Migração de espécies",
+          "Evento natural e raro",
+          "Muitas espécies somem de uma vez",
+          "Bichos migrando",
           "Nova espécie surgindo"
         ],
         correta: 1,
-        explicacao: "Extinção em massa é a perda de um grande número de espécies em um período geologicamente curto."
+        explicacao: "Muitas espécies desaparecem ao mesmo tempo."
       },
       {
         pergunta: "Qual bioma brasileiro perdeu mais espécies?",
         alternativas: ["Amazônia", "Mata Atlântica", "Cerrado", "Pantanal"],
         correta: 1,
-        explicacao: "A Mata Atlântica perdeu mais de 90% de sua área original, causando a maior perda de espécies."
+        explicacao: "A Mata Atlântica perdeu mais de 90% da mata."
       }
     ]
   },
@@ -969,112 +974,112 @@ const PERGUNTAS = {
       {
         pergunta: "O que é agricultura orgânica?",
         alternativas: [
-          "Agricultura com agrotóxicos",
-          "Cultivo sem fertilizantes sintéticos ou pesticidas",
-          "Plantio em estufas",
-          "Agricultura mecanizada"
+          "Plantar com veneno",
+          "Plantar sem veneno",
+          "Plantar em estufas",
+          "Plantar com máquinas"
         ],
         correta: 1,
-        explicacao: "Agricultura orgânica dispensa insumos sintéticos, usando métodos naturais de cultivo."
+        explicacao: "É cultivar sem usar agrotóxicos."
       },
       {
         pergunta: "O que é rotação de culturas?",
         alternativas: [
-          "Plantar sempre a mesma cultura",
-          "Alternar diferentes culturas no mesmo solo",
+          "Plantar sempre a mesma coisa",
+          "Trocar o que planta no solo",
           "Deixar o solo descansar",
           "Plantar em círculos"
         ],
         correta: 1,
-        explicacao: "Rotação de culturas alterna plantações para preservar nutrientes do solo e evitar pragas."
+        explicacao: "Alternar culturas para cuidar do solo."
       },
       {
         pergunta: "O que são agrotóxicos?",
         alternativas: [
-          "Fertilizantes naturais",
-          "Produtos químicos para controle de pragas",
+          "Adubo natural",
+          "Veneno para matar pragas",
           "Sementes modificadas",
-          "Irrigação artificial"
+          "Água para irrigar"
         ],
         correta: 1,
-        explicacao: "Agrotóxicos são produtos químicos usados para controlar pragas, ervas daninhas e doenças."
+        explicacao: "São venenos contra pragas na lavoura."
       },
       {
         pergunta: "O que é agrofloresta?",
         alternativas: [
-          "Plantio de uma única árvore",
-          "Sistema que integra árvores com cultivos agrícolas",
-          "Floresta nativa preservada",
+          "Plantar uma só árvore",
+          "Misturar árvores com plantação",
+          "Floresta preservada",
           "Queimada controlada"
         ],
         correta: 1,
-        explicacao: "Agrofloresta combina árvores com culturas agrícolas, imitando ecossistemas naturais."
+        explicacao: "Planta árvores junto com outras culturas."
       },
       {
-        pergunta: "O que é o plantio direto?",
+        pergunta: "O que é plantio direto?",
         alternativas: [
-          "Arar a terra antes de plantar",
-          "Plantar sem revolver o solo",
+          "Arar a terra antes",
+          "Plantar sem revirar o solo",
           "Plantar em vasos",
-          "Apenas colher"
+          "Só colher"
         ],
         correta: 1,
-        explicacao: "Plantio direto preserva a estrutura do solo ao não revolver a terra antes do plantio."
+        explicacao: "Planta sem mexer na terra."
       },
       {
-        pergunta: "Qual a vantagem da agricultura familiar?",
+        pergunta: "Qual vantagem da agricultura familiar?",
         alternativas: [
           "Produz em grande escala",
-          "Gera menos impacto ambiental e mais empregos",
-          "Usa mais agrotóxicos",
+          "Menos dano à natureza",
+          "Usa mais veneno",
           "Exporta mais"
         ],
         correta: 1,
-        explicacao: "Agricultura familiar é responsável por grande parte dos alimentos no Brasil com menor impacto ambiental."
+        explicacao: "Alimenta o Brasil com menos danos ambientais."
       },
       {
         pergunta: "O que são transgênicos?",
         alternativas: [
-          "Organismos geneticamente modificados em laboratório",
-          "Plantas nativas",
-          "Fertilizantes orgânicos",
-          "Sementes crioulas"
+          "Seres mudados em laboratório",
+          "Plantas da natureza",
+          "Adubos orgânicos",
+          "Sementes tradicionais"
         ],
         correta: 0,
-        explicacao: "Transgênicos são organismos com material genético alterado artificialmente."
+        explicacao: "São organismos com genes alterados em laboratório."
       },
       {
-        pergunta: "O que é a agricultura regenerativa?",
+        pergunta: "O que é agricultura regenerativa?",
         alternativas: [
-          "Agricultura que degrada o solo",
-          "Práticas que restauram a saúde do solo e ecossistemas",
+          "Plantio que estraga o solo",
+          "Práticas que curam o solo",
           "Agricultura industrial",
-          "Monocultura"
+          "Plantar só uma cultura"
         ],
         correta: 1,
-        explicacao: "Agricultura regenerativa visa restaurar ecossistemas, melhorar o solo e sequestrar carbono."
+        explicacao: "Cuida do solo e recupera a natureza."
       },
       {
         pergunta: "O que são sementes crioulas?",
         alternativas: [
-          "Sementes transgênicas",
-          "Sementes tradicionais adaptadas localmente por agricultores",
+          "Sementes modificadas",
+          "Sementes tradicionais dos agricultores",
           "Sementes patenteadas",
           "Sementes importadas"
         ],
         correta: 1,
-        explicacao: "Sementes crioulas são variedades tradicionais cultivadas e selecionadas por agricultores ao longo de gerações."
+        explicacao: "Sementes guardadas por agricultores há gerações."
       },
       {
         pergunta: "O que é permacultura?",
         alternativas: [
-          "Cultura permanente de uma planta",
-          "Sistema de design ecológico para assentamentos humanos sustentáveis",
-          "Agricultura em estufas",
-          "Criação de animais confinados"
+          "Cultivar sempre a mesma planta",
+          "Criar espaços imitando a natureza",
+          "Plantar em estufas",
+          "Criar animais presos"
         ],
         correta: 1,
-        explicacao: "Permacultura é um sistema de design que cria habitats humanos sustentáveis imitando ecossistemas naturais."
+        explicacao: "Desenha espaços que imitam a natureza."
       }
     ]
   },
@@ -1087,102 +1092,102 @@ const PERGUNTAS = {
       {
         pergunta: "O que é o solo?",
         alternativas: [
-          "Apenas terra suja",
-          "Camada superficial da crosta terrestre onde as plantas crescem",
+          "Só terra suja",
+          "Camada onde as plantas crescem",
           "Rocha pura",
           "Água subterrânea"
         ],
         correta: 1,
-        explicacao: "O solo é a camada superior da crosta terrestre, formada por minerais, matéria orgânica e organismos."
+        explicacao: "É onde as plantas crescem."
       },
       {
-        pergunta: "Quantos anos leva para formar 1cm de solo fértil?",
+        pergunta: "Quanto tempo para formar 1cm de solo?",
         alternativas: ["1 ano", "10 anos", "100 a 1.000 anos", "1 milhão de anos"],
         correta: 2,
-        explicacao: "A formação de 1cm de solo fértil pode levar de 100 a 1.000 anos."
+        explicacao: "Leva de 100 a 1.000 anos para formar 1cm."
       },
       {
         pergunta: "O que é erosão do solo?",
         alternativas: [
           "Fertilização natural",
-          "Desgaste do solo pela água, vento ou atividades humanas",
+          "Solo sendo levado pela água ou vento",
           "Crescimento de plantas",
-          "Compactação do solo"
+          "Terra ficando dura"
         ],
         correta: 1,
-        explicacao: "Erosão é o processo de desgaste e transporte de partículas do solo por agentes naturais."
+        explicacao: "Água e vento levam o solo embora."
       },
       {
         pergunta: "O que é desertificação?",
         alternativas: [
-          "Transformação de desertos em florestas",
-          "Degradação do solo em regiões áridas tornando-o improdutivo",
-          "Expansão natural de desertos",
-          "Plantio em áreas secas"
+          "Deserto virando floresta",
+          "Solo virando deserto",
+          "Deserto crescendo naturalmente",
+          "Plantar em terra seca"
         ],
         correta: 1,
-        explicacao: "Desertificação é a degradação do solo em áreas secas, causada por atividades humanas e mudanças climáticas."
+        explicacao: "Solo fértil vira deserto por ação humana."
       },
       {
         pergunta: "O que são minerais?",
         alternativas: [
-          "Apenas pedras preciosas",
-          "Substâncias naturais sólidas com composição química definida",
+          "Só pedras preciosas",
+          "Substâncias naturais e sólidas",
           "Restos de plantas",
           "Água congelada"
         ],
         correta: 1,
-        explicacao: "Minerais são substâncias naturais, inorgânicas, com estrutura cristalina e composição química definida."
+        explicacao: "São matérias-primas naturais da Terra."
       },
       {
         pergunta: "O que é mineração sustentável?",
         alternativas: [
           "Extrair o máximo possível",
-          "Extração de minerais com menor impacto ambiental possível",
-          "Proibição total da mineração",
+          "Extrair minério sem destruir tudo",
+          "Proibir toda mineração",
           "Mineração artesanal"
         ],
         correta: 1,
-        explicacao: "Mineração sustentável busca equilibrar extração mineral com preservação ambiental e responsabilidade social."
+        explicacao: "Extrair minerais cuidando da natureza."
       },
       {
         pergunta: "O que são aquíferos?",
         alternativas: [
-          "Rios superficiais",
-          "Reservatórios de água subterrânea em formações rochosas",
+          "Rios na superfície",
+          "Água doce guardada no subsolo",
           "Lagos artificiais",
           "Geladeiras naturais"
         ],
         correta: 1,
-        explicacao: "Aquíferos são formações geológicas que armazenam e transmitem água subterrânea."
+        explicacao: "São reservas de água debaixo da terra."
       },
       {
         pergunta: "Qual o maior aquífero do Brasil?",
         alternativas: ["Aquífero Guarani", "Aquífero Alter do Chão", "Aquífero Cabeças", "Aquífero Urucuia"],
         correta: 0,
-        explicacao: "O Aquífero Guarani é um dos maiores do mundo, estendendo-se por Brasil, Argentina, Paraguai e Uruguai."
+        explicacao: "Aquífero Guarani é um dos maiores do mundo."
       },
       {
         pergunta: "O que é o ciclo das rochas?",
         alternativas: [
-          "Processo de construção civil",
-          "Transformação contínua entre rochas magmáticas, sedimentares e metamórficas",
+          "Processo de construção",
+          "Rochas que se transformam",
           "Erosão de montanhas",
-          "Movimento das placas tectônicas"
+          "Movimento das placas"
         ],
         correta: 1,
-        explicacao: "O ciclo das rochas descreve como os três tipos de rocha se transformam uns nos outros ao longo do tempo."
+        explicacao: "Rochas mudam de tipo ao longo do tempo."
       },
       {
         pergunta: "O que são recursos minerais não renováveis?",
         alternativas: [
-          "Recursos que se regeneram rapidamente",
-          "Minerais que levam milhões de anos para se formar",
+          "Recursos que se renovam",
+          "Minerais que demoram milhões de anos",
           "Recursos infinitos",
           "Materiais recicláveis"
         ],
         correta: 1,
-        explicacao: "Recursos minerais não renováveis levam milhões de anos para se formar, sendo finitos na escala humana."
+        explicacao: "Demoram milhões de anos para se formar."
       }
     ]
   },
@@ -1196,106 +1201,106 @@ const PERGUNTAS = {
         pergunta: "O que é uma cidade sustentável?",
         alternativas: [
           "Cidade com muitos carros",
-          "Cidade planejada para equilíbrio entre desenvolvimento e qualidade ambiental",
+          "Cidade que cuida do planeta",
           "Cidade sem prédios",
           "Cidade com indústrias"
         ],
         correta: 1,
-        explicacao: "Cidades sustentáveis buscam equilibrar crescimento econômico com justiça social e preservação ambiental."
+        explicacao: "Cidade que equilibra vida boa e natureza."
       },
       {
         pergunta: "O que são áreas verdes urbanas?",
         alternativas: [
           "Estacionamentos",
-          "Parques, praças e jardins que melhoram a qualidade de vida na cidade",
+          "Parques e praças na cidade",
           "Terrenos baldios",
           "Campos de futebol"
         ],
         correta: 1,
-        explicacao: "Áreas verdes urbanas proporcionam benefícios ambientais, sociais e de saúde para a população."
+        explicacao: "São espaços com natureza dentro da cidade."
       },
       {
         pergunta: "O que é mobilidade urbana sustentável?",
         alternativas: [
-          "Usar apenas carros",
-          "Sistemas de transporte que priorizam deslocamentos com baixo impacto ambiental",
-          "Construir mais estradas",
-          "Proibir transportes públicos"
+          "Usar só carros",
+          "Andar sem poluir",
+          "Construir estradas",
+          "Acabar com ônibus"
         ],
         correta: 1,
-        explicacao: "Mobilidade sustentável prioriza transportes públicos, bicicletas e deslocamentos a pé."
+        explicacao: "Andar a pé, de bike ou transporte público."
       },
       {
         pergunta: "O que são telhados verdes?",
         alternativas: [
-          "Telhados pintados de verde",
-          "Coberturas vegetais em edifícios que trazem benefícios ambientais",
-          "Telhados de vidro",
-          "Jardins no chão"
+          "Telhado pintado de verde",
+          "Telhado com plantas",
+          "Telhado de vidro",
+          "Jardim no chão"
         ],
         correta: 1,
-        explicacao: "Telhados verdes são coberturas com vegetação que melhoram o isolamento térmico e reduzem enchentes."
+        explicacao: "Telhado com plantas que ajuda o ambiente."
       },
       {
-        pergunta: "O que é o conceito de 'cidade-esponja'?",
+        pergunta: "O que é cidade-esponja?",
         alternativas: [
-          "Cidade que absorve água da chuva para prevenir enchentes",
+          "Cidade que absorve chuva",
           "Cidade submersa",
-          "Cidade com muitos lagos",
+          "Cidade com lagos",
           "Cidade que flutua"
         ],
         correta: 0,
-        explicacao: "Cidades-esponja usam infraestrutura verde para absorver e gerenciar águas pluviais naturalmente."
+        explicacao: "Cidade que absorve água da chuva."
       },
       {
         pergunta: "O que são ciclovias?",
         alternativas: [
-          "Estradas para carros",
-          "Espaços exclusivos para circulação de bicicletas",
-          "Calçadas para pedestres",
-          "Pistas de corrida"
+          "Estrada para carros",
+          "Caminho só para bicicletas",
+          "Calçada para pessoas",
+          "Pista de corrida"
         ],
         correta: 1,
-        explicacao: "Ciclovias são espaços segregados para bicicletas, promovendo mobilidade ativa e reduzindo emissões."
+        explicacao: "Espaço seguro para andar de bicicleta."
       },
       {
-        pergunta: "Qual cidade brasileira é referência em sustentabilidade urbana?",
+        pergunta: "Qual cidade brasileira é referência em sustentabilidade?",
         alternativas: ["São Paulo", "Curitiba", "Manaus", "Belo Horizonte"],
         correta: 1,
-        explicacao: "Curitiba é referência mundial em planejamento urbano sustentável, com seu sistema de transporte e áreas verdes."
+        explicacao: "Curitiba é modelo de cidade sustentável."
       },
       {
-        pergunta: "O que é eficiência energética em edifícios?",
+        pergunta: "O que é eficiência energética em prédios?",
         alternativas: [
           "Usar mais energia",
-          "Projetar construções que consomem menos energia",
-          "Instalar ar condicionado potente",
-          "Deixar luzes acesas"
+          "Gastar menos energia",
+          "Ar condicionado potente",
+          "Luzes sempre acesas"
         ],
         correta: 1,
-        explicacao: "Edifícios eficientes usam design e tecnologias para minimizar o consumo de energia."
+        explicacao: "Prédios que gastam pouca energia."
       },
       {
-        pergunta: "O que é coleta seletiva urbana?",
+        pergunta: "O que é coleta seletiva?",
         alternativas: [
-          "Juntar todo o lixo junto",
-          "Separação de resíduos recicláveis na fonte para coleta diferenciada",
-          "Queimar lixo",
-          "Enterrar resíduos"
+          "Misturar todo lixo",
+          "Separar o lixo reciclável",
+          "Queimar o lixo",
+          "Enterrar o lixo"
         ],
         correta: 1,
-        explicacao: "Coleta seletiva separa resíduos recicláveis dos orgânicos e rejeitos na própria fonte geradora."
+        explicacao: "Separar lixo que pode ser reciclado."
       },
       {
         pergunta: "O que são corredores verdes urbanos?",
         alternativas: [
-          "Avenidas arborizadas",
-          "Rotas ecológicas que conectam áreas verdes na cidade",
+          "Avenidas com árvores",
+          "Rotas verdes ligando parques",
           "Estradas rurais",
-          "Túneis subterrâneos"
+          "Túneis no subsolo"
         ],
         correta: 1,
-        explicacao: "Corredores verdes conectam parques e áreas verdes, permitindo deslocamento de fauna e flora."
+        explicacao: "Conectam áreas verdes pela cidade."
       }
     ]
   }

@@ -1126,18 +1126,13 @@ html, body {
   color: var(--moss-gray);
 }
 
-.quiz-timer {
+.quiz-difficulty {
   display: flex;
   align-items: center;
   gap: 6px;
   font-family: var(--font-display);
-  font-size: 0.9rem;
-  color: var(--amber-spark);
-}
-
-.quiz-timer.warning {
-  color: var(--toxic-warning);
-  animation: pulse 0.5s ease-in-out infinite;
+  font-size: 0.85rem;
+  color: var(--cyan-biolume);
 }
 
 @keyframes pulse {
@@ -1786,6 +1781,93 @@ html, body {
 
 .mission-check {
   font-size: 1.2rem;
+}
+
+/* ============================================
+   SCREEN: PERFORMANCE
+   ============================================ */
+#screen-performance {
+  background: radial-gradient(ellipse at center, rgba(13, 27, 20, 0.95) 0%, var(--deep-void) 70%);
+}
+
+.performance-container {
+  max-width: 760px;
+  width: 100%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.performance-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--emerald-glow);
+  text-align: center;
+}
+
+.performance-chart-wrapper {
+  width: 100%;
+  max-width: 700px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(46,204,113,0.08);
+}
+
+.performance-chart-bg {
+  width: 100%;
+  background: linear-gradient(180deg, rgba(13,27,20,0.98), rgba(10,14,26,0.98));
+}
+
+.performance-chart-bg canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 700 / 400;
+}
+
+.performance-stats {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 700px;
+}
+
+.perf-stat-card {
+  background: rgba(46,204,113,0.06);
+  border: 1px solid rgba(46,204,113,0.12);
+  border-radius: 10px;
+  padding: 10px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--moss-gray);
+  flex: 1;
+  min-width: 80px;
+}
+
+.perf-stat-value {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--cyan-biolume);
+}
+
+.performance-legend {
+  display: flex;
+  gap: 20px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--moss-gray);
+}
+
+.legend-xp {
+  color: var(--amber-spark);
 }
 
 /* ============================================
