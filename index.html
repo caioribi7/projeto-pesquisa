@@ -329,17 +329,14 @@
     <!-- SCREEN: PERFORMANCE -->
     <div class="screen" id="screen-performance">
       <div class="performance-container">
-        <div class="performance-title">📈 Meu Desempenho</div>
+        <div class="performance-title">📊 Desempenho Geral</div>
+        <div style="font-size:0.75rem;color:var(--moss-gray);margin-top:-8px;">Média de todos os jogadores por bioma</div>
         <div class="performance-chart-wrapper">
           <div class="performance-chart-bg">
             <canvas id="perf-chart" width="700" height="400"></canvas>
           </div>
         </div>
         <div class="performance-stats" id="perf-stats"></div>
-        <div class="performance-legend" id="perf-legend">
-          <span>🌱 Acertos (%)</span>
-          <span class="legend-xp">⭐ XP Ganho</span>
-        </div>
       </div>
       <button class="back-btn" onclick="showScreen('screen-menu')">← Voltar</button>
     </div>

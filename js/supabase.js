@@ -116,6 +116,43 @@ const supabaseClient = {
     });
   },
 
+  async getAllScores(limit = 500) {
+    const data = await this.request(
+      `scores?select=score,biome,difficulty,created_at,user_id&order=created_at.desc&limit=${limit}`
+    );
+    return data || [];
+  },
+
+  async getGlobalPerformance() {
+    const scores = await this.getAllScores(500);
+    if (!scores.length) return null;
+
+    const byBiome = {};
+    let totalScore = 0, totalQuizzes = scores.length, totalUsers = new Set();
+
+    scores.forEach(s => {
+      const b = s.biome || 'geral';
+      if (!byBiome[b]) byBiome[b] = { sum: 0, count: 0 };
+      byBiome[b].sum += s.score;
+      byBiome[b].count++;
+      totalScore += s.score;
+      if (s.user_id) totalUsers.add(s.user_id);
+    });
+
+    const biomeAverages = Object.entries(byBiome).map(([biome, d]) => ({
+      biome,
+      avg: Math.round(d.sum / d.count),
+      count: d.count,
+    }));
+
+    return {
+      overallAvg: Math.round(totalScore / totalQuizzes),
+      totalQuizzes,
+      totalUsers: totalUsers.size,
+      biomeAverages,
+    };
+  },
+
   // ─── ACHIEVEMENTS ────────────────────────────────────────
   async unlockAchievement(userId, achievementId) {
     return await this.request('achievements', {

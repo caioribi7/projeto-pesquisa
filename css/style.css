@@ -1858,6 +1858,13 @@ html, body {
   color: var(--cyan-biolume);
 }
 
+.perf-stat-label {
+  font-size: 0.65rem;
+  color: var(--moss-gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 .performance-legend {
   display: flex;
   gap: 20px;
