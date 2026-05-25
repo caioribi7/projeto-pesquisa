@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ECOQUEST — Conhecimento para Regenerar</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌱</text></svg>">
+</head>
+<body>
+  <canvas id="particles-canvas"></canvas>
+
+  <div id="parallax-container">
+    <div class="parallax-layer layer-stars" data-speed="0.015"></div>
+    <div class="parallax-layer layer-nebula" data-speed="0.025"></div>
+    <div class="parallax-layer layer-mountains" data-speed="0.04"></div>
+    <div class="parallax-layer layer-trees" data-speed="0.07"></div>
+    <div class="parallax-layer layer-ground" data-speed="0.12"></div>
+  </div>
+
+  <div id="app">
+
+    <!-- HUD -->
+    <div class="hud" id="hud" style="display:none;">
+      <div class="hud-left">
+        <span class="hud-item">
+          <span class="icon">🌱</span>
+          <span class="label">Sementes:</span>
+          <span class="value" id="hud-seeds">0</span>
+        </span>
+        <span class="hud-item">
+          <span class="icon">⭐</span>
+          <span class="label">Nível:</span>
+          <span class="value" id="hud-level">1</span>
+        </span>
+        <span class="hud-item">
+          <span class="icon">🔥</span>
+          <span class="label">Combo:</span>
+          <span class="value" id="hud-combo">0</span>
+        </span>
+        <span class="hud-item" id="hud-player" style="opacity:0.6;">
+          <span class="icon">👤</span>
+          <span class="value" id="hud-username" style="font-size:0.7rem;">Jogador</span>
+        </span>
+      </div>
+      <div class="hud-right">
+        <span class="hud-item">
+          <span class="icon">✨</span>
+          <span class="label">XP:</span>
+          <span class="value" id="hud-xp">0</span>
+        </span>
+        <button class="hud-hamburger" id="hud-menu-btn">☰</button>
+      </div>
+    </div>
+
+    <!-- SCREEN: INITIAL -->
+    <div class="screen active" id="screen-initial">
+      <div class="initial-content">
+        <div class="sprite sprite-eco" id="eco-intro-sprite">
+          <div class="sprite-eco-sparkle"></div>
+          <div class="sprite-eco-sparkle"></div>
+          <div class="sprite-eco-sparkle"></div>
+          <div class="sprite-eco-sparkle"></div>
+          <div class="sprite-eco-sparkle"></div>
+          <div class="sprite-eco-ear left"></div>
+          <div class="sprite-eco-ear right"></div>
+          <div class="sprite-eco-head">
+            <div class="sprite-eco-sprout"></div>
+            <div class="sprite-eco-cheek left"></div>
+            <div class="sprite-eco-cheek right"></div>
+            <div class="sprite-eco-eyes">
+              <div class="sprite-eco-eye"></div>
+              <div class="sprite-eco-eye"></div>
+            </div>
+          </div>
+          <div class="sprite-eco-body"></div>
+        </div>
+        <div class="initial-logo">
+          <div class="initial-logo-main">
+            <span>EC</span><span class="o-letter">O</span><span>QUEST</span>
+          </div>
+        </div>
+        <div class="initial-subtitle">CONHECIMENTO PARA REGENERAR</div>
+        <button class="btn-crystal" onclick="showScreen('screen-login')">
+          ▶ Começar
+        </button>
+        <div style="margin-top:12px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <button class="btn-crystal secondary small" onclick="showScreen('screen-roadmap')">🗺️ Mapa</button>
+          <button class="btn-crystal secondary small" onclick="showScreen('screen-ranking')">🏆 Ranking</button>
+          <button class="btn-crystal secondary small" onclick="showScreen('screen-about')">📖 Sobre</button>
+        </div>
+        <div class="initial-quote">"O conhecimento é a semente que regenera o mundo."</div>
+      </div>
+    </div>
+
+    <!-- SCREEN: LOGIN -->
+    <div class="screen" id="screen-login">
+      <div class="glass" style="padding:32px;max-width:400px;width:100%;text-align:center;">
+        <div style="font-size:3rem;margin-bottom:12px;">🌱</div>
+        <div style="font-family:var(--font-display);font-size:1.2rem;color:var(--emerald-glow);margin-bottom:8px;">Qual seu nome?</div>
+        <div style="font-size:0.85rem;color:var(--moss-gray);margin-bottom:20px;">Digite um nome para salvar seu progresso</div>
+        <input class="settings-input" id="login-name" placeholder="Seu nome..." maxlength="20" style="text-align:center;font-size:1.1rem;margin-bottom:16px;">
+        <div id="login-status" style="font-size:0.8rem;color:var(--moss-gray);margin-bottom:12px;min-height:20px;"></div>
+        <button class="btn-crystal" onclick="doLogin()" id="login-btn">▶ Entrar</button>
+        <button class="btn-crystal secondary small" onclick="showScreen('screen-initial')" style="margin-top:8px;">← Voltar</button>
+      </div>
+    </div>
+
+    <!-- SCREEN: MENU -->
+    <div class="screen" id="screen-menu">
+      <div class="menu-grid" style="animation: fadeInUp 0.5s ease;">
+        <div class="menu-item" onclick="showBiomeSelector()">
+          <span class="menu-item-icon">🌿</span>
+          <div class="menu-item-label">Jogar Quiz</div>
+          <div class="menu-item-desc">Teste seus conhecimentos</div>
+        </div>
+        <div class="menu-item" onclick="showScreen('screen-roadmap')">
+          <span class="menu-item-icon">🗺️</span>
+          <div class="menu-item-label">Jornada</div>
+          <div class="menu-item-desc">Mapa dos Biomas</div>
+        </div>
+        <div class="menu-item" onclick="showScreen('screen-missions')">
+          <span class="menu-item-icon">⚔️</span>
+          <div class="menu-item-label">Missões</div>
+          <div class="menu-item-desc">Desafios diários</div>
+        </div>
+        <div class="menu-item" onclick="showScreen('screen-ranking')">
+          <span class="menu-item-icon">🏆</span>
+          <div class="menu-item-label">Ranking</div>
+          <div class="menu-item-desc">Classificação</div>
+        </div>
+        <div class="menu-item" onclick="showScreen('screen-achievements')">
+          <span class="menu-item-icon">🎖️</span>
+          <div class="menu-item-label">Conquistas</div>
+          <div class="menu-item-desc">Medalhas e troféus</div>
+        </div>
+        <div class="menu-item" onclick="showScreen('screen-about')">
+          <span class="menu-item-icon">📖</span>
+          <div class="menu-item-label">Sobre</div>
+          <div class="menu-item-desc">O Projeto</div>
+        </div>
+        <div class="menu-item" onclick="showScreen('screen-settings')">
+          <span class="menu-item-icon">⚙️</span>
+          <div class="menu-item-label">Ajustes</div>
+          <div class="menu-item-desc">Configurações</div>
+        </div>
+      </div>
+      <button class="back-btn" onclick="showScreen('screen-initial')" style="top:60px;">← Sair</button>
+    </div>
+
+    <!-- SCREEN: BIOME SELECTOR -->
+    <div class="screen" id="screen-biome-select">
+      <div class="glass" style="padding:28px 24px;max-width:550px;width:100%;text-align:center;">
+        <div style="font-family:var(--font-display);font-size:1.3rem;color:var(--emerald-glow);margin-bottom:8px;">🌍 Escolha um Bioma</div>
+        <div style="font-size:0.85rem;color:var(--moss-gray);margin-bottom:16px;">Selecione uma área para explorar</div>
+        <div class="biome-selector" id="biome-selector"></div>
+        <div style="font-family:var(--font-display);font-size:0.9rem;color:var(--moss-gray);margin-bottom:12px;">Dificuldade</div>
+        <div class="difficulty-selector" id="difficulty-selector">
+          <div class="difficulty-option selected" data-diff="facil" onclick="selectDifficulty(this)">🌱 Fácil</div>
+          <div class="difficulty-option" data-diff="medio" onclick="selectDifficulty(this)">🌿 Médio</div>
+          <div class="difficulty-option" data-diff="dificil" onclick="selectDifficulty(this)">🌳 Difícil</div>
+        </div>
+        <button class="btn-crystal" onclick="startQuiz()" style="margin-top:12px;">▶ Explorar</button>
+        <button class="btn-crystal secondary small" onclick="showScreen('screen-menu')" style="margin-top:8px;">← Voltar</button>
+      </div>
+    </div>
+
+    <!-- SCREEN: QUIZ -->
+    <div class="screen" id="screen-quiz">
+      <div class="quiz-container">
+        <div class="quiz-header">
+          <div class="quiz-biome">
+            <span class="quiz-biome-icon" id="quiz-biome-icon">🌲</span>
+            <span id="quiz-biome-name">Florestas</span>
+          </div>
+          <div class="quiz-progress-text" id="quiz-progress">1/10</div>
+          <div class="quiz-timer" id="quiz-timer">⏱️ 0:45</div>
+        </div>
+        <div class="progress-vine">
+          <div class="progress-vine-fill" id="progress-fill" style="width:0%"></div>
+        </div>
+        <div class="quiz-question-card glass">
+          <div class="quiz-question-number" id="quiz-q-number">PERGUNTA 1</div>
+          <div class="quiz-question-text" id="quiz-question">Carregando...</div>
+        </div>
+        <div class="quiz-options" id="quiz-options"></div>
+        <div class="quiz-footer">
+          <div class="quiz-combo" id="quiz-combo">🔥 Combo: 0</div>
+          <div class="sprite sprite-eco sprite-eco-sm" id="quiz-eco">
+            <div class="sprite-eco-sparkle"></div>
+            <div class="sprite-eco-sparkle"></div>
+            <div class="sprite-eco-sparkle"></div>
+            <div class="sprite-eco-ear left"></div>
+            <div class="sprite-eco-ear right"></div>
+            <div class="sprite-eco-head">
+              <div class="sprite-eco-sprout"></div>
+              <div class="sprite-eco-cheek left"></div>
+              <div class="sprite-eco-cheek right"></div>
+              <div class="sprite-eco-eyes">
+                <div class="sprite-eco-eye"></div>
+                <div class="sprite-eco-eye"></div>
+              </div>
+            </div>
+            <div class="sprite-eco-body"></div>
+          </div>
+          <div class="quiz-xp" id="quiz-xp">⭐ XP: +0</div>
+        </div>
+      </div>
+      <button class="back-btn" onclick="cancelQuiz()" style="top:60px;">← Sair</button>
+    </div>
+
+    <!-- SCREEN: RESULT -->
+    <div class="screen" id="screen-result">
+      <div class="result-container">
+        <div class="result-title">Quiz Completo!</div>
+        <div class="sprite-tree" id="result-tree">
+          <div class="sprite-tree-crown"></div>
+          <div class="sprite-tree-trunk"></div>
+        </div>
+        <div class="result-medal" id="result-medal">🏅</div>
+        <div class="result-rank" id="result-rank">🌱 Semente</div>
+        <div class="result-stats">
+          <div class="result-stat">
+            <div class="result-stat-value" id="result-score">0</div>
+            <div class="result-stat-label">Pontuação</div>
+          </div>
+          <div class="result-stat">
+            <div class="result-stat-value" id="result-xp">+0</div>
+            <div class="result-stat-label">XP Ganho</div>
+          </div>
+          <div class="result-stat">
+            <div class="result-stat-value" id="result-combo">0</div>
+            <div class="result-stat-label">Combo Máximo</div>
+          </div>
+        </div>
+        <div class="result-phrase" id="result-phrase">"Cada acerto é uma árvore plantada no futuro."</div>
+        <div class="result-buttons">
+          <button class="btn-crystal" onclick="showScreen('screen-menu')">📋 Menu</button>
+          <button class="btn-crystal secondary" onclick="showScreen('screen-roadmap')">🗺️ Jornada</button>
+          <button class="btn-crystal small" onclick="showBiomeSelector()">↻ Jogar Novamente</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCREEN: ACHIEVEMENTS -->
+    <div class="screen" id="screen-achievements">
+      <div class="achievements-container">
+        <div class="achievements-title">📖 Conquistas</div>
+        <div id="achievements-list"></div>
+      </div>
+      <button class="back-btn" onclick="showScreen('screen-menu')">← Voltar</button>
+    </div>
+
+    <!-- SCREEN: RANKING -->
+    <div class="screen" id="screen-ranking">
+      <div class="ranking-container">
+        <div class="ranking-title">🏆 Ranking</div>
+        <div class="ranking-podium" id="ranking-podium"></div>
+        <div class="ranking-list" id="ranking-list"></div>
+      </div>
+      <button class="back-btn" onclick="showScreen('screen-menu')">← Voltar</button>
+    </div>
+
+    <!-- SCREEN: MISSIONS -->
+    <div class="screen" id="screen-missions">
+      <div class="missions-container">
+        <div class="missions-title">Missões</div>
+        <div class="missions-section-title">🌱 Diárias</div>
+        <div id="missions-daily"></div>
+        <div class="missions-section-title">🌳 Semanais</div>
+        <div id="missions-weekly"></div>
+      </div>
+      <button class="back-btn" onclick="showScreen('screen-menu')">← Voltar</button>
+    </div>
+
+    <!-- SCREEN: ROADMAP -->
+    <div class="screen" id="screen-roadmap">
+      <div class="roadmap-container">
+        <div class="roadmap-title">🗺️ Jornada dos Biomas</div>
+        <svg class="roadmap-svg" id="roadmap-svg" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="nodeGlow">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+            <linearGradient id="pathGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#2ECC71" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#1ABC9C" stop-opacity="0.6"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <button class="back-btn" onclick="showScreen('screen-menu')">← Voltar</button>
+    </div>
+
+    <!-- SCREEN: SETTINGS -->
+    <div class="screen" id="screen-settings">
+      <div class="settings-container">
+        <div class="settings-title">⚙️ Configurações</div>
+        <div class="glass" style="padding:24px;">
+          <div class="settings-group">
+            <label class="settings-label">Jogador</label>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-family:var(--font-display);font-size:1rem;color:var(--spore-white);" id="settings-display-name">Jogador</span>
+              <button class="btn-crystal secondary small" onclick="logout()">🚪 Trocar de nome</button>
+            </div>
+          </div>
+          <div class="settings-group">
+            <label class="settings-label">Efeitos Sonoros</label>
+            <div style="display:flex;gap:10px;">
+              <button class="btn-crystal small" onclick="toggleSound(true)" id="sound-on-btn">🔊 Ligado</button>
+              <button class="btn-crystal secondary small" onclick="toggleSound(false)" id="sound-off-btn">🔇 Desligado</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="back-btn" onclick="showScreen('screen-menu')">← Voltar</button>
+    </div>
+
+    <!-- SCREEN: ABOUT -->
+    <div class="screen" id="screen-about">
+      <div class="about-container">
+        <div class="about-title">📖 Sobre o ECOQUEST</div>
+        <div class="glass" style="padding:24px;">
+          <div class="about-content">
+            <p><strong>ECOQUEST</strong> é um projeto educacional interativo que usa quizzes para ensinar sobre meio ambiente de forma divertida.</p>
+            <p>🌱 <strong>Missão:</strong> Transformar conhecimento ambiental em uma experiência de jogo inesquecível.</p>
+            <p>🌍 <strong>Visão:</strong> Um mundo onde cada pessoa entende seu papel na proteção do planeta.</p>
+            <p>💚 <strong>Valores:</strong> Sustentabilidade, educação, diversão e esperança.</p>
+            <p style="margin-top:16px;text-align:center;color:var(--emerald-glow);">
+              ✦ ECOQUEST v1.0 — "Conhecimento para Regenerar" ✦
+            </p>
+            <p style="text-align:center;color:var(--moss-gray);font-size:0.8rem;">
+              Projeto de Pesquisa 2026 • Equipe ECOQUEST
+            </p>
+          </div>
+        </div>
+      </div>
+      <button class="back-btn" onclick="showScreen('screen-menu')">← Voltar</button>
+    </div>
+
+    <!-- EXPLANATION OVERLAY -->
+    <div class="explanation-overlay" id="explanation-overlay">
+      <div class="explanation-card glass">
+        <div class="explanation-icon" id="explanation-icon">💡</div>
+        <div class="explanation-text" id="explanation-text"></div>
+        <button class="btn-crystal" onclick="closeExplanation()">Continuar →</button>
+      </div>
+    </div>
+
+    <!-- LEVEL UP OVERLAY -->
+    <div class="levelup-overlay" id="levelup-overlay">
+      <div class="levelup-content">
+        <div class="levelup-icon">🌟</div>
+        <div class="levelup-title">Nível <span id="levelup-number">2</span>!</div>
+        <div class="levelup-subtitle">Continue respondendo perguntas para subir de nível</div>
+        <button class="btn-crystal" onclick="closeLevelUp()" style="margin-top:20px;">Continuar</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/questions.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
