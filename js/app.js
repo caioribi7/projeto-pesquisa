@@ -663,17 +663,17 @@ function finishQuiz() {
   saveGame();
   updateHUD();
 
-  saveQuizScoreToSupabase(xpEarned);
+  saveQuizScoreToSupabase(percent);
 
   showResult(percent, xpEarned, leveledUp);
 }
 
-async function saveQuizScoreToSupabase(score) {
+async function saveQuizScoreToSupabase(percent) {
   if (!SUPABASE_CONFIG.enabled || !state.loggedIn) return;
   try {
     const user = await supabaseClient.getUser(state.playerName);
     if (user) {
-      await supabaseClient.saveScore(user.id, score, state.currentBiome || 'geral', state.selectedDifficulty);
+      await supabaseClient.saveScore(user.id, percent, state.currentBiome || 'geral', state.selectedDifficulty);
     }
   } catch (_) {}
 }
@@ -921,18 +921,22 @@ function renderMissions() {
 // ─── PERFORMANCE CHART (Global Average) ─────────────────────
 function renderPerformance() {
   const statsEl = document.getElementById('perf-stats');
-  const canvas = document.getElementById('perf-chart');
-
   statsEl.innerHTML = '<div style="text-align:center;color:var(--moss-gray);padding:30px;">⏳ Carregando dados gerais...</div>';
-  canvas.style.display = 'none';
 
-  buildPerformanceChart();
+  requestAnimationFrame(() => buildPerformanceChart());
 }
 
 async function buildPerformanceChart() {
   const statsEl = document.getElementById('perf-stats');
   const canvas = document.getElementById('perf-chart');
   if (!statsEl || !canvas) return;
+
+  const rect = canvas.getBoundingClientRect();
+  if (rect.width === 0 || rect.height === 0) {
+    statsEl.innerHTML = '<div style="text-align:center;color:var(--moss-gray);padding:30px;">Aguardando carregamento...</div>';
+    setTimeout(() => buildPerformanceChart(), 200);
+    return;
+  }
 
   let perfData = null;
 
@@ -965,15 +969,12 @@ async function buildPerformanceChart() {
     };
   }
 
-  if (!perfData) {
+  if (!perfData || !perfData.biomeAverages.length) {
     statsEl.innerHTML = '<div style="text-align:center;color:var(--moss-gray);padding:30px;">Nenhum dado disponível ainda. Jogue alguns quizzes! 🌱</div>';
     return;
   }
 
-  canvas.style.display = 'block';
-
   const dpr = window.devicePixelRatio || 1;
-  const rect = canvas.getBoundingClientRect();
   canvas.width = rect.width * dpr;
   canvas.height = rect.height * dpr;
   const c = canvas.getContext('2d');
@@ -982,11 +983,12 @@ async function buildPerformanceChart() {
 
   const data = perfData.biomeAverages.sort((a, b) => b.avg - a.avg);
   const overall = perfData.overallAvg;
-  const pad = { top: 25, bottom: 55, left: 10, right: 10 };
+  const pad = { top: 28, bottom: 52, left: 8, right: 8 };
   const chartW = W - pad.left - pad.right;
   const chartH = H - pad.top - pad.bottom;
-  const barGap = 6;
-  const barW = Math.min(36, (chartW - barGap * (data.length - 1)) / data.length);
+  const itemCount = data.length;
+  const barGap = 5;
+  const barW = Math.min(34, (chartW - barGap * Math.max(itemCount - 1, 0)) / Math.max(itemCount, 1));
 
   // Background
   const bg = c.createLinearGradient(0, 0, 0, H);
@@ -995,16 +997,33 @@ async function buildPerformanceChart() {
   c.fillStyle = bg;
   c.fillRect(0, 0, W, H);
 
-  // Title on canvas
-  c.fillStyle = 'rgba(255,255,255,0.08)';
-  c.font = '10px monospace';
-  c.textAlign = 'left';
-  c.fillText('MÉDIA POR BIOMA', 12, 16);
+  // Title
+  c.fillStyle = 'rgba(255,255,255,0.06)';
+  c.font = '9px monospace';
+  c.textAlign = 'center';
+  c.fillText('MÉDIA DE ACERTOS POR BIOMA', W / 2, 16);
+
+  // Grid
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + (chartH / 4) * i;
+    c.strokeStyle = 'rgba(46, 204, 113, 0.05)';
+    c.lineWidth = 1;
+    c.beginPath();
+    c.moveTo(pad.left, y);
+    c.lineTo(W - pad.right, y);
+    c.stroke();
+
+    const pct = Math.round(100 - (100 / 4) * i);
+    c.fillStyle = 'rgba(255,255,255,0.1)';
+    c.font = '7px monospace';
+    c.textAlign = 'left';
+    c.fillText(pct + '%', 2, y + 3);
+  }
 
   // Overall average line
-  const avgY = pad.top + chartH - (overall / 100) * chartH;
-  c.setLineDash([4, 4]);
-  c.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+  const avgY = pad.top + chartH - (Math.min(overall, 100) / 100) * chartH;
+  c.setLineDash([3, 3]);
+  c.strokeStyle = 'rgba(255, 255, 255, 0.12)';
   c.lineWidth = 1;
   c.beginPath();
   c.moveTo(pad.left, avgY);
@@ -1012,41 +1031,31 @@ async function buildPerformanceChart() {
   c.stroke();
   c.setLineDash([]);
 
-  c.fillStyle = 'rgba(255,255,255,0.2)';
-  c.font = '8px monospace';
-  c.textAlign = 'left';
-  c.fillText('Média geral ' + overall + '%', W - pad.right - 90, avgY - 4);
-
-  // Y-axis labels
-  for (let i = 0; i <= 4; i++) {
-    const y = pad.top + (chartH / 4) * i;
-    const pct = Math.round(100 - (100 / 4) * i);
-    c.fillStyle = 'rgba(255,255,255,0.12)';
-    c.font = '8px monospace';
-    c.textAlign = 'right';
-    c.fillText(pct + '%', pad.left + chartW + 6, y + 3);
-  }
+  c.fillStyle = 'rgba(255,255,255,0.15)';
+  c.font = '7px monospace';
+  c.textAlign = 'right';
+  c.fillText('Média ' + overall + '%', W - pad.right, avgY - 3);
 
   // Bars
-  const totalWidth = data.length * barW + (data.length - 1) * barGap;
-  const startX = pad.left + (chartW - totalWidth) / 2;
+  const totalW = itemCount * barW + Math.max(itemCount - 1, 0) * barGap;
+  const startX = pad.left + (chartW - totalW) / 2;
 
   data.forEach((d, i) => {
     const x = startX + i * (barW + barGap);
-    const barH = (d.avg / 100) * chartH;
+    const pct = Math.min(d.avg, 100);
+    const barH = (pct / 100) * chartH;
     const y = pad.top + chartH - barH;
 
-    // Bar glow
-    c.shadowColor = 'rgba(46, 204, 113, 0.15)';
-    c.shadowBlur = 6;
+    // Glow
+    c.shadowColor = 'rgba(46, 204, 113, 0.1)';
+    c.shadowBlur = 4;
 
-    // Gradient bar
     const grad = c.createLinearGradient(x, y, x, pad.top + chartH);
-    grad.addColorStop(0, 'rgba(46, 204, 113, 0.85)');
-    grad.addColorStop(1, 'rgba(26, 188, 156, 0.4)');
+    grad.addColorStop(0, 'rgba(46, 204, 113, 0.8)');
+    grad.addColorStop(1, 'rgba(26, 188, 156, 0.3)');
     c.fillStyle = grad;
 
-    const r = 3;
+    const r = 2;
     c.beginPath();
     c.moveTo(x + r, y);
     c.lineTo(x + barW - r, y);
@@ -1059,32 +1068,31 @@ async function buildPerformanceChart() {
     c.fill();
     c.shadowBlur = 0;
 
-    // Score label on bar
-    if (barH > 20) {
+    // Value on bar
+    if (barH > 18) {
       c.fillStyle = 'rgba(255,255,255,0.7)';
-      c.font = 'bold 9px monospace';
+      c.font = 'bold 8px monospace';
       c.textAlign = 'center';
-      c.fillText(d.avg + '%', x + barW / 2, y + 12);
+      c.fillText(d.avg + '%', x + barW / 2, y + 10);
     }
 
-    // Biome label + icon
+    // Icon
     const biomeInfo = PERGUNTAS[d.biome];
-    const label = biomeInfo ? biomeInfo.icone + (d.count > 1 ? '' : '') : d.biome.slice(0, 4);
-    c.fillStyle = 'rgba(255,255,255,0.4)';
+    const icon = biomeInfo ? biomeInfo.icone : '🌍';
     c.font = '10px monospace';
     c.textAlign = 'center';
-    c.fillText(label, x + barW / 2, pad.top + chartH + 16);
+    c.fillText(icon, x + barW / 2, pad.top + chartH + 14);
 
     // Count
-    c.fillStyle = 'rgba(255,255,255,0.15)';
-    c.font = '7px monospace';
-    c.fillText(d.count + 'x', x + barW / 2, pad.top + chartH + 30);
+    c.fillStyle = 'rgba(255,255,255,0.12)';
+    c.font = '6px monospace';
+    c.fillText(d.count + ' quizzes', x + barW / 2, pad.top + chartH + 28);
   });
 
-  // Stats cards
+  // Stats
   const best = data[0];
   const worst = data[data.length - 1];
-  const biomeIcons = data.map(d => PERGUNTAS[d.biome]?.icone || '🌍').join(' ');
+  const iconsRow = data.map(d => PERGUNTAS[d.biome]?.icone || '🌍').join(' ');
 
   statsEl.innerHTML = `
     <div class="perf-stat-card" style="border-color:rgba(46,204,113,0.25)">
@@ -1104,11 +1112,11 @@ async function buildPerformanceChart() {
       <span class="perf-stat-value" style="color:var(--emerald-glow)">${best ? best.avg + '%' : '-'}</span>
     </div>
     <div class="perf-stat-card">
-      <span class="perf-stat-label">🌱 Precisa Melhorar</span>
+      <span class="perf-stat-label">🌱 Melhorar</span>
       <span class="perf-stat-value" style="color:var(--amber-spark)">${worst && worst.avg < 100 ? worst.avg + '%' : '-'}</span>
     </div>
     <div class="perf-stat-card" style="flex-basis:100%;text-align:center;border:none;background:none;">
-      <span style="font-size:1.3rem;letter-spacing:4px;">${biomeIcons}</span>
+      <span style="font-size:1.1rem;letter-spacing:3px;">${iconsRow}</span>
     </div>
   `;
 }
