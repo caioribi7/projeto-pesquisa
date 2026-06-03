@@ -1,1652 +1,2287 @@
 const PERGUNTAS = {
-  florestas: {
-    nome: "Florestas",
-    icone: "🌲",
-    cor: "#2ECC71",
-    perguntas: [
+  "amazonia": {
+    "nome": "Amazônia",
+    "icone": "🌳",
+    "cor": "#2ECC71",
+    "perguntas": [
       {
-        pergunta: "Em uma aula sobre florestas, qual é a maior floresta tropical do mundo?",
-        alternativas: [
-          "Floresta Amazônica",
-          "Floresta do Congo",
-          "Floresta de Bornéu",
-          "Floresta da Indonésia"
+        "pergunta": "Qual característica combina mais com a Amazônia?",
+        "alternativas": [
+          "Floresta úmida com muitos rios",
+          "Deserto de areia branca",
+          "Campo coberto de neve",
+          "Montanha sem plantas"
         ],
-        correta: 0,
-        dica: "Compare a ideia de tamanho ou quantidade, sem se deixar levar pelo nome mais conhecido.",
-        explicacao: "A Amazônia é a maior floresta tropical do mundo."
+        "correta": 0,
+        "dica": "Pense em muita água e árvores.",
+        "explicacao": "A Amazônia é uma grande floresta úmida, cheia de rios e vida."
       },
       {
-        pergunta: "Em uma aula sobre florestas, como podemos explicar desmatamento ilegal?",
-        alternativas: [
-          "Cortar árvores com licença",
-          "Cortar árvores sem licença",
-          "Plantar árvores na cidade",
-          "Fogo que vem da natureza"
+        "pergunta": "Qual animal é muito associado à Amazônia?",
+        "alternativas": [
+          "Pinguim",
+          "Onça-pintada",
+          "Camelo",
+          "Urso-polar"
         ],
-        correta: 1,
-        dica: "Observe se a ação respeita regras e permissão das autoridades.",
-        explicacao: "É cortar árvores sem permissão do governo."
+        "correta": 1,
+        "dica": "Pense em um felino brasileiro.",
+        "explicacao": "A onça-pintada vive na Amazônia e em outros biomas brasileiros."
       },
       {
-        pergunta: "Em uma aula sobre florestas, quanto da Amazônia já foi desmatado?",
-        alternativas: [
-          "5%",
-          "17%",
-          "50%",
-          "2%"
+        "pergunta": "Se muitas árvores forem derrubadas, o que pode acontecer?",
+        "alternativas": [
+          "Os animais ganham mais casas",
+          "O solo vira vidro",
+          "Muitos animais perdem abrigo",
+          "Os rios viram suco"
         ],
-        correta: 1,
-        dica: "Pense em perda de vegetação e em lugares muito ocupados por pessoas.",
-        explicacao: "Quase 17% da Amazônia já foi desmatada."
+        "correta": 2,
+        "dica": "Animais precisam de habitat.",
+        "explicacao": "As árvores servem de abrigo e alimento para muitos seres vivos."
       },
       {
-        pergunta: "Em uma aula sobre florestas, qual bioma brasileiro é o mais ameaçado?",
-        alternativas: [
-          "Amazônia",
+        "pergunta": "Qual animal famoso vive nos rios amazônicos?",
+        "alternativas": [
+          "Tubarão-branco",
+          "Cavalo-marinho",
+          "Pinguim",
+          "Boto-cor-de-rosa"
+        ],
+        "correta": 3,
+        "dica": "Ele é rosado.",
+        "explicacao": "O boto-cor-de-rosa é conhecido nos rios da Amazônia."
+      },
+      {
+        "pergunta": "Por que os rios são importantes na Amazônia?",
+        "alternativas": [
+          "Ajudam no transporte e na vida dos animais",
+          "Secam a floresta",
+          "Impedem plantas de crescer",
+          "São todos salgados"
+        ],
+        "correta": 0,
+        "dica": "Muita gente usa barco.",
+        "explicacao": "Os rios ajudam no transporte, alimento e abrigo de seres vivos."
+      },
+      {
+        "pergunta": "Qual atitude protege a floresta?",
+        "alternativas": [
+          "Comprar madeira sem origem",
+          "Não deixar lixo e respeitar trilhas",
+          "Arrancar plantas raras",
+          "Alimentar animais selvagens"
+        ],
+        "correta": 1,
+        "dica": "Visite sem deixar marcas.",
+        "explicacao": "Não deixar lixo e respeitar trilhas evita danos à floresta."
+      },
+      {
+        "pergunta": "O que pode poluir rios da Amazônia?",
+        "alternativas": [
+          "Chuva limpa",
+          "Peixes nadando",
+          "Lixo e produtos químicos",
+          "Folhas caídas"
+        ],
+        "correta": 2,
+        "dica": "Pense em sujeira perigosa.",
+        "explicacao": "Lixo e químicos prejudicam a água e os seres vivos."
+      },
+      {
+        "pergunta": "A Amazônia tem grande importância porque...",
+        "alternativas": [
+          "é feita só de cidades",
+          "não tem vida animal",
+          "não tem rios",
+          "abriga enorme biodiversidade"
+        ],
+        "correta": 3,
+        "dica": "Pense em variedade de vida.",
+        "explicacao": "Ela possui muitas espécies de plantas, animais e outros seres vivos."
+      },
+      {
+        "pergunta": "Povos indígenas ajudam a Amazônia quando...",
+        "alternativas": [
+          "cuidam do território e da floresta",
+          "jogam lixo nos rios",
+          "derrubam tudo sem controle",
+          "vendem animais silvestres"
+        ],
+        "correta": 0,
+        "dica": "Pense em cuidado tradicional.",
+        "explicacao": "Muitos povos indígenas protegem áreas naturais e seus modos de vida."
+      },
+      {
+        "pergunta": "Qual produto deve ter origem responsável?",
+        "alternativas": [
+          "Madeira",
+          "Nuvem",
+          "Pedra lunar",
+          "Neve"
+        ],
+        "correta": 0,
+        "dica": "Vem das árvores.",
+        "explicacao": "Madeira de origem responsável reduz o desmatamento ilegal."
+      }
+    ]
+  },
+  "cerrado": {
+    "nome": "Cerrado",
+    "icone": "🌾",
+    "cor": "#D4AC0D",
+    "perguntas": [
+      {
+        "pergunta": "Qual planta combina com o Cerrado?",
+        "alternativas": [
+          "Árvore de tronco torto e casca grossa",
+          "Coqueiro coberto de neve",
+          "Cacto do Saara",
+          "Alga marinha"
+        ],
+        "correta": 0,
+        "dica": "Ela resiste ao calor.",
+        "explicacao": "No Cerrado há árvores baixas, tortas e com casca grossa."
+      },
+      {
+        "pergunta": "Por que o Cerrado é chamado de berço das águas?",
+        "alternativas": [
+          "Porque não tem rios",
+          "Porque várias nascentes ficam nele",
+          "Porque só tem água salgada",
+          "Porque fica no mar"
+        ],
+        "correta": 1,
+        "dica": "Pense no começo dos rios.",
+        "explicacao": "Muitos rios brasileiros nascem em áreas de Cerrado."
+      },
+      {
+        "pergunta": "Qual animal pode viver no Cerrado?",
+        "alternativas": [
+          "Foca",
+          "Pinguim",
+          "Lobo-guará",
+          "Urso-polar"
+        ],
+        "correta": 2,
+        "dica": "Tem pernas longas.",
+        "explicacao": "O lobo-guará é um animal típico do Cerrado."
+      },
+      {
+        "pergunta": "Qual problema ameaça o Cerrado?",
+        "alternativas": [
+          "Preservar nascentes",
+          "Plantar nativas",
+          "Cuidar do solo",
+          "Queimadas sem controle"
+        ],
+        "correta": 3,
+        "dica": "Fogo fora de controle é perigoso.",
+        "explicacao": "Queimadas sem controle destroem plantas, animais e o solo."
+      },
+      {
+        "pergunta": "Durante a seca, plantas do Cerrado sobrevivem porque...",
+        "alternativas": [
+          "podem ter raízes profundas",
+          "fogem andando",
+          "viram pedra",
+          "bebem refrigerante"
+        ],
+        "correta": 0,
+        "dica": "A água pode estar embaixo.",
+        "explicacao": "Raízes profundas ajudam a buscar água no solo."
+      },
+      {
+        "pergunta": "Qual atitude protege nascentes?",
+        "alternativas": [
+          "Retirar toda vegetação",
+          "Manter plantas nativas próximas",
+          "Jogar lixo perto",
+          "Construir em cima"
+        ],
+        "correta": 1,
+        "dica": "Vegetação protege água.",
+        "explicacao": "Plantas nativas protegem o solo e as nascentes."
+      },
+      {
+        "pergunta": "O pequi é fruto associado ao...",
+        "alternativas": [
+          "Oceano",
+          "Polo Norte",
           "Cerrado",
-          "Mata Atlântica",
-          "Caatinga"
+          "Deserto de gelo"
         ],
-        correta: 2,
-        dica: "Pense em perda de vegetação e em lugares muito ocupados por pessoas.",
-        explicacao: "A Mata Atlântica perdeu quase toda sua mata."
+        "correta": 2,
+        "dica": "É muito usado no Centro-Oeste.",
+        "explicacao": "O pequi é um fruto conhecido do Cerrado."
       },
       {
-        pergunta: "Em uma aula sobre florestas, como podemos explicar reflorestamento?",
-        alternativas: [
-          "Cortar muitas árvores",
-          "Plantar árvores de novo",
-          "Queimar a vegetação",
-          "Extrair madeira legal"
+        "pergunta": "Sem cobertura vegetal, o solo pode...",
+        "alternativas": [
+          "ficar mais protegido",
+          "criar brinquedos",
+          "virar água",
+          "ser levado pela chuva"
         ],
-        correta: 1,
-        dica: "Procure a alternativa ligada a recuperar uma área com novas plantas.",
-        explicacao: "É plantar árvores onde a mata foi cortada."
+        "correta": 3,
+        "dica": "Solo descoberto fica frágil.",
+        "explicacao": "Sem plantas, o solo sofre erosão com chuva e vento."
       },
       {
-        pergunta: "Em uma aula sobre florestas, qual árvore é símbolo nacional do Brasil?",
-        alternativas: [
-          "Pau-Brasil",
-          "Ipê",
-          "Jequitibá",
-          "Seringueira"
+        "pergunta": "Comparando com a Amazônia, o Cerrado costuma ser...",
+        "alternativas": [
+          "mais aberto",
+          "sem nenhuma planta",
+          "feito de gelo",
+          "um oceano"
         ],
-        correta: 0,
-        dica: "Pense no que melhor protege florestas e melhora a vida dos seres vivos.",
-        explicacao: "O Pau-Brasil é a árvore símbolo do Brasil."
+        "correta": 0,
+        "dica": "Pense em campo com árvores espaçadas.",
+        "explicacao": "O Cerrado tem vegetação mais aberta que a floresta amazônica."
       },
       {
-        pergunta: "Em uma aula sobre florestas, como podemos explicar corredores ecológicos?",
-        alternativas: [
-          "Estradas dentro de florestas",
-          "Áreas que ligam florestas",
-          "Caminhos para parar fogo",
-          "Trilhas para visitantes"
+        "pergunta": "Como estudantes podem ajudar o Cerrado?",
+        "alternativas": [
+          "Comprar animais silvestres",
+          "Aprender e divulgar sua importância",
+          "Desperdiçar água",
+          "Queimar lixo"
         ],
-        correta: 1,
-        dica: "Imagine caminhos seguros que conectam áreas naturais separadas.",
-        explicacao: "Eles ligam partes da floresta para os animais."
-      },
-      {
-        pergunta: "Em uma aula sobre florestas, como chamamos as árvores que perdem as folhas em certas épocas?",
-        alternativas: [
-          "Caducifólia",
-          "Fotossíntese",
-          "Transpiração",
-          "Germinação"
-        ],
-        correta: 0,
-        dica: "Lembre que algumas plantas mudam durante o ano para economizar energia e água.",
-        explicacao: "É quando as árvores perdem suas folhas."
-      },
-      {
-        pergunta: "Em uma aula sobre florestas, cerca de quantas árvores podem ser usadas para produzir 1 tonelada de papel?",
-        alternativas: [
-          "5-10 árvores",
-          "2-3 árvores",
-          "15-20 árvores",
-          "1 árvore"
-        ],
-        correta: 2,
-        dica: "Pense na matéria-prima usada para fabricar papel.",
-        explicacao: "Precisa de 15 a 20 árvores para fazer papel."
-      },
-      {
-        pergunta: "Em uma aula sobre florestas, O que mais causa incêndios nas florestas?",
-        alternativas: [
-          "Causado por raios",
-          "Causado por pessoas",
-          "Causado por vulcões",
-          "Causado pelo calor"
-        ],
-        correta: 1,
-        dica: "Compare a ideia de tamanho ou quantidade, sem se deixar levar pelo nome mais conhecido.",
-        explicacao: "Pessoas causam a maioria dos incêndios florestais."
+        "correta": 1,
+        "dica": "Conhecimento também protege.",
+        "explicacao": "Divulgar informações ajuda mais pessoas a valorizar o bioma."
       }
     ]
   },
-  oceanos: {
-    nome: "Oceanos",
-    icone: "🌊",
-    cor: "#1ABC9C",
-    perguntas: [
+  "caatinga": {
+    "nome": "Caatinga",
+    "icone": "🌵",
+    "cor": "#F4D03F",
+    "perguntas": [
       {
-        pergunta: "Ao estudar os oceanos, quanto da Terra é coberto por oceanos?",
-        alternativas: [
-          "50%",
-          "71%",
-          "80%",
-          "60%"
+        "pergunta": "A Caatinga é conhecida por ter...",
+        "alternativas": [
+          "clima seco em parte do ano",
+          "neve o ano inteiro",
+          "só água salgada",
+          "floresta de gelo"
         ],
-        correta: 1,
-        dica: "Compare água e terra no planeta: a água ocupa a maior parte.",
-        explicacao: "Os oceanos cobrem 71% da superfície da Terra."
+        "correta": 0,
+        "dica": "Pense no sertão.",
+        "explicacao": "A Caatinga tem períodos secos e plantas adaptadas."
       },
       {
-        pergunta: "Ao estudar os oceanos, como podemos explicar a mancha de lixo no Pacífico?",
-        alternativas: [
-          "Ilha de plástico boiando",
-          "Plástico juntado no oceano",
-          "Recife de corais artificial",
-          "Algas crescendo no mar"
+        "pergunta": "Qual planta é típica da Caatinga?",
+        "alternativas": [
+          "Vitória-régia",
+          "Mandacaru",
+          "Pinheiro gelado",
+          "Alga"
         ],
-        correta: 1,
-        dica: "Pense no material que demora muito para se decompor e aparece em rios e mares.",
-        explicacao: "É muito plástico juntado no Oceano Pacífico."
+        "correta": 1,
+        "dica": "É um cacto famoso.",
+        "explicacao": "O mandacaru é muito associado à Caatinga."
       },
       {
-        pergunta: "Ao estudar os oceanos, qual o maior animal do oceano?",
-        alternativas: [
-          "Tubarão-baleia",
-          "Baleia-azul",
-          "Polvo-gigante",
-          "Lula-colossal"
+        "pergunta": "Por que algumas plantas têm espinhos?",
+        "alternativas": [
+          "Para atrair neve",
+          "Para virar pedra",
+          "Para reduzir perda de água",
+          "Para fazer barulho"
         ],
-        correta: 1,
-        dica: "Compare a ideia de tamanho ou quantidade, sem se deixar levar pelo nome mais conhecido.",
-        explicacao: "A baleia-azul é o maior animal do planeta."
+        "correta": 2,
+        "dica": "Espinhos ajudam na seca.",
+        "explicacao": "Espinhos podem diminuir a perda de água e proteger a planta."
       },
       {
-        pergunta: "Ao estudar os oceanos, como podemos explicar branqueamento de corais?",
-        alternativas: [
-          "Morte natural dos corais",
-          "Corais perdem a cor",
-          "Poluição química nos corais",
-          "Algas brancas no mar"
+        "pergunta": "Quando chove na Caatinga, muitas plantas...",
+        "alternativas": [
+          "somem para sempre",
+          "ficam congeladas",
+          "viram animais",
+          "brotam e florescem"
         ],
-        correta: 1,
-        dica: "Pense no efeito do aquecimento da água sobre seres vivos sensiveis.",
-        explicacao: "Corais perdem a cor quando a água esquenta."
+        "correta": 3,
+        "dica": "A chuva muda tudo.",
+        "explicacao": "Com chuva, muitas plantas brotam e deixam a paisagem verde."
       },
       {
-        pergunta: "Ao estudar os oceanos, quanto do oxigênio vem dos oceanos?",
-        alternativas: [
-          "30% do ar",
-          "Mais da metade",
-          "10% do ar",
-          "70% do ar"
+        "pergunta": "Qual atitude ajuda em regiões secas?",
+        "alternativas": [
+          "Guardar água da chuva com cuidado",
+          "Desperdiçar água",
+          "Jogar lixo no açude",
+          "Cortar todas as plantas"
         ],
-        correta: 1,
-        dica: "Lembre que seres microscopicos tambem produzem oxigênio pela fotossintese.",
-        explicacao: "O mar produz mais da metade do oxigênio."
+        "correta": 0,
+        "dica": "Água da chuva pode ser útil.",
+        "explicacao": "Reservar água ajuda nos períodos de seca."
       },
       {
-        pergunta: "Ao estudar os oceanos, como podemos explicar a acidificação dos oceanos?",
-        alternativas: [
-          "Aquecer a água do mar",
-          "Tornar o mar mais ácido",
-          "Sujar o mar com ácidos",
-          "Secar toda água do mar"
+        "pergunta": "Qual animal é ligado à Caatinga?",
+        "alternativas": [
+          "Pinguim",
+          "Ararinha-azul",
+          "Foca",
+          "Urso-polar"
         ],
-        correta: 1,
-        dica: "Procure a ideia de mudança química causada por gases absorvidos pela água.",
-        explicacao: "O mar fica ácido ao absorver CO₂ do ar."
+        "correta": 1,
+        "dica": "É uma ave brasileira.",
+        "explicacao": "A ararinha-azul é associada à conservação na Caatinga."
       },
       {
-        pergunta: "Ao estudar os oceanos, quanto tempo o plástico dura no mar?",
-        alternativas: [
-          "10 anos",
-          "50 anos",
-          "450 anos",
-          "2 anos"
+        "pergunta": "Retirar muitas plantas da Caatinga pode...",
+        "alternativas": [
+          "fazer chover todo dia",
+          "criar rios de chocolate",
+          "deixar o solo exposto",
+          "aumentar gelo"
         ],
-        correta: 2,
-        dica: "Pense no que melhor protege oceanos e melhora a vida dos seres vivos.",
-        explicacao: "O plástico pode ficar 450 anos no mar."
+        "correta": 2,
+        "dica": "Plantas seguram o solo.",
+        "explicacao": "A vegetação protege o solo contra erosão."
       },
       {
-        pergunta: "Ao estudar os oceanos, qual oceano é o maior do mundo?",
-        alternativas: [
-          "Atlântico",
-          "Índico",
-          "Pacífico",
-          "Ártico"
+        "pergunta": "A Caatinga é especial porque...",
+        "alternativas": [
+          "fica só no Polo Norte",
+          "não tem vida",
+          "é feita de concreto",
+          "é exclusivamente brasileira"
         ],
-        correta: 2,
-        dica: "Compare a ideia de tamanho ou quantidade, sem se deixar levar pelo nome mais conhecido.",
-        explicacao: "O Oceano Pacífico é o maior de todos."
+        "correta": 3,
+        "dica": "Ela é bem brasileira.",
+        "explicacao": "A Caatinga ocorre apenas no Brasil."
       },
       {
-        pergunta: "Ao estudar os oceanos, como podemos explicar manguezais?",
-        alternativas: [
-          "Mata que cresce em água doce",
-          "Mata na beira do mar salgado",
-          "Recife artificial de pessoas",
-          "Duna de areia na praia"
+        "pergunta": "Em uma horta no semiárido, é melhor...",
+        "alternativas": [
+          "cobrir o solo para guardar umidade",
+          "regar com torneira aberta",
+          "plantar só espécies de neve",
+          "jogar lixo no canteiro"
         ],
-        correta: 1,
-        dica: "Pense em áreas entre rio e mar, com água salgada ou salobra.",
-        explicacao: "São matas na beira do mar salgado."
+        "correta": 0,
+        "dica": "Cobertura conserva água.",
+        "explicacao": "Cobrir o solo diminui evaporação."
       },
       {
-        pergunta: "Ao estudar os oceanos, qual poluente marinho mais prejudicial?",
-        alternativas: [
-          "Areia",
-          "Plástico",
-          "Conchas",
-          "Sal"
+        "pergunta": "Animal adaptado à Caatinga é aquele que...",
+        "alternativas": [
+          "vive em geladeira",
+          "consegue viver bem em condições secas",
+          "não precisa comer",
+          "vira planta"
         ],
-        correta: 1,
-        dica: "Pense no material que demora muito para se decompor e aparece em rios e mares.",
-        explicacao: "O plástico é o pior poluente do mar."
+        "correta": 1,
+        "dica": "Adaptado sobrevive no ambiente.",
+        "explicacao": "Adaptações ajudam animais a viver com calor e pouca água."
       }
     ]
   },
-  clima: {
-    nome: "Clima",
-    icone: "🌡️",
-    cor: "#E74C3C",
-    perguntas: [
-      {
-        pergunta: "Pensando no clima da Terra, como podemos explicar efeito estufa?",
-        alternativas: [
-          "Furar a camada de ozônio",
-          "Calor preso na atmosfera",
-          "Sujar o solo com veneno",
-          "Esquentar a água do mar"
-        ],
-        correta: 1,
-        dica: "Pense em uma camada que segura calor; o problema e o excesso.",
-        explicacao: "Efeito estufa prende o calor na atmosfera."
-      },
-      {
-        pergunta: "Pensando no clima da Terra, qual gás mais esquenta o planeta?",
-        alternativas: [
-          "Oxigênio (O₂)",
-          "Gás Carbônico (CO₂)",
-          "Nitrogênio (N₂)",
-          "Hidrogênio (H₂)"
-        ],
-        correta: 1,
-        dica: "Observe qual opcao fala de gases liberados por atividades humanas.",
-        explicacao: "CO₂ é o gás que mais aquece a Terra."
-      },
-      {
-        pergunta: "Pensando no clima da Terra, como podemos explicar o aquecimento global?",
-        alternativas: [
-          "Terra mais quente naturalmente",
-          "Terra mais quente por pessoas",
-          "Clima mudando naturalmente",
-          "Mar mais quente que antes"
-        ],
-        correta: 1,
-        dica: "Procure a alternativa que relaciona aumento de temperatura e acoes humanas.",
-        explicacao: "É a Terra ficando mais quente por poluição."
-      },
-      {
-        pergunta: "Pensando no clima da Terra, qual a diferença entre tempo e clima?",
-        alternativas: [
-          "São a mesma coisa",
-          "Tempo é hoje; clima são anos",
-          "Clima é hoje; tempo são anos",
-          "Tempo do mundo; clima local"
-        ],
-        correta: 1,
-        dica: "Tempo muda no dia a dia; clima e observado por muitos anos.",
-        explicacao: "Tempo é hoje. Clima são muitos anos."
-      },
-      {
-        pergunta: "Pensando no clima da Terra, como podemos explicar energias renováveis?",
-        alternativas: [
-          "Sujam a natureza",
-          "Nunca acabam na natureza",
-          "Acabam rapidinho",
-          "Vêm do petróleo"
-        ],
-        correta: 1,
-        dica: "Pense em fontes que a natureza repoe continuamente.",
-        explicacao: "Vêm da natureza e nunca se acabam."
-      },
-      {
-        pergunta: "Pensando no clima da Terra, qual atividade humana mais aumenta o aquecimento do planeta?",
-        alternativas: [
-          "Cultivar alimentos naturais",
-          "Queimar gasolina e carvão",
-          "Reciclar latas e papéis",
-          "Plantar mudas de árvores"
-        ],
-        correta: 1,
-        dica: "Observe qual opcao fala de gases liberados por atividades humanas.",
-        explicacao: "Queimar gasolina e carvão aquece o planeta."
-      },
-      {
-        pergunta: "Pensando no clima da Terra, como podemos explicar a pegada de carbono?",
-        alternativas: [
-          "Marca de pé no chão",
-          "Gases que produzimos",
-          "Carbono que tem no solo",
-          "Fumaça que vemos no ar"
-        ],
-        correta: 1,
-        dica: "Observe qual opcao fala de gases liberados por atividades humanas.",
-        explicacao: "São os gases que jogamos na atmosfera."
-      },
-      {
-        pergunta: "Pensando no clima da Terra, qual acordo mundial ajuda o clima?",
-        alternativas: [
-          "Tratado de Tordesilhas",
-          "Acordo de Paris",
-          "Protocolo de Kyoto",
-          "Carta da ONU"
-        ],
-        correta: 1,
-        dica: "Procure o acordo internacional ligado a metas climaticas atuais.",
-        explicacao: "Acordo de Paris é para salvar o clima."
-      },
-      {
-        pergunta: "Pensando no clima da Terra, como podemos explicar neutralidade de carbono?",
-        alternativas: [
-          "Soltar mais gás que o normal",
-          "Soltar e tirar o mesmo tanto",
-          "Não soltar gás nenhum",
-          "Só usar carvão de madeira"
-        ],
-        correta: 1,
-        dica: "Observe qual opcao fala de gases liberados por atividades humanas.",
-        explicacao: "É soltar e tirar a mesma quantidade."
-      },
-      {
-        pergunta: "Pensando no clima da Terra, quanto a Terra já esquentou desde 1800?",
-        alternativas: [
-          "0,5°C",
-          "Cerca de 1,1°C",
-          "5°C",
-          "10°C"
-        ],
-        correta: 1,
-        dica: "Pense no que melhor protege clima e melhora a vida dos seres vivos.",
-        explicacao: "A Terra já esquentou cerca de 1,1°C."
-      }
-    ]
-  },
-  reciclagem: {
-    nome: "Reciclagem",
-    icone: "♻️",
-    cor: "#F39C12",
-    perguntas: [
-      {
-        pergunta: "Na oficina de reciclagem da escola, O que significam os 3 Rs?",
-        alternativas: [
-          "Rezar, Repetir, Renovar",
-          "Reduzir, Reutilizar, Reciclar",
-          "Recortar, Remendar, Refazer",
-          "Repensar, Reprovar, Recomeçar"
-        ],
-        correta: 1,
-        dica: "Pense em transformar materiais usados em novos produtos.",
-        explicacao: "São Reduzir, Reutilizar e Reciclar."
-      },
-      {
-        pergunta: "Na oficina de reciclagem da escola, quanto tempo uma lata de alumínio dura?",
-        alternativas: [
-          "1 ano",
-          "5 anos",
-          "Mais de 100 anos",
-          "200 anos"
-        ],
-        correta: 2,
-        dica: "Pense no que melhor protege reciclagem e melhora a vida dos seres vivos.",
-        explicacao: "Latas de alumínio duram mais de 100 anos."
-      },
-      {
-        pergunta: "Na oficina de reciclagem da escola, qual material é mais reciclado no mundo?",
-        alternativas: [
-          "Plástico",
-          "Vidro",
-          "Papel",
-          "Alumínio"
-        ],
-        correta: 2,
-        dica: "Pense na matéria-prima usada para fabricar papel.",
-        explicacao: "O papel é o material mais reciclado."
-      },
-      {
-        pergunta: "Na oficina de reciclagem da escola, qual a cor da lixeira para plástico?",
-        alternativas: [
-          "Azul",
-          "Vermelho",
-          "Verde",
-          "Amarelo"
-        ],
-        correta: 1,
-        dica: "Pense no que melhor protege reciclagem e melhora a vida dos seres vivos.",
-        explicacao: "Vermelho é a cor do plástico na coleta seletiva."
-      },
-      {
-        pergunta: "Na oficina de reciclagem da escola, como podemos explicar compostagem?",
-        alternativas: [
-          "Reciclar plásticos",
-          "Transformar lixo em adubo",
-          "Queimar o lixo",
-          "Enterrar os resíduos"
-        ],
-        correta: 1,
-        dica: "Pense no material que demora muito para se decompor e aparece em rios e mares.",
-        explicacao: "Compostagem vira lixo orgânico em adubo."
-      },
-      {
-        pergunta: "Na oficina de reciclagem da escola, quantas vezes o vidro pode voltar para a reciclagem?",
-        alternativas: [
-          "5 vezes",
-          "10 vezes",
-          "Infinitas vezes",
-          "3 vezes"
-        ],
-        correta: 2,
-        dica: "Pense no que melhor protege reciclagem e melhora a vida dos seres vivos.",
-        explicacao: "O vidro pode ser reciclado para sempre."
-      },
-      {
-        pergunta: "Na oficina de reciclagem da escola, como podemos explicar upcycling?",
-        alternativas: [
-          "Reciclagem comum",
-          "Criar algo melhor com lixo",
-          "Jogar lixo no lixo",
-          "Queimar lixo para energia"
-        ],
-        correta: 1,
-        dica: "Pense no que melhor protege reciclagem e melhora a vida dos seres vivos.",
-        explicacao: "É fazer algo melhor com materiais velhos."
-      },
-      {
-        pergunta: "Na oficina de reciclagem da escola, qual país recicla mais no mundo?",
-        alternativas: [
-          "Brasil",
-          "EUA",
-          "Alemanhã",
-          "Japão"
-        ],
-        correta: 2,
-        dica: "Pense em transformar materiais usados em novos produtos.",
-        explicacao: "A Alemanhã é líder mundial em reciclagem."
-      },
-      {
-        pergunta: "Na oficina de reciclagem da escola, como podemos explicar resíduos eletrônicos?",
-        alternativas: [
-          "Lixo da internet",
-          "Aparelhos usados descartados",
-          "Cabos de energia",
-          "Só pilhas e baterias"
-        ],
-        correta: 1,
-        dica: "Pense no material que demora muito para se decompor e aparece em rios e mares.",
-        explicacao: "São aparelhos elétricos que viram lixo."
-      },
-      {
-        pergunta: "Na oficina de reciclagem da escola, Onde jogar pilhas e baterias?",
-        alternativas: [
-          "Lixo comum",
-          "Pontos de coleta",
-          "Pia da cozinha",
-          "Lixeira azul"
-        ],
-        correta: 1,
-        dica: "Pense no que melhor protege reciclagem e melhora a vida dos seres vivos.",
-        explicacao: "Pilhas têm veneno e vão em coleta especial."
-      }
-    ]
-  },
-  água: {
-    nome: "Água",
-    icone: "💧",
-    cor: "#3498DB",
-    perguntas: [
-      {
-        pergunta: "Ao investigar o uso da água, Quanta água doce temos para beber?",
-        alternativas: [
-          "10%",
-          "Menos de 1%",
-          "5%",
-          "25%"
-        ],
-        correta: 1,
-        dica: "Observe se a alternativa protege rios, evita desperdicio ou melhora o tratamento.",
-        explicacao: "Menos de 1% da água é doce e acessível."
-      },
-      {
-        pergunta: "Ao investigar o uso da água, como podemos explicar o ciclo da água?",
-        alternativas: [
-          "Tratamento da água",
-          "Água andando na natureza",
-          "Movimento das ondas",
-          "Água nos canos"
-        ],
-        correta: 1,
-        dica: "Observe se a alternativa protege rios, evita desperdicio ou melhora o tratamento.",
-        explicacao: "É a água circulando entre Terra e céu."
-      },
-      {
-        pergunta: "Ao investigar o uso da água, cerca de quantos litros uma pessoa pode gastar por dia?",
-        alternativas: [
-          "50 litros",
-          "Cerca de 150 litros",
-          "500 litros",
-          "20 litros"
-        ],
-        correta: 1,
-        dica: "Observe qual opcao fala de gases liberados por atividades humanas.",
-        explicacao: "Cada pessoa gasta cerca de 150 litros por dia."
-      },
-      {
-        pergunta: "Ao investigar o uso da água, como podemos explicar uma bacia hidrográfica?",
-        alternativas: [
-          "Tanque de água",
-          "Área que leva água ao rio",
-          "Represa artificial",
-          "Região alagada"
-        ],
-        correta: 1,
-        dica: "Pense no que melhor protege água e melhora a vida dos seres vivos.",
-        explicacao: "É onde a chuva escorre para um rio."
-      },
-      {
-        pergunta: "Ao investigar o uso da água, qual doença vem da água suja?",
-        alternativas: [
-          "Gripe",
-          "Cólera",
-          "Diabetes",
-          "Asma"
-        ],
-        correta: 1,
-        dica: "Observe se a alternativa protege rios, evita desperdicio ou melhora o tratamento.",
-        explicacao: "Cólera é doença de água contaminada."
-      },
-      {
-        pergunta: "Ao investigar o uso da água, como podemos explicar o lençol freático?",
-        alternativas: [
-          "Rio na superfície",
-          "Água guardada no subsolo",
-          "Lago artificial",
-          "Gelo das montanhas"
-        ],
-        correta: 1,
-        dica: "Observe se a alternativa protege rios, evita desperdicio ou melhora o tratamento.",
-        explicacao: "É a água que fica debaixo da terra."
-      },
-      {
-        pergunta: "Ao investigar o uso da água, como economizar água no banho?",
-        alternativas: [
-          "Banho de 5 minutos",
-          "Banho de 20 minutos",
-          "Encher a banheira",
-          "Ligar dois chuveiros"
-        ],
-        correta: 0,
-        dica: "Observe se a alternativa protege rios, evita desperdicio ou melhora o tratamento.",
-        explicacao: "Banho de 5 minutos economiza muita água."
-      },
-      {
-        pergunta: "Ao investigar o uso da água, como podemos explicar a água virtual?",
-        alternativas: [
-          "Água da chuva",
-          "Água gasta para fazer coisas",
-          "Água destilada",
-          "Água mineral"
-        ],
-        correta: 1,
-        dica: "Observe se a alternativa protege rios, evita desperdicio ou melhora o tratamento.",
-        explicacao: "É a água usada para produzir alimentos."
-      },
-      {
-        pergunta: "Ao investigar o uso da água, cerca de quantos litros podem ser usados para produzir 1 kg de carne?",
-        alternativas: [
-          "100 litros",
-          "1.000 litros",
-          "15.000 litros",
-          "50 litros"
-        ],
-        correta: 2,
-        dica: "Pense no que melhor protege água e melhora a vida dos seres vivos.",
-        explicacao: "Precisa de 15.000 litros para fazer 1kg de carne."
-      },
-      {
-        pergunta: "Ao investigar o uso da água, como podemos explicar dessalinização?",
-        alternativas: [
-          "Sujar a água doce",
-          "Tirar o sal da água do mar",
-          "Evaporação natural",
-          "Tratar o esgoto"
-        ],
-        correta: 1,
-        dica: "Observe se a alternativa protege rios, evita desperdicio ou melhora o tratamento.",
-        explicacao: "Tira o sal do mar para virar água potável."
-      }
-    ]
-  },
-  energia: {
-    nome: "Energia",
-    icone: "⚡",
-    cor: "#F1C40F",
-    perguntas: [
-      {
-        pergunta: "Pensando nas fontes de energia, qual a principal fonte de energia no Brasil?",
-        alternativas: [
-          "Carvão mineral",
-          "Petróleo",
-          "Hidrelétrica",
-          "Nuclear"
-        ],
-        correta: 2,
-        dica: "Compare fontes que poluem muito com fontes mais limpas.",
-        explicacao: "O Brasil usa mais energia das hidrelétricas."
-      },
-      {
-        pergunta: "Pensando nas fontes de energia, como podemos explicar energia solar?",
-        alternativas: [
-          "Energia do vento",
-          "Luz do sol virada em energia",
-          "Energia das marés",
-          "Energia nuclear"
-        ],
-        correta: 1,
-        dica: "Compare fontes que poluem muito com fontes mais limpas.",
-        explicacao: "Energia solar vem da luz do sol."
-      },
-      {
-        pergunta: "Pensando nas fontes de energia, qual a vantagem da energia eólica?",
-        alternativas: [
-          "Polui o ar",
-          "É limpa e não polui",
-          "É muito cara",
-          "Ocupa pouco espaço"
-        ],
-        correta: 1,
-        dica: "Compare fontes que poluem muito com fontes mais limpas.",
-        explicacao: "Energia eólica é limpa e não polui."
-      },
-      {
-        pergunta: "Pensando nas fontes de energia, como podemos explicar biomassa?",
-        alternativas: [
-          "Energia do vento",
-          "Energia de restos de plantas",
-          "Energia nuclear",
-          "Energia solar"
-        ],
-        correta: 1,
-        dica: "Compare fontes que poluem muito com fontes mais limpas.",
-        explicacao: "Biomassa usa restos de plantas para energia."
-      },
-      {
-        pergunta: "Pensando nas fontes de energia, qual país mais investe em energia solar?",
-        alternativas: [
-          "Brasil",
-          "Alemanhã",
-          "China",
-          "Austrália"
-        ],
-        correta: 2,
-        dica: "Compare fontes que poluem muito com fontes mais limpas.",
-        explicacao: "A China é quem mais investe em energia solar."
-      },
-      {
-        pergunta: "Pensando nas fontes de energia, como podemos explicar combustíveis fósseis?",
-        alternativas: [
-          "Energia do sol",
-          "Restos antigos viram combustível",
-          "Biocombustíveis",
-          "Energia da água"
-        ],
-        correta: 1,
-        dica: "Pense no que melhor protege energia e melhora a vida dos seres vivos.",
-        explicacao: "Petróleo e carvão são combustíveis fósseis."
-      },
-      {
-        pergunta: "Pensando nas fontes de energia, como podemos explicar eficiência energética?",
-        alternativas: [
-          "Usar mais energia",
-          "Gastar menos energia",
-          "Desligar tudo",
-          "Usar energia nuclear"
-        ],
-        correta: 1,
-        dica: "Compare fontes que poluem muito com fontes mais limpas.",
-        explicacao: "É fazer a mesma coisa com menos energia."
-      },
-      {
-        pergunta: "Pensando nas fontes de energia, qual a maior usina hidrelétrica do Brasil?",
-        alternativas: [
-          "Tucuruí",
-          "Itaipu",
-          "Belo Monte",
-          "Sobradinho"
-        ],
-        correta: 1,
-        dica: "Compare a ideia de tamanho ou quantidade, sem se deixar levar pelo nome mais conhecido.",
-        explicacao: "Itaipu é a maior hidrelétrica do Brasil."
-      },
-      {
-        pergunta: "Pensando nas fontes de energia, como podemos explicar energia geotérmica?",
-        alternativas: [
-          "Energia do sol",
-          "Calor da Terra vira energia",
-          "Energia das ondas",
-          "Energia nuclear"
-        ],
-        correta: 1,
-        dica: "Compare fontes que poluem muito com fontes mais limpas.",
-        explicacao: "Usa o calor de dentro da Terra."
-      },
-      {
-        pergunta: "Pensando nas fontes de energia, como podemos explicar ilha de calor nas cidades?",
-        alternativas: [
-          "Cidade mais fria que o campo",
-          "Cidade mais quente que o campo",
-          "Praias artificiais",
-          "Só aquecimento global"
-        ],
-        correta: 1,
-        dica: "Pense em solucoes que melhoram a vida das pessoas e reduzem impactos ambientais.",
-        explicacao: "Cidades são mais quentes que o campo."
-      }
-    ]
-  },
-  biodiversidade: {
-    nome: "Biodiversidade",
-    icone: "🧬",
-    cor: "#9B59B6",
-    perguntas: [
-      {
-        pergunta: "Ao observar a biodiversidade, O que significa biodiversidade?",
-        alternativas: [
-          "Só variedade de animais",
-          "Toda forma de vida na Terra",
-          "Só quantidade de plantas",
-          "Só tamanho das florestas"
-        ],
-        correta: 1,
-        dica: "Pense na variedade de seres vivos em um ambiente.",
-        explicacao: "É a variedade de vida no planeta."
-      },
-      {
-        pergunta: "Ao observar a biodiversidade, qual país tem a maior biodiversidade?",
-        alternativas: [
-          "Estados Unidos",
-          "Brasil",
-          "Índia",
-          "Austrália"
-        ],
-        correta: 1,
-        dica: "Compare a ideia de tamanho ou quantidade, sem se deixar levar pelo nome mais conhecido.",
-        explicacao: "O Brasil tem a maior biodiversidade do mundo."
-      },
-      {
-        pergunta: "Ao observar a biodiversidade, como podemos explicar uma espécie endêmica?",
-        alternativas: [
-          "Espécie do mundo todo",
-          "Espécie que só existe num lugar",
-          "Espécie invasora",
-          "Espécie extinta"
-        ],
-        correta: 1,
-        dica: "Pense no que melhor protege biodiversidade e melhora a vida dos seres vivos.",
-        explicacao: "Só existe em uma região específica."
-      },
-      {
-        pergunta: "Ao observar a biodiversidade, Quantas espécies existem no planeta?",
-        alternativas: [
-          "1 milhão",
-          "8,7 milhões",
-          "100 mil",
-          "500 milhões"
-        ],
-        correta: 1,
-        dica: "Pense no que melhor protege biodiversidade e melhora a vida dos seres vivos.",
-        explicacao: "Estima-se 8,7 milhões de espécies no planeta."
-      },
-      {
-        pergunta: "Ao observar a biodiversidade, como podemos explicar extinção de espécies?",
-        alternativas: [
-          "Bichos mudando de lugar",
-          "Espécie que desaparece para sempre",
-          "Diminuição de bichos",
-          "Mudança de habitat"
-        ],
-        correta: 1,
-        dica: "Pense no que melhor protege biodiversidade e melhora a vida dos seres vivos.",
-        explicacao: "É quando uma espécie some para sempre."
-      },
-      {
-        pergunta: "Ao observar a biodiversidade, como podemos explicar espécies invasoras?",
-        alternativas: [
-          "Espécies da região",
-          "Espécies que chegam e prejudicam",
-          "Animais que migram",
-          "Plantas de jardim"
-        ],
-        correta: 1,
-        dica: "Pense em cuidar do solo, da água e dos alimentos ao mesmo tempo.",
-        explicacao: "São bichos ou plantas que invadem outro lugar."
-      },
-      {
-        pergunta: "Ao observar a biodiversidade, qual bioma brasileiro tem mais espécies?",
-        alternativas: [
-          "Cerrado",
-          "Mata Atlântica",
-          "Amazônia",
-          "Pantanal"
-        ],
-        correta: 2,
-        dica: "Pense no que melhor protege biodiversidade e melhora a vida dos seres vivos.",
-        explicacao: "A Amazônia tem mais espécies que qualquer bioma."
-      },
-      {
-        pergunta: "Ao observar a biodiversidade, como podemos explicar seleção natural?",
-        alternativas: [
-          "Pessoas escolhem espécies",
-          "Os mais fortes sobrevivem",
-          "Criação de novas espécies",
-          "Morte de todas espécies"
-        ],
-        correta: 1,
-        dica: "Pense no que melhor protege biodiversidade e melhora a vida dos seres vivos.",
-        explicacao: "Os seres mais adaptados sobrevivem na natureza."
-      },
-      {
-        pergunta: "Ao observar a biodiversidade, cerca de quantas abelhas podem ajudar a polinizar 1 hectare?",
-        alternativas: [
-          "10 abelhas",
-          "100 abelhas",
-          "Milhares de abelhas",
-          "1 milhão de abelhas"
-        ],
-        correta: 2,
-        dica: "Pense no que melhor protege biodiversidade e melhora a vida dos seres vivos.",
-        explicacao: "Milhares de abelhas são necessárias para polinizar."
-      },
-      {
-        pergunta: "Ao observar a biodiversidade, como podemos explicar a Lista Vermelha da IUCN?",
-        alternativas: [
-          "Lista de espécies extintas",
-          "Lista de espécies em perigo",
-          "Guia de espécies invasoras",
-          "Lista de bichos de estimação"
-        ],
-        correta: 1,
-        dica: "Pense no que melhor protege biodiversidade e melhora a vida dos seres vivos.",
-        explicacao: "Mostra quais espécies correm risco de sumir."
-      }
-    ]
-  },
-  poluição: {
-    nome: "Poluição",
-    icone: "💨",
-    cor: "#95A5A6",
-    perguntas: [
-      {
-        pergunta: "Ao analisar a poluição no ambiente, como podemos explicar poluição do ar?",
-        alternativas: [
-          "Só fumaça de carros",
-          "Sujeira no ar que respiramos",
-          "Nuvens escuras",
-          "Vento bem forte"
-        ],
-        correta: 1,
-        dica: "Procure a opcao que mostra sujeira ou contaminação prejudicando seres vivos.",
-        explicacao: "É sujeira no ar que faz mal à saúde."
-      },
-      {
-        pergunta: "Ao analisar a poluição no ambiente, qual cidade brasileira tem o ar mais poluído?",
-        alternativas: [
-          "São Paulo",
-          "Rio de Janeiro",
-          "Manaus",
-          "Belo Horizonte"
-        ],
-        correta: 0,
-        dica: "Pense em solucoes que melhoram a vida das pessoas e reduzem impactos ambientais.",
-        explicacao: "São Paulo tem o ar mais poluído do Brasil."
-      },
-      {
-        pergunta: "Ao analisar a poluição no ambiente, como podemos explicar chuva ácida?",
-        alternativas: [
-          "Chuva normal e limpa",
-          "Chuva com poluição ácida",
-          "Chuva de granizo",
-          "Chuva radioativa"
-        ],
-        correta: 1,
-        dica: "Procure a opcao que mostra sujeira ou contaminação prejudicando seres vivos.",
-        explicacao: "Chuva ácida tem poluição que forma ácidos."
-      },
-      {
-        pergunta: "Ao analisar a poluição no ambiente, qual a maior fonte de poluição do mar?",
-        alternativas: [
-          "Navios",
-          "Atividades em terra",
-          "Turismo",
-          "Pesca"
-        ],
-        correta: 1,
-        dica: "Compare a ideia de tamanho ou quantidade, sem se deixar levar pelo nome mais conhecido.",
-        explicacao: "80% da poluição do mar vem de terra."
-      },
-      {
-        pergunta: "Ao analisar a poluição no ambiente, como podemos explicar microplásticos?",
-        alternativas: [
-          "Plástico reciclável",
-          "Pedaços de plástico bem pequenos",
-          "Plástico que se desfaz",
-          "Sacos e garrafas plásticas"
-        ],
-        correta: 1,
-        dica: "Pense no que melhor protege poluição e melhora a vida dos seres vivos.",
-        explicacao: "São pedacinhos de plástico menores que 5mm."
-      },
-      {
-        pergunta: "Ao analisar a poluição no ambiente, como podemos explicar poluição do solo?",
-        alternativas: [
-          "Só lixo no chão",
-          "Veneno e lixo no solo",
-          "Erosão natural",
-          "Terra bem dura"
-        ],
-        correta: 1,
-        dica: "Pense no material que demora muito para se decompor e aparece em rios e mares.",
-        explicacao: "É sujeira química e lixo no chão."
-      },
-      {
-        pergunta: "Ao analisar a poluição no ambiente, como podemos explicar poluição sonora?",
-        alternativas: [
-          "Som da natureza",
-          "Barulho demais das pessoas",
-          "Música alta em festas",
-          "Som dos animais"
-        ],
-        correta: 1,
-        dica: "Procure a opcao que mostra sujeira ou contaminação prejudicando seres vivos.",
-        explicacao: "É muito barulho que faz mal à saúde."
-      },
-      {
-        pergunta: "Ao analisar a poluição no ambiente, qual metal tóxico existe em pilhas?",
-        alternativas: [
-          "Ferro",
-          "Cádmio",
-          "Alumínio",
-          "Cobre"
-        ],
-        correta: 1,
-        dica: "Pense no que melhor protege poluição e melhora a vida dos seres vivos.",
-        explicacao: "Cádmio é um metal tóxico em pilhas."
-      },
-      {
-        pergunta: "Ao analisar a poluição no ambiente, como podemos explicar esgoto não tratado?",
-        alternativas: [
-          "Água limpa",
-          "Sujeira líquida sem tratamento",
-          "Água da chuva",
-          "Água mineral"
-        ],
-        correta: 1,
-        dica: "Pense no que melhor protege poluição e melhora a vida dos seres vivos.",
-        explicacao: "É esgoto jogado nos rios sem tratamento."
-      },
-      {
-        pergunta: "Ao analisar a poluição no ambiente, Quantas pessoas morrem por poluição do ar?",
-        alternativas: [
-          "1.000",
-          "100.000",
-          "7 milhões",
-          "1 bilhão"
-        ],
-        correta: 2,
-        dica: "Procure a opcao que mostra sujeira ou contaminação prejudicando seres vivos.",
-        explicacao: "7 milhões de pessoas morrem por ar poluído."
-      }
-    ]
-  },
-  sustentabilidade: {
-    nome: "Sustentabilidade",
-    icone: "🌍",
-    cor: "#27AE60",
-    perguntas: [
-      {
-        pergunta: "Pensando em atitudes sustentáveis, como podemos explicar desenvolvimento sustentável?",
-        alternativas: [
-          "Crescer sem se importar",
-          "Cuidar do hoje sem destruir o amanhã",
-          "Parar o desenvolvimento",
-          "Só proteger as florestas"
-        ],
-        correta: 1,
-        dica: "Pense em usar recursos hoje sem prejudicar as pessoas de amanhã.",
-        explicacao: "É crescer sem destruir o futuro."
-      },
-      {
-        pergunta: "Pensando em atitudes sustentáveis, quais são os três pilares da sustentabilidade?",
-        alternativas: [
-          "Social, Cultural, Político",
-          "Ambiental, Social, Econômico",
-          "Saúde, Educação, Lazer",
-          "Tecnologia, Inovação, Ciência"
-        ],
-        correta: 1,
-        dica: "Pense em usar recursos hoje sem prejudicar as pessoas de amanhã.",
-        explicacao: "São ambiental, social e econômico."
-      },
-      {
-        pergunta: "Pensando em atitudes sustentáveis, como podemos explicar consumo consciente?",
-        alternativas: [
-          "Comprar sem pensar",
-          "Escolher sem prejudicar o planeta",
-          "Comprar só marcas caras",
-          "Comprar tudo que vê"
-        ],
-        correta: 1,
-        dica: "Pense no que melhor protege sustentabilidade e melhora a vida dos seres vivos.",
-        explicacao: "É comprar pensando no meio ambiente."
-      },
-      {
-        pergunta: "Pensando em atitudes sustentáveis, como podemos explicar a Agenda 2030 da ONU?",
-        alternativas: [
-          "Calendário de eventos",
-          "Plano com 17 metas para o mundo",
-          "Agenda de reuniões",
-          "Plano de reciclagem"
-        ],
-        correta: 1,
-        dica: "Pense no que melhor protege sustentabilidade e melhora a vida dos seres vivos.",
-        explicacao: "São 17 metas para um futuro melhor."
-      },
-      {
-        pergunta: "Pensando em atitudes sustentáveis, como podemos explicar agricultura sustentável?",
-        alternativas: [
-          "Usar muito veneno",
-          "Plantar sem destruir a natureza",
-          "Plantar em larga escala",
-          "Plantar só uma coisa"
-        ],
-        correta: 1,
-        dica: "Pense em usar recursos hoje sem prejudicar as pessoas de amanhã.",
-        explicacao: "É produzir alimentos cuidando da natureza."
-      },
-      {
-        pergunta: "Pensando em atitudes sustentáveis, como podemos explicar uma cidade sustentável?",
-        alternativas: [
-          "Cidade com muitos carros",
-          "Cidade boa para viver e para o planeta",
-          "Cidade sem indústrias",
-          "Cidade com prédios enormes"
-        ],
-        correta: 1,
-        dica: "Pense em usar recursos hoje sem prejudicar as pessoas de amanhã.",
-        explicacao: "Une qualidade de vida e cuidado ambiental."
-      },
-      {
-        pergunta: "Pensando em atitudes sustentáveis, como podemos explicar economia circular?",
-        alternativas: [
-          "Economia comum",
-          "Reutilizar tudo sem gerar lixo",
-          "Economia do petróleo",
-          "Só reciclar"
-        ],
-        correta: 1,
-        dica: "Pense no que melhor protege sustentabilidade e melhora a vida dos seres vivos.",
-        explicacao: "É usar coisas de novo sem desperdiçar."
-      },
-      {
-        pergunta: "Pensando em atitudes sustentáveis, como podemos explicar certificação ambiental?",
-        alternativas: [
-          "Multa ambiental",
-          "Selo de produto sustentável",
-          "Licença para poluir",
-          "Registro de área verde"
-        ],
-        correta: 1,
-        dica: "Pense em usar recursos hoje sem prejudicar as pessoas de amanhã.",
-        explicacao: "Selo que mostra que algo é sustentável."
-      },
-      {
-        pergunta: "Pensando em atitudes sustentáveis, qual o objetivo do ODS 13?",
-        alternativas: [
-          "Acabar com a pobreza",
-          "Combater a mudança do clima",
-          "Educação de qualidade",
-          "Vida na água"
-        ],
-        correta: 1,
-        dica: "Pense no que melhor protege sustentabilidade e melhora a vida dos seres vivos.",
-        explicacao: "ODS 13 é para combater as mudanças climáticas."
-      },
-      {
-        pergunta: "Pensando em atitudes sustentáveis, O que significa ESG?",
-        alternativas: [
-          "Empresa Sem Gerenciamento",
-          "Ambiental, Social e Governança",
-          "Economia Sustentável Global",
-          "Energia Solar Garantida"
-        ],
-        correta: 1,
-        dica: "Pense em usar recursos hoje sem prejudicar as pessoas de amanhã.",
-        explicacao: "São regras para empresas sustentáveis."
-      }
-    ]
-  },
-  fauna: {
-    nome: "Animais em Extinção",
-    icone: "🦏",
-    cor: "#E67E22",
-    perguntas: [
-      {
-        pergunta: "Ao estudar animais ameaçados, Quantas espécies estão ameaçadas hoje?",
-        alternativas: [
-          "1.000",
-          "10.000",
-          "Mais de 40.000",
-          "100.000"
-        ],
-        correta: 2,
-        dica: "Pense no que melhor protege animais em extinção e melhora a vida dos seres vivos.",
-        explicacao: "Mais de 40.000 espécies estão em perigo."
-      },
-      {
-        pergunta: "Ao estudar animais ameaçados, qual animal brasileiro luta contra a extinção?",
-        alternativas: [
-          "Arara-azul",
-          "Tatu-bola",
+  "mata_atlantica": {
+    "nome": "Mata Atlântica",
+    "icone": "🍃",
+    "cor": "#27AE60",
+    "perguntas": [
+      {
+        "pergunta": "A Mata Atlântica fica muito ligada ao...",
+        "alternativas": [
+          "litoral brasileiro",
+          "deserto gelado",
+          "centro do oceano",
+          "Polo Sul"
+        ],
+        "correta": 0,
+        "dica": "Pense em áreas perto do mar.",
+        "explicacao": "Ela acompanha grande parte do litoral do Brasil."
+      },
+      {
+        "pergunta": "Qual animal é símbolo da Mata Atlântica?",
+        "alternativas": [
+          "Camelo",
           "Mico-leão-dourado",
-          "Lobo-guará"
+          "Pinguim",
+          "Urso"
         ],
-        correta: 2,
-        dica: "Compare tamanho, habitat e risco de desaparecer.",
-        explicacao: "Mico-leão-dourado é símbolo da conservação."
+        "correta": 1,
+        "dica": "É pequeno e dourado.",
+        "explicacao": "O mico-leão-dourado é símbolo de conservação."
       },
       {
-        pergunta: "Ao estudar animais ameaçados, como podemos explicar a IUCN?",
-        alternativas: [
-          "Instituto de Urbanismo",
-          "União de Conservação da Natureza",
-          "Organização dos Animais",
-          "Fundo Ambiental Global"
+        "pergunta": "Por que ela precisa de proteção?",
+        "alternativas": [
+          "Porque não tem plantas",
+          "Porque é toda de gelo",
+          "Porque foi muito desmatada",
+          "Porque fica na Lua"
         ],
-        correta: 1,
-        dica: "Pense no que melhor protege animais em extinção e melhora a vida dos seres vivos.",
-        explicacao: "Protege a natureza e as espécies ameaçadas."
+        "correta": 2,
+        "dica": "Muitas cidades cresceram nela.",
+        "explicacao": "Grande parte foi substituída por cidades e plantações."
       },
       {
-        pergunta: "Ao estudar animais ameaçados, qual a maior causa de extinção hoje?",
-        alternativas: [
-          "Caça de animais",
-          "Perda do lar dos bichos",
-          "Mudanças naturais",
-          "Barulho demais"
+        "pergunta": "Qual ação recupera áreas degradadas?",
+        "alternativas": [
+          "Jogar entulho",
+          "Soltar animais domésticos",
+          "Retirar folhas",
+          "Plantar espécies nativas"
         ],
-        correta: 1,
-        dica: "Compare a ideia de tamanho ou quantidade, sem se deixar levar pelo nome mais conhecido.",
-        explicacao: "Bichos perdem suas casas pelas ações humanas."
+        "correta": 3,
+        "dica": "Plantas do lugar ajudam mais.",
+        "explicacao": "Espécies nativas ajudam a reconstruir o ambiente."
       },
       {
-        pergunta: "Ao estudar animais ameaçados, como podemos explicar uma espécie criticamente ameaçada?",
-        alternativas: [
-          "Espécie sem nenhum risco",
-          "Espécie com risco muito alto",
-          "Espécie já extinta",
-          "Espécie se recuperando"
+        "pergunta": "Árvores em volta de nascentes ajudam a...",
+        "alternativas": [
+          "proteger a água",
+          "secar tudo",
+          "criar lixo",
+          "impedir chuva"
         ],
-        correta: 1,
-        dica: "Pense no que melhor protege animais em extinção e melhora a vida dos seres vivos.",
-        explicacao: "Tem risco muito grande de desaparecer."
+        "correta": 0,
+        "dica": "Raízes protegem o solo.",
+        "explicacao": "A vegetação evita erosão e sujeira na água."
       },
       {
-        pergunta: "Ao estudar animais ameaçados, qual animal está ameaçado na Mata Atlântica?",
-        alternativas: [
-          "Capivara",
-          "Tamanduá-bandeira",
-          "Muriqui-do-norte",
-          "Tucano"
+        "pergunta": "Em uma trilha, o correto é...",
+        "alternativas": [
+          "riscar troncos",
+          "levar o lixo de volta",
+          "pegar ovos",
+          "fazer fogueira"
         ],
-        correta: 2,
-        dica: "Compare tamanho, habitat e risco de desaparecer.",
-        explicacao: "Muriqui-do-norte é um dos primatas mais ameaçados."
+        "correta": 1,
+        "dica": "Nada de deixar sujeira.",
+        "explicacao": "Levar lixo de volta protege a mata."
       },
       {
-        pergunta: "Ao estudar animais ameaçados, como podemos explicar a CITES?",
-        alternativas: [
-          "Controle do comércio de espécies",
-          "Lei brasileira de animais",
-          "Conferência de energia",
-          "Acordo do clima"
+        "pergunta": "Corredores de mata servem para...",
+        "alternativas": [
+          "carros correrem",
+          "aumentar lixo",
+          "animais se deslocarem",
+          "impedir plantas"
         ],
-        correta: 0,
-        dica: "Pense no que melhor protege animais em extinção e melhora a vida dos seres vivos.",
-        explicacao: "Regula o comércio de espécies ameaçadas."
+        "correta": 2,
+        "dica": "São caminhos verdes.",
+        "explicacao": "Eles ligam áreas verdes para animais circularem."
       },
       {
-        pergunta: "Ao estudar animais ameaçados, cerca de quantas onças-pintadas existem na Amazônia?",
-        alternativas: [
-          "Mais de 10.000",
-          "Menos de 500",
-          "Cerca de 2.000",
-          "100.000"
+        "pergunta": "Qual problema urbano prejudica o bioma?",
+        "alternativas": [
+          "Coleta seletiva",
+          "Tratamento de esgoto",
+          "Plantio de nativas",
+          "Construção sem planejamento"
         ],
-        correta: 0,
-        dica: "Pense no que melhor protege animais em extinção e melhora a vida dos seres vivos.",
-        explicacao: "Existem mais de 10.000 onças na Amazônia."
+        "correta": 3,
+        "dica": "Crescer sem cuidado causa danos.",
+        "explicacao": "Construções sem planejamento podem destruir áreas verdes."
       },
       {
-        pergunta: "Ao estudar animais ameaçados, como podemos explicar extinção em massa?",
-        alternativas: [
-          "Evento natural e raro",
-          "Muitas espécies somem de uma vez",
-          "Bichos migrando",
-          "Nova espécie surgindo"
+        "pergunta": "A Mata Atlântica é importante porque...",
+        "alternativas": [
+          "abriga muitas espécies",
+          "não tem rios",
+          "não serve para nada",
+          "é toda artificial"
         ],
-        correta: 1,
-        dica: "Pense no que melhor protege animais em extinção e melhora a vida dos seres vivos.",
-        explicacao: "Muitas espécies desaparecem ao mesmo tempo."
+        "correta": 0,
+        "dica": "Pense em biodiversidade.",
+        "explicacao": "Ela abriga muitas espécies e ajuda a proteger rios."
       },
       {
-        pergunta: "Ao estudar animais ameaçados, qual bioma brasileiro perdeu mais espécies?",
-        alternativas: [
-          "Amazônia",
-          "Mata Atlântica",
-          "Cerrado",
-          "Pantanal"
+        "pergunta": "Qual ambiente pode fazer parte dela?",
+        "alternativas": [
+          "Deserto polar",
+          "Restingas e florestas úmidas",
+          "Lua cheia",
+          "Mar profundo"
         ],
-        correta: 1,
-        dica: "Pense em perda de vegetação e em lugares muito ocupados por pessoas.",
-        explicacao: "A Mata Atlântica perdeu mais de 90% da mata."
+        "correta": 1,
+        "dica": "É um bioma variado.",
+        "explicacao": "A Mata Atlântica inclui florestas, restingas e outros ambientes."
       }
     ]
   },
-  agricultura: {
-    nome: "Agricultura Sustentável",
-    icone: "🌾",
-    cor: "#8BC34A",
-    perguntas: [
+  "pantanal": {
+    "nome": "Pantanal",
+    "icone": "🐊",
+    "cor": "#3498DB",
+    "perguntas": [
       {
-        pergunta: "Em uma horta ou fazenda sustentável, como podemos explicar agricultura orgânica?",
-        alternativas: [
-          "Plantar com veneno",
-          "Plantar sem veneno",
-          "Plantar em estufas",
-          "Plantar com máquinas"
+        "pergunta": "O Pantanal é famoso por áreas...",
+        "alternativas": [
+          "alagadas em parte do ano",
+          "cobertas de neve",
+          "sem água",
+          "cheias de prédios"
         ],
-        correta: 1,
-        dica: "Pense em cuidar do solo, da água e dos alimentos ao mesmo tempo.",
-        explicacao: "É cultivar sem usar agrotóxicos."
+        "correta": 0,
+        "dica": "Pense nas cheias.",
+        "explicacao": "O Pantanal tem períodos de cheia."
       },
       {
-        pergunta: "Em uma horta ou fazenda sustentável, como podemos explicar rotação de culturas?",
-        alternativas: [
-          "Plantar sempre a mesma coisa",
-          "Trocar o que planta no solo",
-          "Deixar o solo descansar",
-          "Plantar em círculos"
+        "pergunta": "Qual animal é comum no Pantanal?",
+        "alternativas": [
+          "Panda",
+          "Jacaré",
+          "Camelo",
+          "Pinguim"
         ],
-        correta: 1,
-        dica: "Pense em cuidar do solo, da água e dos alimentos ao mesmo tempo.",
-        explicacao: "Alternar culturas para cuidar do solo."
+        "correta": 1,
+        "dica": "Gosta de água.",
+        "explicacao": "Jacarés são comuns em áreas alagadas."
       },
       {
-        pergunta: "Em uma horta ou fazenda sustentável, como podemos explicar agrotóxicos?",
-        alternativas: [
-          "Adubo natural",
-          "Veneno para matar pragas",
-          "Sementes modificadas",
-          "Água para irrigar"
+        "pergunta": "As cheias do Pantanal ajudam a...",
+        "alternativas": [
+          "acabar com peixes",
+          "virar deserto",
+          "espalhar nutrientes",
+          "secar rios"
         ],
-        correta: 1,
-        dica: "Observe qual opcao fala de gases liberados por atividades humanas.",
-        explicacao: "São venenos contra pragas na lavoura."
+        "correta": 2,
+        "dica": "A água leva alimento.",
+        "explicacao": "Cheias renovam áreas e sustentam a vida."
       },
       {
-        pergunta: "Em uma horta ou fazenda sustentável, como podemos explicar agrofloresta?",
-        alternativas: [
-          "Plantar uma só árvore",
-          "Misturar árvores com plantação",
-          "Floresta preservada",
-          "Queimada controlada"
+        "pergunta": "Para proteger o Pantanal, devemos...",
+        "alternativas": [
+          "jogar óleo no rio",
+          "deixar plástico",
+          "lavar veneno na água",
+          "descartar lixo corretamente"
         ],
-        correta: 1,
-        dica: "Pense em cuidar do solo, da água e dos alimentos ao mesmo tempo.",
-        explicacao: "Planta árvores junto com outras culturas."
+        "correta": 3,
+        "dica": "Lixo fora da natureza.",
+        "explicacao": "Descarte correto evita poluição."
       },
       {
-        pergunta: "Em uma horta ou fazenda sustentável, como podemos explicar plantio direto?",
-        alternativas: [
-          "Arar a terra antes",
-          "Plantar sem revirar o solo",
-          "Plantar em vasos",
-          "Só colher"
+        "pergunta": "Incêndios no Pantanal podem...",
+        "alternativas": [
+          "matar plantas e animais",
+          "limpar tudo sem dano",
+          "criar mais água",
+          "virar neve"
         ],
-        correta: 1,
-        dica: "Pense em cuidar do solo, da água e dos alimentos ao mesmo tempo.",
-        explicacao: "Planta sem mexer na terra."
+        "correta": 0,
+        "dica": "Fogo destrói habitats.",
+        "explicacao": "Incêndios prejudicam seres vivos e abrigos."
       },
       {
-        pergunta: "Em uma horta ou fazenda sustentável, qual vantagem da agricultura familiar?",
-        alternativas: [
-          "Produz em grande escala",
-          "Menos dano à natureza",
-          "Usa mais veneno",
-          "Exporta mais"
+        "pergunta": "Qual ave colorida é famosa no Pantanal?",
+        "alternativas": [
+          "Pombo",
+          "Arara-azul",
+          "Galinha",
+          "Avestruz"
         ],
-        correta: 1,
-        dica: "Pense em cuidar do solo, da água e dos alimentos ao mesmo tempo.",
-        explicacao: "Alimenta o Brasil com menos danos ambientais."
+        "correta": 1,
+        "dica": "É grande e azul.",
+        "explicacao": "A arara-azul é muito associada ao Pantanal."
       },
       {
-        pergunta: "Em uma horta ou fazenda sustentável, como podemos explicar transgênicos?",
-        alternativas: [
-          "Seres mudados em laboratório",
-          "Plantas da natureza",
-          "Adubos orgânicos",
-          "Sementes tradicionais"
+        "pergunta": "Os rios do Pantanal são importantes porque...",
+        "alternativas": [
+          "são feitos de areia",
+          "não têm vida",
+          "sustentam alimento e abrigo",
+          "impedem chuva"
         ],
-        correta: 0,
-        dica: "Pense no que melhor protege agricultura sustentável e melhora a vida dos seres vivos.",
-        explicacao: "São organismos com genes alterados em laboratório."
+        "correta": 2,
+        "dica": "Água é vida.",
+        "explicacao": "Rios fornecem alimento, água e abrigo."
       },
       {
-        pergunta: "Em uma horta ou fazenda sustentável, como podemos explicar agricultura regenerativa?",
-        alternativas: [
-          "Plantio que estraga o solo",
-          "Práticas que curam o solo",
-          "Agricultura industrial",
-          "Plantar só uma cultura"
+        "pergunta": "No turismo, o correto é...",
+        "alternativas": [
+          "perseguir bichos",
+          "dar salgadinho",
+          "levar filhotes",
+          "observar sem incomodar"
         ],
-        correta: 1,
-        dica: "Pense em cuidar do solo, da água e dos alimentos ao mesmo tempo.",
-        explicacao: "Cuida do solo e recupera a natureza."
+        "correta": 3,
+        "dica": "Respeite os animais.",
+        "explicacao": "Observar de longe protege animais e visitantes."
       },
       {
-        pergunta: "Em uma horta ou fazenda sustentável, como podemos explicar sementes crioulas?",
-        alternativas: [
-          "Sementes modificadas",
-          "Sementes tradicionais dos agricultores",
-          "Sementes patenteadas",
-          "Sementes importadas"
+        "pergunta": "A poluição dos rios prejudica...",
+        "alternativas": [
+          "os peixes e outros seres vivos",
+          "apenas as pedras",
+          "só os barcos",
+          "ninguém"
         ],
-        correta: 1,
-        dica: "Pense no que melhor protege agricultura sustentável e melhora a vida dos seres vivos.",
-        explicacao: "Sementes guardadas por agricultores há gerações."
+        "correta": 0,
+        "dica": "Peixe precisa de água limpa.",
+        "explicacao": "Poluição diminui a qualidade da água."
       },
       {
-        pergunta: "Em uma horta ou fazenda sustentável, como podemos explicar permacultura?",
-        alternativas: [
-          "Cultivar sempre a mesma planta",
-          "Criar espaços imitando a natureza",
-          "Plantar em estufas",
-          "Criar animais presos"
+        "pergunta": "O Pantanal é uma grande área...",
+        "alternativas": [
+          "seca sem vida",
+          "úmida cheia de biodiversidade",
+          "de neve eterna",
+          "subterrânea"
         ],
-        correta: 1,
-        dica: "Pense no que melhor protege agricultura sustentável e melhora a vida dos seres vivos.",
-        explicacao: "Desenha espaços que imitam a natureza."
+        "correta": 1,
+        "dica": "Pense em água e animais.",
+        "explicacao": "Ele é uma grande área úmida com muitas espécies."
       }
     ]
   },
-  geologia: {
-    nome: "Geologia e Solo",
-    icone: "⛰️",
-    cor: "#8D6E63",
-    perguntas: [
+  "pampa": {
+    "nome": "Pampa",
+    "icone": "🌿",
+    "cor": "#7DCEA0",
+    "perguntas": [
       {
-        pergunta: "Ao investigar o solo e as rochas, como podemos explicar o solo?",
-        alternativas: [
-          "Só terra suja",
-          "Camada onde as plantas crescem",
-          "Rocha pura",
-          "Água subterrânea"
+        "pergunta": "O Pampa é conhecido por...",
+        "alternativas": [
+          "campos com gramíneas",
+          "florestas de gelo",
+          "dunas sem vida",
+          "recifes"
         ],
-        correta: 1,
-        dica: "Pense em cuidar do solo, da água e dos alimentos ao mesmo tempo.",
-        explicacao: "É onde as plantas crescem."
+        "correta": 0,
+        "dica": "Pense em campos abertos.",
+        "explicacao": "O Pampa tem campos com muitas gramíneas."
       },
       {
-        pergunta: "Ao investigar o solo e as rochas, quanto tempo para formar 1cm de solo?",
-        alternativas: [
-          "1 ano",
-          "10 anos",
-          "100 a 1.000 anos",
-          "1 milhão de anos"
+        "pergunta": "No Brasil, o Pampa aparece mais no...",
+        "alternativas": [
+          "Amazonas",
+          "Rio Grande do Sul",
+          "Polo Norte",
+          "oceano"
         ],
-        correta: 2,
-        dica: "Pense em cuidar do solo, da água e dos alimentos ao mesmo tempo.",
-        explicacao: "Leva de 100 a 1.000 anos para formar 1cm."
+        "correta": 1,
+        "dica": "Pense no Sul.",
+        "explicacao": "No Brasil, ele ocorre principalmente no Rio Grande do Sul."
       },
       {
-        pergunta: "Ao investigar o solo e as rochas, como podemos explicar erosão do solo?",
-        alternativas: [
-          "Fertilização natural",
-          "Solo sendo levado pela água ou vento",
-          "Crescimento de plantas",
-          "Terra ficando dura"
+        "pergunta": "O Pampa não é campo vazio porque...",
+        "alternativas": [
+          "não tem vida",
+          "é de concreto",
+          "tem muitas espécies",
+          "fica na Lua"
         ],
-        correta: 1,
-        dica: "Observe se a alternativa protege rios, evita desperdicio ou melhora o tratamento.",
-        explicacao: "Água e vento levam o solo embora."
+        "correta": 2,
+        "dica": "Campo também tem vida.",
+        "explicacao": "Campos têm plantas e animais importantes."
       },
       {
-        pergunta: "Ao investigar o solo e as rochas, como podemos explicar desertificação?",
-        alternativas: [
-          "Deserto virando floresta",
-          "Solo virando deserto",
-          "Deserto crescendo naturalmente",
-          "Plantar em terra seca"
+        "pergunta": "Qual atitude conserva o Pampa?",
+        "alternativas": [
+          "Jogar lixo em arroios",
+          "Queimar sem controle",
+          "Transformar tudo em estacionamento",
+          "Manter campos nativos"
         ],
-        correta: 1,
-        dica: "Pense em cuidar do solo, da água e dos alimentos ao mesmo tempo.",
-        explicacao: "Solo fértil vira deserto por ação humana."
+        "correta": 3,
+        "dica": "Campo nativo é valioso.",
+        "explicacao": "Preservar campos nativos mantém o equilíbrio do ambiente."
       },
       {
-        pergunta: "Ao investigar o solo e as rochas, como podemos explicar minerais?",
-        alternativas: [
-          "Só pedras preciosas",
-          "Substâncias naturais e sólidas",
-          "Restos de plantas",
-          "Água congelada"
+        "pergunta": "Qual animal pode viver no Pampa?",
+        "alternativas": [
+          "Veado-campeiro",
+          "Urso-polar",
+          "Camelo",
+          "Pinguim"
         ],
-        correta: 1,
-        dica: "Pense no que melhor protege geologia e solo e melhora a vida dos seres vivos.",
-        explicacao: "São matérias-primas naturais da Terra."
+        "correta": 0,
+        "dica": "O nome lembra campo.",
+        "explicacao": "O veado-campeiro é associado a campos naturais."
       },
       {
-        pergunta: "Ao investigar o solo e as rochas, como podemos explicar mineração sustentável?",
-        alternativas: [
-          "Extrair o máximo possível",
-          "Extrair minério sem destruir tudo",
-          "Proibir toda mineração",
-          "Mineração artesanal"
+        "pergunta": "Uso sem cuidado pode causar no solo...",
+        "alternativas": [
+          "chuva de brinquedos",
+          "erosão",
+          "gelo eterno",
+          "mais plástico"
         ],
-        correta: 1,
-        dica: "Pense em usar recursos hoje sem prejudicar as pessoas de amanhã.",
-        explicacao: "Extrair minerais cuidando da natureza."
+        "correta": 1,
+        "dica": "Solo mal cuidado perde força.",
+        "explicacao": "Uso inadequado pode causar erosão."
       },
       {
-        pergunta: "Ao investigar o solo e as rochas, como podemos explicar aquíferos?",
-        alternativas: [
-          "Rios na superfície",
-          "Água doce guardada no subsolo",
-          "Lagos artificiais",
-          "Geladeiras naturais"
+        "pergunta": "Comparação correta: Pampa tem campos; Amazônia tem...",
+        "alternativas": [
+          "oceano",
+          "deserto",
+          "floresta densa",
+          "neve"
         ],
-        correta: 1,
-        dica: "Observe se a alternativa protege rios, evita desperdicio ou melhora o tratamento.",
-        explicacao: "São reservas de água debaixo da terra."
+        "correta": 2,
+        "dica": "Compare campo e floresta.",
+        "explicacao": "A Amazônia possui floresta densa."
       },
       {
-        pergunta: "Ao investigar o solo e as rochas, qual o maior aquífero do Brasil?",
-        alternativas: [
-          "Aquífero Guarani",
-          "Aquífero Alter do Chão",
-          "Aquífero Cabeças",
-          "Aquífero Urucuia"
+        "pergunta": "Cuidar dos arroios do Pampa é importante porque...",
+        "alternativas": [
+          "não têm utilidade",
+          "são feitos de plástico",
+          "atrapalham plantas",
+          "fornecem água"
         ],
-        correta: 0,
-        dica: "Compare a ideia de tamanho ou quantidade, sem se deixar levar pelo nome mais conhecido.",
-        explicacao: "Aquífero Guarani é um dos maiores do mundo."
+        "correta": 3,
+        "dica": "Água sustenta vida.",
+        "explicacao": "Arroios e rios são importantes para seres vivos."
       },
       {
-        pergunta: "Ao investigar o solo e as rochas, como podemos explicar o ciclo das rochas?",
-        alternativas: [
-          "Processo de construção",
-          "Rochas que se transformam",
-          "Erosão de montanhas",
-          "Movimento das placas"
+        "pergunta": "Uma escola ajuda o Pampa fazendo...",
+        "alternativas": [
+          "pesquisas sobre espécies locais",
+          "queimadas",
+          "coleção de animais silvestres",
+          "lixo no campo"
         ],
-        correta: 1,
-        dica: "Observe processos lentos da natureza, como desgaste, camadas e formação do solo.",
-        explicacao: "Rochas mudam de tipo ao longo do tempo."
+        "correta": 0,
+        "dica": "Conhecer ajuda a proteger.",
+        "explicacao": "Estudar espécies locais incentiva cuidado."
       },
       {
-        pergunta: "Ao investigar o solo e as rochas, como podemos explicar recursos minerais não renováveis?",
-        alternativas: [
-          "Recursos que se renovam",
-          "Minerais que demoram milhões de anos",
-          "Recursos infinitos",
-          "Materiais recicláveis"
+        "pergunta": "Pecuária no Pampa precisa de cuidado para...",
+        "alternativas": [
+          "destruir tudo",
+          "não degradar o solo",
+          "acabar com plantas",
+          "poluir água"
         ],
-        correta: 1,
-        dica: "Pense em fontes que a natureza repoe continuamente.",
-        explicacao: "Demoram milhões de anos para se formar."
+        "correta": 1,
+        "dica": "Fazenda também pode cuidar.",
+        "explicacao": "A criação deve evitar erosão e degradação."
       }
     ]
   },
-  cidades: {
-    nome: "Cidades Verdes",
-    icone: "🏙️",
-    cor: "#00BCD4",
-    perguntas: [
+  "oceanos": {
+    "nome": "Oceanos",
+    "icone": "🌊",
+    "cor": "#1ABC9C",
+    "perguntas": [
       {
-        pergunta: "Pensando em cidades mais verdes, como podemos explicar uma cidade sustentável?",
-        alternativas: [
-          "Cidade com muitos carros",
-          "Cidade que cuida do planeta",
-          "Cidade sem prédios",
-          "Cidade com indústrias"
+        "pergunta": "Qual escolha combina melhor com mar, praia e vida marinha?",
+        "alternativas": [
+          "Cuidar dos recursos naturais",
+          "Desperdiçar sem pensar",
+          "Jogar lixo na natureza",
+          "Ignorar os seres vivos"
         ],
-        correta: 1,
-        dica: "Pense em usar recursos hoje sem prejudicar as pessoas de amanhã.",
-        explicacao: "Cidade que equilibra vida boa e natureza."
+        "correta": 0,
+        "dica": "Pense na opção que protege.",
+        "explicacao": "Cuidar dos recursos naturais ajuda o ambiente e as pessoas."
       },
       {
-        pergunta: "Pensando em cidades mais verdes, como podemos explicar áreas verdes urbanas?",
-        alternativas: [
-          "Estacionamentos",
-          "Parques e praças na cidade",
-          "Terrenos baldios",
-          "Campos de futebol"
+        "pergunta": "Qual exemplo está mais ligado a mar, praia e vida marinha?",
+        "alternativas": [
+          "Um brinquedo quebrado",
+          "baleia",
+          "Um foguete de papel",
+          "Um sapato molhado"
         ],
-        correta: 1,
-        dica: "Pense em solucoes que melhoram a vida das pessoas e reduzem impactos ambientais.",
-        explicacao: "São espaços com natureza dentro da cidade."
+        "correta": 1,
+        "dica": "Procure o exemplo do tema.",
+        "explicacao": "Baleia é um exemplo relacionado ao tema."
       },
       {
-        pergunta: "Pensando em cidades mais verdes, como podemos explicar mobilidade urbana sustentável?",
-        alternativas: [
-          "Usar só carros",
-          "Andar sem poluir",
-          "Construir estradas",
-          "Acabar com ônibus"
+        "pergunta": "O que devemos evitar para proteger a natureza?",
+        "alternativas": [
+          "Economizar recursos",
+          "Separar resíduos",
+          "Poluir rios, solo ou ar",
+          "Plantar árvores"
         ],
-        correta: 1,
-        dica: "Pense em usar recursos hoje sem prejudicar as pessoas de amanhã.",
-        explicacao: "Andar a pé, de bike ou transporte público."
+        "correta": 2,
+        "dica": "Evitar é algo ruim.",
+        "explicacao": "Poluir prejudica seres vivos e a saúde das pessoas."
       },
       {
-        pergunta: "Pensando em cidades mais verdes, como podemos explicar telhados verdes?",
-        alternativas: [
-          "Telhado pintado de verde",
-          "Telhado com plantas",
-          "Telhado de vidro",
-          "Jardim no chão"
+        "pergunta": "Qual atitude é correta no dia a dia?",
+        "alternativas": [
+          "Desperdiçar água",
+          "Queimar lixo",
+          "Comprar animais silvestres",
+          "Reutilizar materiais quando possível"
         ],
-        correta: 1,
-        dica: "Pense em cuidar do solo, da água e dos alimentos ao mesmo tempo.",
-        explicacao: "Telhado com plantas que ajuda o ambiente."
+        "correta": 3,
+        "dica": "Pense nos 3 Rs.",
+        "explicacao": "Reutilizar diminui lixo e economiza recursos."
       },
       {
-        pergunta: "Pensando em cidades mais verdes, como podemos explicar cidade-esponja?",
-        alternativas: [
-          "Cidade que absorve chuva",
-          "Cidade submersa",
-          "Cidade com lagos",
-          "Cidade que flutua"
+        "pergunta": "Por que áreas verdes são importantes?",
+        "alternativas": [
+          "Dão sombra e ajudam seres vivos",
+          "Aumentam a sujeira",
+          "Impedem toda chuva",
+          "Não servem para nada"
         ],
-        correta: 0,
-        dica: "Observe se a alternativa protege rios, evita desperdicio ou melhora o tratamento.",
-        explicacao: "Cidade que absorve água da chuva."
+        "correta": 0,
+        "dica": "Pense em sombra e animais.",
+        "explicacao": "Áreas verdes refrescam, abrigam seres vivos e melhoram o ambiente."
       },
       {
-        pergunta: "Pensando em cidades mais verdes, como podemos explicar ciclovias?",
-        alternativas: [
-          "Estrada para carros",
-          "Caminho só para bicicletas",
-          "Calçada para pessoas",
-          "Pista de corrida"
+        "pergunta": "Quando uma pessoa economiza energia, ela ajuda porque...",
+        "alternativas": [
+          "aumenta fumaça",
+          "reduz desperdício de recursos",
+          "estraga aparelhos",
+          "acaba com plantas"
         ],
-        correta: 1,
-        dica: "Pense no que melhor protege cidades verdes e melhora a vida dos seres vivos.",
-        explicacao: "Espaço seguro para andar de bicicleta."
+        "correta": 1,
+        "dica": "Economizar evita gasto desnecessário.",
+        "explicacao": "Usar energia com cuidado reduz desperdício e impactos ambientais."
       },
       {
-        pergunta: "Pensando em cidades mais verdes, qual cidade brasileira é referência em sustentabilidade?",
-        alternativas: [
-          "São Paulo",
-          "Curitiba",
-          "Manaus",
-          "Belo Horizonte"
+        "pergunta": "Qual consequência pode vir do lixo jogado na rua?",
+        "alternativas": [
+          "Rua mais limpa",
+          "Mais árvores nativas",
+          "Entupimento de bueiros e enchentes",
+          "Ar mais puro"
         ],
-        correta: 1,
-        dica: "Pense em usar recursos hoje sem prejudicar as pessoas de amanhã.",
-        explicacao: "Curitiba é modelo de cidade sustentável."
+        "correta": 2,
+        "dica": "Lixo pode bloquear a água.",
+        "explicacao": "Lixo na rua pode entupir bueiros e causar alagamentos."
       },
       {
-        pergunta: "Pensando em cidades mais verdes, como podemos explicar eficiência energética em prédios?",
-        alternativas: [
-          "Usar mais energia",
-          "Gastar menos energia",
-          "Ar condicionado potente",
-          "Luzes sempre acesas"
+        "pergunta": "Qual frase mostra respeito à biodiversidade?",
+        "alternativas": [
+          "Levar filhotes silvestres para casa",
+          "Comprar penas de aves raras",
+          "Destruir ninhos",
+          "Observar animais sem incomodar"
         ],
-        correta: 1,
-        dica: "Observe qual opcao fala de gases liberados por atividades humanas.",
-        explicacao: "Prédios que gastam pouca energia."
+        "correta": 3,
+        "dica": "Respeito é não atrapalhar.",
+        "explicacao": "Observar de longe evita estresse e perigo aos animais."
       },
       {
-        pergunta: "Pensando em cidades mais verdes, como podemos explicar coleta seletiva?",
-        alternativas: [
-          "Misturar todo lixo",
-          "Separar o lixo reciclável",
-          "Queimar o lixo",
-          "Enterrar o lixo"
+        "pergunta": "Qual material merece cuidado especial no descarte?",
+        "alternativas": [
+          "Pilhas e baterias",
+          "Folhas secas",
+          "Casca de fruta",
+          "Papel limpo"
         ],
-        correta: 1,
-        dica: "Pense no material que demora muito para se decompor e aparece em rios e mares.",
-        explicacao: "Separar lixo que pode ser reciclado."
+        "correta": 0,
+        "dica": "Pode conter substâncias perigosas.",
+        "explicacao": "Pilhas e baterias podem poluir se descartadas de modo errado."
       },
       {
-        pergunta: "Pensando em cidades mais verdes, como podemos explicar corredores verdes urbanos?",
-        alternativas: [
-          "Avenidas com árvores",
-          "Rotas verdes ligando parques",
-          "Estradas rurais",
-          "Túneis no subsolo"
+        "pergunta": "O que é uma atitude sustentável?",
+        "alternativas": [
+          "Usar tudo uma vez e jogar fora",
+          "Consumir só o necessário",
+          "Deixar torneira aberta",
+          "Desmatar nascentes"
         ],
-        correta: 1,
-        dica: "Pense em solucoes que melhoram a vida das pessoas e reduzem impactos ambientais.",
-        explicacao: "Conectam áreas verdes pela cidade."
+        "correta": 1,
+        "dica": "Sustentável evita desperdício.",
+        "explicacao": "Consumir só o necessário conserva recursos para o futuro."
+      }
+    ]
+  },
+  "agua": {
+    "nome": "Água",
+    "icone": "💧",
+    "cor": "#5DADE2",
+    "perguntas": [
+      {
+        "pergunta": "Qual escolha combina melhor com uso responsável da água?",
+        "alternativas": [
+          "Cuidar dos recursos naturais",
+          "Desperdiçar sem pensar",
+          "Jogar lixo na natureza",
+          "Ignorar os seres vivos"
+        ],
+        "correta": 0,
+        "dica": "Pense na opção que protege.",
+        "explicacao": "Cuidar dos recursos naturais ajuda o ambiente e as pessoas."
+      },
+      {
+        "pergunta": "Qual exemplo está mais ligado a uso responsável da água?",
+        "alternativas": [
+          "Um brinquedo quebrado",
+          "água potável",
+          "Um foguete de papel",
+          "Um sapato molhado"
+        ],
+        "correta": 1,
+        "dica": "Procure o exemplo do tema.",
+        "explicacao": "Água potável é um exemplo relacionado ao tema."
+      },
+      {
+        "pergunta": "O que devemos evitar para proteger a natureza?",
+        "alternativas": [
+          "Economizar recursos",
+          "Separar resíduos",
+          "Poluir rios, solo ou ar",
+          "Plantar árvores"
+        ],
+        "correta": 2,
+        "dica": "Evitar é algo ruim.",
+        "explicacao": "Poluir prejudica seres vivos e a saúde das pessoas."
+      },
+      {
+        "pergunta": "Qual atitude é correta no dia a dia?",
+        "alternativas": [
+          "Desperdiçar água",
+          "Queimar lixo",
+          "Comprar animais silvestres",
+          "Reutilizar materiais quando possível"
+        ],
+        "correta": 3,
+        "dica": "Pense nos 3 Rs.",
+        "explicacao": "Reutilizar diminui lixo e economiza recursos."
+      },
+      {
+        "pergunta": "Por que áreas verdes são importantes?",
+        "alternativas": [
+          "Dão sombra e ajudam seres vivos",
+          "Aumentam a sujeira",
+          "Impedem toda chuva",
+          "Não servem para nada"
+        ],
+        "correta": 0,
+        "dica": "Pense em sombra e animais.",
+        "explicacao": "Áreas verdes refrescam, abrigam seres vivos e melhoram o ambiente."
+      },
+      {
+        "pergunta": "Quando uma pessoa economiza energia, ela ajuda porque...",
+        "alternativas": [
+          "aumenta fumaça",
+          "reduz desperdício de recursos",
+          "estraga aparelhos",
+          "acaba com plantas"
+        ],
+        "correta": 1,
+        "dica": "Economizar evita gasto desnecessário.",
+        "explicacao": "Usar energia com cuidado reduz desperdício e impactos ambientais."
+      },
+      {
+        "pergunta": "Qual consequência pode vir do lixo jogado na rua?",
+        "alternativas": [
+          "Rua mais limpa",
+          "Mais árvores nativas",
+          "Entupimento de bueiros e enchentes",
+          "Ar mais puro"
+        ],
+        "correta": 2,
+        "dica": "Lixo pode bloquear a água.",
+        "explicacao": "Lixo na rua pode entupir bueiros e causar alagamentos."
+      },
+      {
+        "pergunta": "Qual frase mostra respeito à biodiversidade?",
+        "alternativas": [
+          "Levar filhotes silvestres para casa",
+          "Comprar penas de aves raras",
+          "Destruir ninhos",
+          "Observar animais sem incomodar"
+        ],
+        "correta": 3,
+        "dica": "Respeito é não atrapalhar.",
+        "explicacao": "Observar de longe evita estresse e perigo aos animais."
+      },
+      {
+        "pergunta": "Qual material merece cuidado especial no descarte?",
+        "alternativas": [
+          "Pilhas e baterias",
+          "Folhas secas",
+          "Casca de fruta",
+          "Papel limpo"
+        ],
+        "correta": 0,
+        "dica": "Pode conter substâncias perigosas.",
+        "explicacao": "Pilhas e baterias podem poluir se descartadas de modo errado."
+      },
+      {
+        "pergunta": "O que é uma atitude sustentável?",
+        "alternativas": [
+          "Usar tudo uma vez e jogar fora",
+          "Consumir só o necessário",
+          "Deixar torneira aberta",
+          "Desmatar nascentes"
+        ],
+        "correta": 1,
+        "dica": "Sustentável evita desperdício.",
+        "explicacao": "Consumir só o necessário conserva recursos para o futuro."
+      }
+    ]
+  },
+  "clima": {
+    "nome": "Clima",
+    "icone": "☁️",
+    "cor": "#85C1E9",
+    "perguntas": [
+      {
+        "pergunta": "Qual escolha combina melhor com tempo, chuva e temperatura?",
+        "alternativas": [
+          "Cuidar dos recursos naturais",
+          "Desperdiçar sem pensar",
+          "Jogar lixo na natureza",
+          "Ignorar os seres vivos"
+        ],
+        "correta": 0,
+        "dica": "Pense na opção que protege.",
+        "explicacao": "Cuidar dos recursos naturais ajuda o ambiente e as pessoas."
+      },
+      {
+        "pergunta": "Qual exemplo está mais ligado a tempo, chuva e temperatura?",
+        "alternativas": [
+          "Um brinquedo quebrado",
+          "termômetro",
+          "Um foguete de papel",
+          "Um sapato molhado"
+        ],
+        "correta": 1,
+        "dica": "Procure o exemplo do tema.",
+        "explicacao": "Termômetro é um exemplo relacionado ao tema."
+      },
+      {
+        "pergunta": "O que devemos evitar para proteger a natureza?",
+        "alternativas": [
+          "Economizar recursos",
+          "Separar resíduos",
+          "Poluir rios, solo ou ar",
+          "Plantar árvores"
+        ],
+        "correta": 2,
+        "dica": "Evitar é algo ruim.",
+        "explicacao": "Poluir prejudica seres vivos e a saúde das pessoas."
+      },
+      {
+        "pergunta": "Qual atitude é correta no dia a dia?",
+        "alternativas": [
+          "Desperdiçar água",
+          "Queimar lixo",
+          "Comprar animais silvestres",
+          "Reutilizar materiais quando possível"
+        ],
+        "correta": 3,
+        "dica": "Pense nos 3 Rs.",
+        "explicacao": "Reutilizar diminui lixo e economiza recursos."
+      },
+      {
+        "pergunta": "Por que áreas verdes são importantes?",
+        "alternativas": [
+          "Dão sombra e ajudam seres vivos",
+          "Aumentam a sujeira",
+          "Impedem toda chuva",
+          "Não servem para nada"
+        ],
+        "correta": 0,
+        "dica": "Pense em sombra e animais.",
+        "explicacao": "Áreas verdes refrescam, abrigam seres vivos e melhoram o ambiente."
+      },
+      {
+        "pergunta": "Quando uma pessoa economiza energia, ela ajuda porque...",
+        "alternativas": [
+          "aumenta fumaça",
+          "reduz desperdício de recursos",
+          "estraga aparelhos",
+          "acaba com plantas"
+        ],
+        "correta": 1,
+        "dica": "Economizar evita gasto desnecessário.",
+        "explicacao": "Usar energia com cuidado reduz desperdício e impactos ambientais."
+      },
+      {
+        "pergunta": "Qual consequência pode vir do lixo jogado na rua?",
+        "alternativas": [
+          "Rua mais limpa",
+          "Mais árvores nativas",
+          "Entupimento de bueiros e enchentes",
+          "Ar mais puro"
+        ],
+        "correta": 2,
+        "dica": "Lixo pode bloquear a água.",
+        "explicacao": "Lixo na rua pode entupir bueiros e causar alagamentos."
+      },
+      {
+        "pergunta": "Qual frase mostra respeito à biodiversidade?",
+        "alternativas": [
+          "Levar filhotes silvestres para casa",
+          "Comprar penas de aves raras",
+          "Destruir ninhos",
+          "Observar animais sem incomodar"
+        ],
+        "correta": 3,
+        "dica": "Respeito é não atrapalhar.",
+        "explicacao": "Observar de longe evita estresse e perigo aos animais."
+      },
+      {
+        "pergunta": "Qual material merece cuidado especial no descarte?",
+        "alternativas": [
+          "Pilhas e baterias",
+          "Folhas secas",
+          "Casca de fruta",
+          "Papel limpo"
+        ],
+        "correta": 0,
+        "dica": "Pode conter substâncias perigosas.",
+        "explicacao": "Pilhas e baterias podem poluir se descartadas de modo errado."
+      },
+      {
+        "pergunta": "O que é uma atitude sustentável?",
+        "alternativas": [
+          "Usar tudo uma vez e jogar fora",
+          "Consumir só o necessário",
+          "Deixar torneira aberta",
+          "Desmatar nascentes"
+        ],
+        "correta": 1,
+        "dica": "Sustentável evita desperdício.",
+        "explicacao": "Consumir só o necessário conserva recursos para o futuro."
+      }
+    ]
+  },
+  "reciclagem": {
+    "nome": "Reciclagem",
+    "icone": "♻️",
+    "cor": "#58D68D",
+    "perguntas": [
+      {
+        "pergunta": "Qual escolha combina melhor com separação de resíduos?",
+        "alternativas": [
+          "Cuidar dos recursos naturais",
+          "Desperdiçar sem pensar",
+          "Jogar lixo na natureza",
+          "Ignorar os seres vivos"
+        ],
+        "correta": 0,
+        "dica": "Pense na opção que protege.",
+        "explicacao": "Cuidar dos recursos naturais ajuda o ambiente e as pessoas."
+      },
+      {
+        "pergunta": "Qual exemplo está mais ligado a separação de resíduos?",
+        "alternativas": [
+          "Um brinquedo quebrado",
+          "garrafa PET",
+          "Um foguete de papel",
+          "Um sapato molhado"
+        ],
+        "correta": 1,
+        "dica": "Procure o exemplo do tema.",
+        "explicacao": "Garrafa PET é um exemplo relacionado ao tema."
+      },
+      {
+        "pergunta": "O que devemos evitar para proteger a natureza?",
+        "alternativas": [
+          "Economizar recursos",
+          "Separar resíduos",
+          "Poluir rios, solo ou ar",
+          "Plantar árvores"
+        ],
+        "correta": 2,
+        "dica": "Evitar é algo ruim.",
+        "explicacao": "Poluir prejudica seres vivos e a saúde das pessoas."
+      },
+      {
+        "pergunta": "Qual atitude é correta no dia a dia?",
+        "alternativas": [
+          "Desperdiçar água",
+          "Queimar lixo",
+          "Comprar animais silvestres",
+          "Reutilizar materiais quando possível"
+        ],
+        "correta": 3,
+        "dica": "Pense nos 3 Rs.",
+        "explicacao": "Reutilizar diminui lixo e economiza recursos."
+      },
+      {
+        "pergunta": "Por que áreas verdes são importantes?",
+        "alternativas": [
+          "Dão sombra e ajudam seres vivos",
+          "Aumentam a sujeira",
+          "Impedem toda chuva",
+          "Não servem para nada"
+        ],
+        "correta": 0,
+        "dica": "Pense em sombra e animais.",
+        "explicacao": "Áreas verdes refrescam, abrigam seres vivos e melhoram o ambiente."
+      },
+      {
+        "pergunta": "Quando uma pessoa economiza energia, ela ajuda porque...",
+        "alternativas": [
+          "aumenta fumaça",
+          "reduz desperdício de recursos",
+          "estraga aparelhos",
+          "acaba com plantas"
+        ],
+        "correta": 1,
+        "dica": "Economizar evita gasto desnecessário.",
+        "explicacao": "Usar energia com cuidado reduz desperdício e impactos ambientais."
+      },
+      {
+        "pergunta": "Qual consequência pode vir do lixo jogado na rua?",
+        "alternativas": [
+          "Rua mais limpa",
+          "Mais árvores nativas",
+          "Entupimento de bueiros e enchentes",
+          "Ar mais puro"
+        ],
+        "correta": 2,
+        "dica": "Lixo pode bloquear a água.",
+        "explicacao": "Lixo na rua pode entupir bueiros e causar alagamentos."
+      },
+      {
+        "pergunta": "Qual frase mostra respeito à biodiversidade?",
+        "alternativas": [
+          "Levar filhotes silvestres para casa",
+          "Comprar penas de aves raras",
+          "Destruir ninhos",
+          "Observar animais sem incomodar"
+        ],
+        "correta": 3,
+        "dica": "Respeito é não atrapalhar.",
+        "explicacao": "Observar de longe evita estresse e perigo aos animais."
+      },
+      {
+        "pergunta": "Qual material merece cuidado especial no descarte?",
+        "alternativas": [
+          "Pilhas e baterias",
+          "Folhas secas",
+          "Casca de fruta",
+          "Papel limpo"
+        ],
+        "correta": 0,
+        "dica": "Pode conter substâncias perigosas.",
+        "explicacao": "Pilhas e baterias podem poluir se descartadas de modo errado."
+      },
+      {
+        "pergunta": "O que é uma atitude sustentável?",
+        "alternativas": [
+          "Usar tudo uma vez e jogar fora",
+          "Consumir só o necessário",
+          "Deixar torneira aberta",
+          "Desmatar nascentes"
+        ],
+        "correta": 1,
+        "dica": "Sustentável evita desperdício.",
+        "explicacao": "Consumir só o necessário conserva recursos para o futuro."
+      }
+    ]
+  },
+  "energia": {
+    "nome": "Energia",
+    "icone": "⚡",
+    "cor": "#F1C40F",
+    "perguntas": [
+      {
+        "pergunta": "Qual escolha combina melhor com fontes e economia de energia?",
+        "alternativas": [
+          "Cuidar dos recursos naturais",
+          "Desperdiçar sem pensar",
+          "Jogar lixo na natureza",
+          "Ignorar os seres vivos"
+        ],
+        "correta": 0,
+        "dica": "Pense na opção que protege.",
+        "explicacao": "Cuidar dos recursos naturais ajuda o ambiente e as pessoas."
+      },
+      {
+        "pergunta": "Qual exemplo está mais ligado a fontes e economia de energia?",
+        "alternativas": [
+          "Um brinquedo quebrado",
+          "energia solar",
+          "Um foguete de papel",
+          "Um sapato molhado"
+        ],
+        "correta": 1,
+        "dica": "Procure o exemplo do tema.",
+        "explicacao": "Energia solar é um exemplo relacionado ao tema."
+      },
+      {
+        "pergunta": "O que devemos evitar para proteger a natureza?",
+        "alternativas": [
+          "Economizar recursos",
+          "Separar resíduos",
+          "Poluir rios, solo ou ar",
+          "Plantar árvores"
+        ],
+        "correta": 2,
+        "dica": "Evitar é algo ruim.",
+        "explicacao": "Poluir prejudica seres vivos e a saúde das pessoas."
+      },
+      {
+        "pergunta": "Qual atitude é correta no dia a dia?",
+        "alternativas": [
+          "Desperdiçar água",
+          "Queimar lixo",
+          "Comprar animais silvestres",
+          "Reutilizar materiais quando possível"
+        ],
+        "correta": 3,
+        "dica": "Pense nos 3 Rs.",
+        "explicacao": "Reutilizar diminui lixo e economiza recursos."
+      },
+      {
+        "pergunta": "Por que áreas verdes são importantes?",
+        "alternativas": [
+          "Dão sombra e ajudam seres vivos",
+          "Aumentam a sujeira",
+          "Impedem toda chuva",
+          "Não servem para nada"
+        ],
+        "correta": 0,
+        "dica": "Pense em sombra e animais.",
+        "explicacao": "Áreas verdes refrescam, abrigam seres vivos e melhoram o ambiente."
+      },
+      {
+        "pergunta": "Quando uma pessoa economiza energia, ela ajuda porque...",
+        "alternativas": [
+          "aumenta fumaça",
+          "reduz desperdício de recursos",
+          "estraga aparelhos",
+          "acaba com plantas"
+        ],
+        "correta": 1,
+        "dica": "Economizar evita gasto desnecessário.",
+        "explicacao": "Usar energia com cuidado reduz desperdício e impactos ambientais."
+      },
+      {
+        "pergunta": "Qual consequência pode vir do lixo jogado na rua?",
+        "alternativas": [
+          "Rua mais limpa",
+          "Mais árvores nativas",
+          "Entupimento de bueiros e enchentes",
+          "Ar mais puro"
+        ],
+        "correta": 2,
+        "dica": "Lixo pode bloquear a água.",
+        "explicacao": "Lixo na rua pode entupir bueiros e causar alagamentos."
+      },
+      {
+        "pergunta": "Qual frase mostra respeito à biodiversidade?",
+        "alternativas": [
+          "Levar filhotes silvestres para casa",
+          "Comprar penas de aves raras",
+          "Destruir ninhos",
+          "Observar animais sem incomodar"
+        ],
+        "correta": 3,
+        "dica": "Respeito é não atrapalhar.",
+        "explicacao": "Observar de longe evita estresse e perigo aos animais."
+      },
+      {
+        "pergunta": "Qual material merece cuidado especial no descarte?",
+        "alternativas": [
+          "Pilhas e baterias",
+          "Folhas secas",
+          "Casca de fruta",
+          "Papel limpo"
+        ],
+        "correta": 0,
+        "dica": "Pode conter substâncias perigosas.",
+        "explicacao": "Pilhas e baterias podem poluir se descartadas de modo errado."
+      },
+      {
+        "pergunta": "O que é uma atitude sustentável?",
+        "alternativas": [
+          "Usar tudo uma vez e jogar fora",
+          "Consumir só o necessário",
+          "Deixar torneira aberta",
+          "Desmatar nascentes"
+        ],
+        "correta": 1,
+        "dica": "Sustentável evita desperdício.",
+        "explicacao": "Consumir só o necessário conserva recursos para o futuro."
+      }
+    ]
+  },
+  "biodiversidade": {
+    "nome": "Biodiversidade",
+    "icone": "🦋",
+    "cor": "#9B59B6",
+    "perguntas": [
+      {
+        "pergunta": "Qual escolha combina melhor com variedade de seres vivos?",
+        "alternativas": [
+          "Cuidar dos recursos naturais",
+          "Desperdiçar sem pensar",
+          "Jogar lixo na natureza",
+          "Ignorar os seres vivos"
+        ],
+        "correta": 0,
+        "dica": "Pense na opção que protege.",
+        "explicacao": "Cuidar dos recursos naturais ajuda o ambiente e as pessoas."
+      },
+      {
+        "pergunta": "Qual exemplo está mais ligado a variedade de seres vivos?",
+        "alternativas": [
+          "Um brinquedo quebrado",
+          "abelha",
+          "Um foguete de papel",
+          "Um sapato molhado"
+        ],
+        "correta": 1,
+        "dica": "Procure o exemplo do tema.",
+        "explicacao": "Abelha é um exemplo relacionado ao tema."
+      },
+      {
+        "pergunta": "O que devemos evitar para proteger a natureza?",
+        "alternativas": [
+          "Economizar recursos",
+          "Separar resíduos",
+          "Poluir rios, solo ou ar",
+          "Plantar árvores"
+        ],
+        "correta": 2,
+        "dica": "Evitar é algo ruim.",
+        "explicacao": "Poluir prejudica seres vivos e a saúde das pessoas."
+      },
+      {
+        "pergunta": "Qual atitude é correta no dia a dia?",
+        "alternativas": [
+          "Desperdiçar água",
+          "Queimar lixo",
+          "Comprar animais silvestres",
+          "Reutilizar materiais quando possível"
+        ],
+        "correta": 3,
+        "dica": "Pense nos 3 Rs.",
+        "explicacao": "Reutilizar diminui lixo e economiza recursos."
+      },
+      {
+        "pergunta": "Por que áreas verdes são importantes?",
+        "alternativas": [
+          "Dão sombra e ajudam seres vivos",
+          "Aumentam a sujeira",
+          "Impedem toda chuva",
+          "Não servem para nada"
+        ],
+        "correta": 0,
+        "dica": "Pense em sombra e animais.",
+        "explicacao": "Áreas verdes refrescam, abrigam seres vivos e melhoram o ambiente."
+      },
+      {
+        "pergunta": "Quando uma pessoa economiza energia, ela ajuda porque...",
+        "alternativas": [
+          "aumenta fumaça",
+          "reduz desperdício de recursos",
+          "estraga aparelhos",
+          "acaba com plantas"
+        ],
+        "correta": 1,
+        "dica": "Economizar evita gasto desnecessário.",
+        "explicacao": "Usar energia com cuidado reduz desperdício e impactos ambientais."
+      },
+      {
+        "pergunta": "Qual consequência pode vir do lixo jogado na rua?",
+        "alternativas": [
+          "Rua mais limpa",
+          "Mais árvores nativas",
+          "Entupimento de bueiros e enchentes",
+          "Ar mais puro"
+        ],
+        "correta": 2,
+        "dica": "Lixo pode bloquear a água.",
+        "explicacao": "Lixo na rua pode entupir bueiros e causar alagamentos."
+      },
+      {
+        "pergunta": "Qual frase mostra respeito à biodiversidade?",
+        "alternativas": [
+          "Levar filhotes silvestres para casa",
+          "Comprar penas de aves raras",
+          "Destruir ninhos",
+          "Observar animais sem incomodar"
+        ],
+        "correta": 3,
+        "dica": "Respeito é não atrapalhar.",
+        "explicacao": "Observar de longe evita estresse e perigo aos animais."
+      },
+      {
+        "pergunta": "Qual material merece cuidado especial no descarte?",
+        "alternativas": [
+          "Pilhas e baterias",
+          "Folhas secas",
+          "Casca de fruta",
+          "Papel limpo"
+        ],
+        "correta": 0,
+        "dica": "Pode conter substâncias perigosas.",
+        "explicacao": "Pilhas e baterias podem poluir se descartadas de modo errado."
+      },
+      {
+        "pergunta": "O que é uma atitude sustentável?",
+        "alternativas": [
+          "Usar tudo uma vez e jogar fora",
+          "Consumir só o necessário",
+          "Deixar torneira aberta",
+          "Desmatar nascentes"
+        ],
+        "correta": 1,
+        "dica": "Sustentável evita desperdício.",
+        "explicacao": "Consumir só o necessário conserva recursos para o futuro."
+      }
+    ]
+  },
+  "poluicao": {
+    "nome": "Poluição",
+    "icone": "🏭",
+    "cor": "#95A5A6",
+    "perguntas": [
+      {
+        "pergunta": "Qual escolha combina melhor com sujeira no ar, água e solo?",
+        "alternativas": [
+          "Cuidar dos recursos naturais",
+          "Desperdiçar sem pensar",
+          "Jogar lixo na natureza",
+          "Ignorar os seres vivos"
+        ],
+        "correta": 0,
+        "dica": "Pense na opção que protege.",
+        "explicacao": "Cuidar dos recursos naturais ajuda o ambiente e as pessoas."
+      },
+      {
+        "pergunta": "Qual exemplo está mais ligado a sujeira no ar, água e solo?",
+        "alternativas": [
+          "Um brinquedo quebrado",
+          "fumaça",
+          "Um foguete de papel",
+          "Um sapato molhado"
+        ],
+        "correta": 1,
+        "dica": "Procure o exemplo do tema.",
+        "explicacao": "Fumaça é um exemplo relacionado ao tema."
+      },
+      {
+        "pergunta": "O que devemos evitar para proteger a natureza?",
+        "alternativas": [
+          "Economizar recursos",
+          "Separar resíduos",
+          "Poluir rios, solo ou ar",
+          "Plantar árvores"
+        ],
+        "correta": 2,
+        "dica": "Evitar é algo ruim.",
+        "explicacao": "Poluir prejudica seres vivos e a saúde das pessoas."
+      },
+      {
+        "pergunta": "Qual atitude é correta no dia a dia?",
+        "alternativas": [
+          "Desperdiçar água",
+          "Queimar lixo",
+          "Comprar animais silvestres",
+          "Reutilizar materiais quando possível"
+        ],
+        "correta": 3,
+        "dica": "Pense nos 3 Rs.",
+        "explicacao": "Reutilizar diminui lixo e economiza recursos."
+      },
+      {
+        "pergunta": "Por que áreas verdes são importantes?",
+        "alternativas": [
+          "Dão sombra e ajudam seres vivos",
+          "Aumentam a sujeira",
+          "Impedem toda chuva",
+          "Não servem para nada"
+        ],
+        "correta": 0,
+        "dica": "Pense em sombra e animais.",
+        "explicacao": "Áreas verdes refrescam, abrigam seres vivos e melhoram o ambiente."
+      },
+      {
+        "pergunta": "Quando uma pessoa economiza energia, ela ajuda porque...",
+        "alternativas": [
+          "aumenta fumaça",
+          "reduz desperdício de recursos",
+          "estraga aparelhos",
+          "acaba com plantas"
+        ],
+        "correta": 1,
+        "dica": "Economizar evita gasto desnecessário.",
+        "explicacao": "Usar energia com cuidado reduz desperdício e impactos ambientais."
+      },
+      {
+        "pergunta": "Qual consequência pode vir do lixo jogado na rua?",
+        "alternativas": [
+          "Rua mais limpa",
+          "Mais árvores nativas",
+          "Entupimento de bueiros e enchentes",
+          "Ar mais puro"
+        ],
+        "correta": 2,
+        "dica": "Lixo pode bloquear a água.",
+        "explicacao": "Lixo na rua pode entupir bueiros e causar alagamentos."
+      },
+      {
+        "pergunta": "Qual frase mostra respeito à biodiversidade?",
+        "alternativas": [
+          "Levar filhotes silvestres para casa",
+          "Comprar penas de aves raras",
+          "Destruir ninhos",
+          "Observar animais sem incomodar"
+        ],
+        "correta": 3,
+        "dica": "Respeito é não atrapalhar.",
+        "explicacao": "Observar de longe evita estresse e perigo aos animais."
+      },
+      {
+        "pergunta": "Qual material merece cuidado especial no descarte?",
+        "alternativas": [
+          "Pilhas e baterias",
+          "Folhas secas",
+          "Casca de fruta",
+          "Papel limpo"
+        ],
+        "correta": 0,
+        "dica": "Pode conter substâncias perigosas.",
+        "explicacao": "Pilhas e baterias podem poluir se descartadas de modo errado."
+      },
+      {
+        "pergunta": "O que é uma atitude sustentável?",
+        "alternativas": [
+          "Usar tudo uma vez e jogar fora",
+          "Consumir só o necessário",
+          "Deixar torneira aberta",
+          "Desmatar nascentes"
+        ],
+        "correta": 1,
+        "dica": "Sustentável evita desperdício.",
+        "explicacao": "Consumir só o necessário conserva recursos para o futuro."
+      }
+    ]
+  },
+  "sustentabilidade": {
+    "nome": "Sustentabilidade",
+    "icone": "🌱",
+    "cor": "#16A085",
+    "perguntas": [
+      {
+        "pergunta": "Qual escolha combina melhor com cuidar do presente e do futuro?",
+        "alternativas": [
+          "Cuidar dos recursos naturais",
+          "Desperdiçar sem pensar",
+          "Jogar lixo na natureza",
+          "Ignorar os seres vivos"
+        ],
+        "correta": 0,
+        "dica": "Pense na opção que protege.",
+        "explicacao": "Cuidar dos recursos naturais ajuda o ambiente e as pessoas."
+      },
+      {
+        "pergunta": "Qual exemplo está mais ligado a cuidar do presente e do futuro?",
+        "alternativas": [
+          "Um brinquedo quebrado",
+          "consumo consciente",
+          "Um foguete de papel",
+          "Um sapato molhado"
+        ],
+        "correta": 1,
+        "dica": "Procure o exemplo do tema.",
+        "explicacao": "Consumo consciente é um exemplo relacionado ao tema."
+      },
+      {
+        "pergunta": "O que devemos evitar para proteger a natureza?",
+        "alternativas": [
+          "Economizar recursos",
+          "Separar resíduos",
+          "Poluir rios, solo ou ar",
+          "Plantar árvores"
+        ],
+        "correta": 2,
+        "dica": "Evitar é algo ruim.",
+        "explicacao": "Poluir prejudica seres vivos e a saúde das pessoas."
+      },
+      {
+        "pergunta": "Qual atitude é correta no dia a dia?",
+        "alternativas": [
+          "Desperdiçar água",
+          "Queimar lixo",
+          "Comprar animais silvestres",
+          "Reutilizar materiais quando possível"
+        ],
+        "correta": 3,
+        "dica": "Pense nos 3 Rs.",
+        "explicacao": "Reutilizar diminui lixo e economiza recursos."
+      },
+      {
+        "pergunta": "Por que áreas verdes são importantes?",
+        "alternativas": [
+          "Dão sombra e ajudam seres vivos",
+          "Aumentam a sujeira",
+          "Impedem toda chuva",
+          "Não servem para nada"
+        ],
+        "correta": 0,
+        "dica": "Pense em sombra e animais.",
+        "explicacao": "Áreas verdes refrescam, abrigam seres vivos e melhoram o ambiente."
+      },
+      {
+        "pergunta": "Quando uma pessoa economiza energia, ela ajuda porque...",
+        "alternativas": [
+          "aumenta fumaça",
+          "reduz desperdício de recursos",
+          "estraga aparelhos",
+          "acaba com plantas"
+        ],
+        "correta": 1,
+        "dica": "Economizar evita gasto desnecessário.",
+        "explicacao": "Usar energia com cuidado reduz desperdício e impactos ambientais."
+      },
+      {
+        "pergunta": "Qual consequência pode vir do lixo jogado na rua?",
+        "alternativas": [
+          "Rua mais limpa",
+          "Mais árvores nativas",
+          "Entupimento de bueiros e enchentes",
+          "Ar mais puro"
+        ],
+        "correta": 2,
+        "dica": "Lixo pode bloquear a água.",
+        "explicacao": "Lixo na rua pode entupir bueiros e causar alagamentos."
+      },
+      {
+        "pergunta": "Qual frase mostra respeito à biodiversidade?",
+        "alternativas": [
+          "Levar filhotes silvestres para casa",
+          "Comprar penas de aves raras",
+          "Destruir ninhos",
+          "Observar animais sem incomodar"
+        ],
+        "correta": 3,
+        "dica": "Respeito é não atrapalhar.",
+        "explicacao": "Observar de longe evita estresse e perigo aos animais."
+      },
+      {
+        "pergunta": "Qual material merece cuidado especial no descarte?",
+        "alternativas": [
+          "Pilhas e baterias",
+          "Folhas secas",
+          "Casca de fruta",
+          "Papel limpo"
+        ],
+        "correta": 0,
+        "dica": "Pode conter substâncias perigosas.",
+        "explicacao": "Pilhas e baterias podem poluir se descartadas de modo errado."
+      },
+      {
+        "pergunta": "O que é uma atitude sustentável?",
+        "alternativas": [
+          "Usar tudo uma vez e jogar fora",
+          "Consumir só o necessário",
+          "Deixar torneira aberta",
+          "Desmatar nascentes"
+        ],
+        "correta": 1,
+        "dica": "Sustentável evita desperdício.",
+        "explicacao": "Consumir só o necessário conserva recursos para o futuro."
+      }
+    ]
+  },
+  "fauna_ameacada": {
+    "nome": "Animais ameaçados",
+    "icone": "🐆",
+    "cor": "#E67E22",
+    "perguntas": [
+      {
+        "pergunta": "Qual escolha combina melhor com animais em risco?",
+        "alternativas": [
+          "Cuidar dos recursos naturais",
+          "Desperdiçar sem pensar",
+          "Jogar lixo na natureza",
+          "Ignorar os seres vivos"
+        ],
+        "correta": 0,
+        "dica": "Pense na opção que protege.",
+        "explicacao": "Cuidar dos recursos naturais ajuda o ambiente e as pessoas."
+      },
+      {
+        "pergunta": "Qual exemplo está mais ligado a animais em risco?",
+        "alternativas": [
+          "Um brinquedo quebrado",
+          "mico-leão-dourado",
+          "Um foguete de papel",
+          "Um sapato molhado"
+        ],
+        "correta": 1,
+        "dica": "Procure o exemplo do tema.",
+        "explicacao": "Mico-leão-dourado é um exemplo relacionado ao tema."
+      },
+      {
+        "pergunta": "O que devemos evitar para proteger a natureza?",
+        "alternativas": [
+          "Economizar recursos",
+          "Separar resíduos",
+          "Poluir rios, solo ou ar",
+          "Plantar árvores"
+        ],
+        "correta": 2,
+        "dica": "Evitar é algo ruim.",
+        "explicacao": "Poluir prejudica seres vivos e a saúde das pessoas."
+      },
+      {
+        "pergunta": "Qual atitude é correta no dia a dia?",
+        "alternativas": [
+          "Desperdiçar água",
+          "Queimar lixo",
+          "Comprar animais silvestres",
+          "Reutilizar materiais quando possível"
+        ],
+        "correta": 3,
+        "dica": "Pense nos 3 Rs.",
+        "explicacao": "Reutilizar diminui lixo e economiza recursos."
+      },
+      {
+        "pergunta": "Por que áreas verdes são importantes?",
+        "alternativas": [
+          "Dão sombra e ajudam seres vivos",
+          "Aumentam a sujeira",
+          "Impedem toda chuva",
+          "Não servem para nada"
+        ],
+        "correta": 0,
+        "dica": "Pense em sombra e animais.",
+        "explicacao": "Áreas verdes refrescam, abrigam seres vivos e melhoram o ambiente."
+      },
+      {
+        "pergunta": "Quando uma pessoa economiza energia, ela ajuda porque...",
+        "alternativas": [
+          "aumenta fumaça",
+          "reduz desperdício de recursos",
+          "estraga aparelhos",
+          "acaba com plantas"
+        ],
+        "correta": 1,
+        "dica": "Economizar evita gasto desnecessário.",
+        "explicacao": "Usar energia com cuidado reduz desperdício e impactos ambientais."
+      },
+      {
+        "pergunta": "Qual consequência pode vir do lixo jogado na rua?",
+        "alternativas": [
+          "Rua mais limpa",
+          "Mais árvores nativas",
+          "Entupimento de bueiros e enchentes",
+          "Ar mais puro"
+        ],
+        "correta": 2,
+        "dica": "Lixo pode bloquear a água.",
+        "explicacao": "Lixo na rua pode entupir bueiros e causar alagamentos."
+      },
+      {
+        "pergunta": "Qual frase mostra respeito à biodiversidade?",
+        "alternativas": [
+          "Levar filhotes silvestres para casa",
+          "Comprar penas de aves raras",
+          "Destruir ninhos",
+          "Observar animais sem incomodar"
+        ],
+        "correta": 3,
+        "dica": "Respeito é não atrapalhar.",
+        "explicacao": "Observar de longe evita estresse e perigo aos animais."
+      },
+      {
+        "pergunta": "Qual material merece cuidado especial no descarte?",
+        "alternativas": [
+          "Pilhas e baterias",
+          "Folhas secas",
+          "Casca de fruta",
+          "Papel limpo"
+        ],
+        "correta": 0,
+        "dica": "Pode conter substâncias perigosas.",
+        "explicacao": "Pilhas e baterias podem poluir se descartadas de modo errado."
+      },
+      {
+        "pergunta": "O que é uma atitude sustentável?",
+        "alternativas": [
+          "Usar tudo uma vez e jogar fora",
+          "Consumir só o necessário",
+          "Deixar torneira aberta",
+          "Desmatar nascentes"
+        ],
+        "correta": 1,
+        "dica": "Sustentável evita desperdício.",
+        "explicacao": "Consumir só o necessário conserva recursos para o futuro."
+      }
+    ]
+  },
+  "agricultura": {
+    "nome": "Agricultura sustentável",
+    "icone": "🌽",
+    "cor": "#27AE60",
+    "perguntas": [
+      {
+        "pergunta": "Qual escolha combina melhor com plantar com cuidado?",
+        "alternativas": [
+          "Cuidar dos recursos naturais",
+          "Desperdiçar sem pensar",
+          "Jogar lixo na natureza",
+          "Ignorar os seres vivos"
+        ],
+        "correta": 0,
+        "dica": "Pense na opção que protege.",
+        "explicacao": "Cuidar dos recursos naturais ajuda o ambiente e as pessoas."
+      },
+      {
+        "pergunta": "Qual exemplo está mais ligado a plantar com cuidado?",
+        "alternativas": [
+          "Um brinquedo quebrado",
+          "adubo natural",
+          "Um foguete de papel",
+          "Um sapato molhado"
+        ],
+        "correta": 1,
+        "dica": "Procure o exemplo do tema.",
+        "explicacao": "Adubo natural é um exemplo relacionado ao tema."
+      },
+      {
+        "pergunta": "O que devemos evitar para proteger a natureza?",
+        "alternativas": [
+          "Economizar recursos",
+          "Separar resíduos",
+          "Poluir rios, solo ou ar",
+          "Plantar árvores"
+        ],
+        "correta": 2,
+        "dica": "Evitar é algo ruim.",
+        "explicacao": "Poluir prejudica seres vivos e a saúde das pessoas."
+      },
+      {
+        "pergunta": "Qual atitude é correta no dia a dia?",
+        "alternativas": [
+          "Desperdiçar água",
+          "Queimar lixo",
+          "Comprar animais silvestres",
+          "Reutilizar materiais quando possível"
+        ],
+        "correta": 3,
+        "dica": "Pense nos 3 Rs.",
+        "explicacao": "Reutilizar diminui lixo e economiza recursos."
+      },
+      {
+        "pergunta": "Por que áreas verdes são importantes?",
+        "alternativas": [
+          "Dão sombra e ajudam seres vivos",
+          "Aumentam a sujeira",
+          "Impedem toda chuva",
+          "Não servem para nada"
+        ],
+        "correta": 0,
+        "dica": "Pense em sombra e animais.",
+        "explicacao": "Áreas verdes refrescam, abrigam seres vivos e melhoram o ambiente."
+      },
+      {
+        "pergunta": "Quando uma pessoa economiza energia, ela ajuda porque...",
+        "alternativas": [
+          "aumenta fumaça",
+          "reduz desperdício de recursos",
+          "estraga aparelhos",
+          "acaba com plantas"
+        ],
+        "correta": 1,
+        "dica": "Economizar evita gasto desnecessário.",
+        "explicacao": "Usar energia com cuidado reduz desperdício e impactos ambientais."
+      },
+      {
+        "pergunta": "Qual consequência pode vir do lixo jogado na rua?",
+        "alternativas": [
+          "Rua mais limpa",
+          "Mais árvores nativas",
+          "Entupimento de bueiros e enchentes",
+          "Ar mais puro"
+        ],
+        "correta": 2,
+        "dica": "Lixo pode bloquear a água.",
+        "explicacao": "Lixo na rua pode entupir bueiros e causar alagamentos."
+      },
+      {
+        "pergunta": "Qual frase mostra respeito à biodiversidade?",
+        "alternativas": [
+          "Levar filhotes silvestres para casa",
+          "Comprar penas de aves raras",
+          "Destruir ninhos",
+          "Observar animais sem incomodar"
+        ],
+        "correta": 3,
+        "dica": "Respeito é não atrapalhar.",
+        "explicacao": "Observar de longe evita estresse e perigo aos animais."
+      },
+      {
+        "pergunta": "Qual material merece cuidado especial no descarte?",
+        "alternativas": [
+          "Pilhas e baterias",
+          "Folhas secas",
+          "Casca de fruta",
+          "Papel limpo"
+        ],
+        "correta": 0,
+        "dica": "Pode conter substâncias perigosas.",
+        "explicacao": "Pilhas e baterias podem poluir se descartadas de modo errado."
+      },
+      {
+        "pergunta": "O que é uma atitude sustentável?",
+        "alternativas": [
+          "Usar tudo uma vez e jogar fora",
+          "Consumir só o necessário",
+          "Deixar torneira aberta",
+          "Desmatar nascentes"
+        ],
+        "correta": 1,
+        "dica": "Sustentável evita desperdício.",
+        "explicacao": "Consumir só o necessário conserva recursos para o futuro."
+      }
+    ]
+  },
+  "geologia": {
+    "nome": "Solo e rochas",
+    "icone": "🪨",
+    "cor": "#A04000",
+    "perguntas": [
+      {
+        "pergunta": "Qual escolha combina melhor com solo, pedras e erosão?",
+        "alternativas": [
+          "Cuidar dos recursos naturais",
+          "Desperdiçar sem pensar",
+          "Jogar lixo na natureza",
+          "Ignorar os seres vivos"
+        ],
+        "correta": 0,
+        "dica": "Pense na opção que protege.",
+        "explicacao": "Cuidar dos recursos naturais ajuda o ambiente e as pessoas."
+      },
+      {
+        "pergunta": "Qual exemplo está mais ligado a solo, pedras e erosão?",
+        "alternativas": [
+          "Um brinquedo quebrado",
+          "rocha",
+          "Um foguete de papel",
+          "Um sapato molhado"
+        ],
+        "correta": 1,
+        "dica": "Procure o exemplo do tema.",
+        "explicacao": "Rocha é um exemplo relacionado ao tema."
+      },
+      {
+        "pergunta": "O que devemos evitar para proteger a natureza?",
+        "alternativas": [
+          "Economizar recursos",
+          "Separar resíduos",
+          "Poluir rios, solo ou ar",
+          "Plantar árvores"
+        ],
+        "correta": 2,
+        "dica": "Evitar é algo ruim.",
+        "explicacao": "Poluir prejudica seres vivos e a saúde das pessoas."
+      },
+      {
+        "pergunta": "Qual atitude é correta no dia a dia?",
+        "alternativas": [
+          "Desperdiçar água",
+          "Queimar lixo",
+          "Comprar animais silvestres",
+          "Reutilizar materiais quando possível"
+        ],
+        "correta": 3,
+        "dica": "Pense nos 3 Rs.",
+        "explicacao": "Reutilizar diminui lixo e economiza recursos."
+      },
+      {
+        "pergunta": "Por que áreas verdes são importantes?",
+        "alternativas": [
+          "Dão sombra e ajudam seres vivos",
+          "Aumentam a sujeira",
+          "Impedem toda chuva",
+          "Não servem para nada"
+        ],
+        "correta": 0,
+        "dica": "Pense em sombra e animais.",
+        "explicacao": "Áreas verdes refrescam, abrigam seres vivos e melhoram o ambiente."
+      },
+      {
+        "pergunta": "Quando uma pessoa economiza energia, ela ajuda porque...",
+        "alternativas": [
+          "aumenta fumaça",
+          "reduz desperdício de recursos",
+          "estraga aparelhos",
+          "acaba com plantas"
+        ],
+        "correta": 1,
+        "dica": "Economizar evita gasto desnecessário.",
+        "explicacao": "Usar energia com cuidado reduz desperdício e impactos ambientais."
+      },
+      {
+        "pergunta": "Qual consequência pode vir do lixo jogado na rua?",
+        "alternativas": [
+          "Rua mais limpa",
+          "Mais árvores nativas",
+          "Entupimento de bueiros e enchentes",
+          "Ar mais puro"
+        ],
+        "correta": 2,
+        "dica": "Lixo pode bloquear a água.",
+        "explicacao": "Lixo na rua pode entupir bueiros e causar alagamentos."
+      },
+      {
+        "pergunta": "Qual frase mostra respeito à biodiversidade?",
+        "alternativas": [
+          "Levar filhotes silvestres para casa",
+          "Comprar penas de aves raras",
+          "Destruir ninhos",
+          "Observar animais sem incomodar"
+        ],
+        "correta": 3,
+        "dica": "Respeito é não atrapalhar.",
+        "explicacao": "Observar de longe evita estresse e perigo aos animais."
+      },
+      {
+        "pergunta": "Qual material merece cuidado especial no descarte?",
+        "alternativas": [
+          "Pilhas e baterias",
+          "Folhas secas",
+          "Casca de fruta",
+          "Papel limpo"
+        ],
+        "correta": 0,
+        "dica": "Pode conter substâncias perigosas.",
+        "explicacao": "Pilhas e baterias podem poluir se descartadas de modo errado."
+      },
+      {
+        "pergunta": "O que é uma atitude sustentável?",
+        "alternativas": [
+          "Usar tudo uma vez e jogar fora",
+          "Consumir só o necessário",
+          "Deixar torneira aberta",
+          "Desmatar nascentes"
+        ],
+        "correta": 1,
+        "dica": "Sustentável evita desperdício.",
+        "explicacao": "Consumir só o necessário conserva recursos para o futuro."
+      }
+    ]
+  },
+  "cidades": {
+    "nome": "Cidades sustentáveis",
+    "icone": "🏙️",
+    "cor": "#2E86C1",
+    "perguntas": [
+      {
+        "pergunta": "Qual escolha combina melhor com cidade limpa e verde?",
+        "alternativas": [
+          "Cuidar dos recursos naturais",
+          "Desperdiçar sem pensar",
+          "Jogar lixo na natureza",
+          "Ignorar os seres vivos"
+        ],
+        "correta": 0,
+        "dica": "Pense na opção que protege.",
+        "explicacao": "Cuidar dos recursos naturais ajuda o ambiente e as pessoas."
+      },
+      {
+        "pergunta": "Qual exemplo está mais ligado a cidade limpa e verde?",
+        "alternativas": [
+          "Um brinquedo quebrado",
+          "transporte coletivo",
+          "Um foguete de papel",
+          "Um sapato molhado"
+        ],
+        "correta": 1,
+        "dica": "Procure o exemplo do tema.",
+        "explicacao": "Transporte coletivo é um exemplo relacionado ao tema."
+      },
+      {
+        "pergunta": "O que devemos evitar para proteger a natureza?",
+        "alternativas": [
+          "Economizar recursos",
+          "Separar resíduos",
+          "Poluir rios, solo ou ar",
+          "Plantar árvores"
+        ],
+        "correta": 2,
+        "dica": "Evitar é algo ruim.",
+        "explicacao": "Poluir prejudica seres vivos e a saúde das pessoas."
+      },
+      {
+        "pergunta": "Qual atitude é correta no dia a dia?",
+        "alternativas": [
+          "Desperdiçar água",
+          "Queimar lixo",
+          "Comprar animais silvestres",
+          "Reutilizar materiais quando possível"
+        ],
+        "correta": 3,
+        "dica": "Pense nos 3 Rs.",
+        "explicacao": "Reutilizar diminui lixo e economiza recursos."
+      },
+      {
+        "pergunta": "Por que áreas verdes são importantes?",
+        "alternativas": [
+          "Dão sombra e ajudam seres vivos",
+          "Aumentam a sujeira",
+          "Impedem toda chuva",
+          "Não servem para nada"
+        ],
+        "correta": 0,
+        "dica": "Pense em sombra e animais.",
+        "explicacao": "Áreas verdes refrescam, abrigam seres vivos e melhoram o ambiente."
+      },
+      {
+        "pergunta": "Quando uma pessoa economiza energia, ela ajuda porque...",
+        "alternativas": [
+          "aumenta fumaça",
+          "reduz desperdício de recursos",
+          "estraga aparelhos",
+          "acaba com plantas"
+        ],
+        "correta": 1,
+        "dica": "Economizar evita gasto desnecessário.",
+        "explicacao": "Usar energia com cuidado reduz desperdício e impactos ambientais."
+      },
+      {
+        "pergunta": "Qual consequência pode vir do lixo jogado na rua?",
+        "alternativas": [
+          "Rua mais limpa",
+          "Mais árvores nativas",
+          "Entupimento de bueiros e enchentes",
+          "Ar mais puro"
+        ],
+        "correta": 2,
+        "dica": "Lixo pode bloquear a água.",
+        "explicacao": "Lixo na rua pode entupir bueiros e causar alagamentos."
+      },
+      {
+        "pergunta": "Qual frase mostra respeito à biodiversidade?",
+        "alternativas": [
+          "Levar filhotes silvestres para casa",
+          "Comprar penas de aves raras",
+          "Destruir ninhos",
+          "Observar animais sem incomodar"
+        ],
+        "correta": 3,
+        "dica": "Respeito é não atrapalhar.",
+        "explicacao": "Observar de longe evita estresse e perigo aos animais."
+      },
+      {
+        "pergunta": "Qual material merece cuidado especial no descarte?",
+        "alternativas": [
+          "Pilhas e baterias",
+          "Folhas secas",
+          "Casca de fruta",
+          "Papel limpo"
+        ],
+        "correta": 0,
+        "dica": "Pode conter substâncias perigosas.",
+        "explicacao": "Pilhas e baterias podem poluir se descartadas de modo errado."
+      },
+      {
+        "pergunta": "O que é uma atitude sustentável?",
+        "alternativas": [
+          "Usar tudo uma vez e jogar fora",
+          "Consumir só o necessário",
+          "Deixar torneira aberta",
+          "Desmatar nascentes"
+        ],
+        "correta": 1,
+        "dica": "Sustentável evita desperdício.",
+        "explicacao": "Consumir só o necessário conserva recursos para o futuro."
       }
     ]
   }

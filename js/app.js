@@ -38,7 +38,7 @@ let state = {
       { id: 'd3', name: 'Jogue 2 quizzes', icon: '🎮', done: 0, target: 2, reward: 80, completed: false },
     ],
     weekly: [
-      { id: 'w1', name: 'Complete 3 quizzes de florestas', icon: '🌲', done: 0, target: 3, reward: 500, completed: false },
+      { id: 'w1', name: 'Complete 3 quizzes da Amazônia', icon: '🌳', done: 0, target: 3, reward: 500, completed: false },
       { id: 'w2', name: 'Mantenha combo de 10', icon: '🔥', done: 0, target: 10, reward: 300, completed: false },
       { id: 'w3', name: 'Acerte 5 itens no minigame', icon: '♻️', done: 0, target: 5, reward: 180, completed: false },
     ]
@@ -57,22 +57,25 @@ let state = {
   biomeScores: {},
 };
 
+const TOTAL_BIOMES = Object.keys(PERGUNTAS).length;
+
 const ACHIEVEMENTS_DATA = [
-  { id: 'a1', name: 'Amigo da Floresta', desc: 'Responda 100 perguntas sobre florestas', icon: '🌲', rarity: 3, target: 100, category: 'florestas', progress: 0 },
-  { id: 'a2', name: 'Mestre da Reciclagem', desc: 'Acerte 50 perguntas sobre reciclagem', icon: '♻️', rarity: 3, target: 50, category: 'reciclagem', progress: 0 },
-  { id: 'a3', name: 'Protetor dos Oceanos', desc: 'Responda 100 perguntas sobre oceanos', icon: '🌊', rarity: 3, target: 100, category: 'oceanos', progress: 0 },
-  { id: 'a4', name: 'Cientista', desc: 'Acerte 200 perguntas no total', icon: '🧬', rarity: 4, target: 200, progress: 0 },
+  ...Object.entries(PERGUNTAS).map(([key, biome], index) => ({
+    id: `bio-${key}`,
+    name: `Guardiao de ${biome.nome}`,
+    desc: `Responda perguntas sobre ${biome.nome}`,
+    icon: biome.icone,
+    rarity: index < 6 ? 2 : index < 12 ? 3 : 4,
+    target: 10,
+    category: key,
+    progress: 0,
+  })),
+  { id: 'a4', name: 'Cientista Mirim', desc: 'Responda 120 perguntas no total', icon: '🧪', rarity: 4, target: 120, progress: 0 },
   { id: 'a5', name: 'Primeiro Passo', desc: 'Complete seu primeiro quiz', icon: '🌱', rarity: 1, target: 1, progress: 0 },
   { id: 'a6', name: 'Combo 5', desc: 'Acerte 5 perguntas consecutivas', icon: '🔥', rarity: 2, target: 5, progress: 0 },
   { id: 'a7', name: 'Combo 10', desc: 'Acerte 10 perguntas consecutivas', icon: '🔥', rarity: 3, target: 10, progress: 0 },
-  { id: 'a8', name: 'Defensor do Clima', desc: 'Responda 50 perguntas sobre clima', icon: '🌡️', rarity: 3, target: 50, category: 'clima', progress: 0 },
-  { id: 'a9', name: 'Amigo da Biodiversidade', desc: 'Responda 50 perguntas sobre biodiversidade', icon: '🧬', rarity: 3, target: 50, category: 'biodiversidade', progress: 0 },
-  { id: 'a10', name: 'Explorador', desc: 'Jogue quizzes em todos os biomas', icon: '🌍', rarity: 5, target: 12, progress: 0 },
-  { id: 'a11', name: 'Amigo do Solo', desc: 'Responda 50 perguntas sobre geologia', icon: '⛰️', rarity: 3, target: 50, category: 'geologia', progress: 0 },
-  { id: 'a12', name: 'Amigo da Agricultura', desc: 'Responda 50 perguntas sobre agricultura', icon: '🌾', rarity: 3, target: 50, category: 'agricultura', progress: 0 },
-  { id: 'a13', name: 'Protetor dos Animais', desc: 'Responda 50 perguntas sobre animais', icon: '🦏', rarity: 3, target: 50, category: 'fauna', progress: 0 },
-  { id: 'a14', name: 'Arquiteto Verde', desc: 'Responda 50 perguntas sobre cidades', icon: '🏙️', rarity: 3, target: 50, category: 'cidades', progress: 0 },
-  { id: 'a15', name: 'Colecionador', desc: 'Complete quizzes em todos os biomas', icon: '👑', rarity: 5, target: 12, progress: 0 },
+  { id: 'a10', name: 'Explorador Ambiental', desc: 'Jogue quizzes em todos os temas', icon: '🌍', rarity: 5, target: TOTAL_BIOMES, progress: 0 },
+  { id: 'a15', name: 'Colecionador de Biomas', desc: 'Complete todos os temas com 60% ou mais', icon: '👑', rarity: 5, target: TOTAL_BIOMES, progress: 0 },
 ];
 
 const FRASES = [
@@ -373,7 +376,7 @@ function showScreen(screenId, direction) {
   screenHistory.push(screenId);
 
   const hud = document.getElementById('hud');
-  const showHud = !['screen-initial', 'screen-login', 'screen-result', 'screen-about', 'screen-achievements', 'screen-ranking', 'screen-performance', 'screen-missions', 'screen-study', 'screen-minigame', 'screen-settings', 'screen-biome-select', 'screen-roadmap'].includes(screenId);
+  const showHud = !['screen-initial', 'screen-login', 'screen-result', 'screen-about', 'screen-achievements', 'screen-ranking', 'screen-performance', 'screen-missions', 'screen-study', 'screen-minigame', 'screen-settings', 'screen-biome-select', 'screen-roadmap', 'screen-passa-repassa'].includes(screenId);
   hud.style.display = showHud ? 'flex' : 'none';
 
   updateHUD();
@@ -386,6 +389,7 @@ function showScreen(screenId, direction) {
   if (screenId === 'screen-performance') renderPerformance();
   if (screenId === 'screen-study') renderStudyPlan();
   if (screenId === 'screen-minigame') startMiniGame();
+  if (screenId === 'screen-passa-repassa') renderPassaRepassa();
 }
 
 // ─── HUD ────────────────────────────────────────────────────
@@ -737,7 +741,7 @@ function finishQuiz() {
     if (m.done >= m.target) m.completed = true;
   });
   state.missions.weekly.forEach(m => {
-    if (m.id === 'w1' && state.currentBiome === 'florestas' && percent >= 60) m.done = Math.min(m.target, m.done + 1);
+    if (m.id === 'w1' && state.currentBiome === 'amazonia' && percent >= 60) m.done = Math.min(m.target, m.done + 1);
     if (m.id === 'w2' && state.maxCombo >= 10) m.done = m.target;
     if (m.done >= m.target) m.completed = true;
   });
@@ -1085,8 +1089,8 @@ function renderStudyPlan() {
 
   const weak = getWeakestBiome();
   const review = state.reviewQueue.slice(-4).reverse();
-  const nextBiome = weak?.biome || state.currentBiome || 'florestas';
-  const nextLabel = PERGUNTAS[nextBiome]?.nome || 'Florestas';
+  const nextBiome = weak?.biome || state.currentBiome || Object.keys(PERGUNTAS)[0];
+  const nextLabel = PERGUNTAS[nextBiome]?.nome || 'Amazônia';
 
   recommendation.innerHTML = `
     <div class="study-callout">
@@ -1197,21 +1201,11 @@ const MOCK_PERF = {
   overallAvg: 73,
   totalQuizzes: 184,
   totalUsers: 28,
-  biomeAverages: [
-    { biome: 'florestas', avg: 88, count: 22 },
-    { biome: 'animais', avg: 85, count: 18 },
-    { biome: 'agua', avg: 82, count: 15 },
-    { biome: 'reciclagem', avg: 79, count: 20 },
-    { biome: 'oceanos', avg: 76, count: 14 },
-    { biome: 'biodiversidade', avg: 74, count: 16 },
-    { biome: 'sustentabilidade', avg: 71, count: 12 },
-    { biome: 'energia', avg: 68, count: 13 },
-    { biome: 'clima', avg: 65, count: 17 },
-    { biome: 'poluicao', avg: 62, count: 11 },
-    { biome: 'agricultura', avg: 58, count: 9 },
-    { biome: 'geologia', avg: 55, count: 7 },
-    { biome: 'cidades', avg: 52, count: 10 },
-  ],
+  biomeAverages: Object.keys(PERGUNTAS).map((biome, index) => ({
+    biome,
+    avg: Math.max(52, 88 - index * 2),
+    count: Math.max(7, 24 - index),
+  })),
 };
 
 let perfAnimId = null;
@@ -1767,46 +1761,41 @@ function logout() {
 }
 
 // ─── ROADMAP ───────────────────────────────────────────────
-const ROADMAP_NODES = [
-  { id: 'florestas', label: 'Florestas', icon: '🌲', x: 400, y: 60, unlocked: true },
-  { id: 'biodiversidade', label: 'Biodiversidade', icon: '🧬', x: 550, y: 120, unlocked: true },
-  { id: 'fauna', label: 'Animais', icon: '🦏', x: 650, y: 200, unlocked: false },
-  { id: 'oceanos', label: 'Oceanos', icon: '🌊', x: 550, y: 280, unlocked: false },
-  { id: 'agua', label: 'Água', icon: '💧', x: 400, y: 320, unlocked: false },
-  { id: 'clima', label: 'Clima', icon: '🌡️', x: 250, y: 280, unlocked: false },
-  { id: 'energia', label: 'Energia', icon: '⚡', x: 150, y: 200, unlocked: false },
-  { id: 'reciclagem', label: 'Reciclagem', icon: '♻️', x: 250, y: 120, unlocked: true },
-  { id: 'poluicao', label: 'Poluição', icon: '💨', x: 100, y: 120, unlocked: false },
-  { id: 'sustentabilidade', label: 'Sustentabilidade', icon: '🌍', x: 100, y: 320, unlocked: false },
-  { id: 'agricultura', label: 'Agricultura', icon: '🌾', x: 250, y: 400, unlocked: false },
-  { id: 'geologia', label: 'Solo', icon: '⛰️', x: 400, y: 440, unlocked: false },
-  { id: 'cidades', label: 'Cidades', icon: '🏙️', x: 550, y: 380, unlocked: false },
-];
+function getRoadmapNodes() {
+  const entries = Object.entries(PERGUNTAS);
+  const centerX = 400;
+  const centerY = 250;
+  const radiusX = 295;
+  const radiusY = 185;
 
-const ROADMAP_PATHS = [
-  { from: 'florestas', to: 'biodiversidade' },
-  { from: 'biodiversidade', to: 'fauna' },
-  { from: 'florestas', to: 'reciclagem' },
-  { from: 'reciclagem', to: 'poluicao' },
-  { from: 'reciclagem', to: 'oceanos' },
-  { from: 'oceanos', to: 'agua' },
-  { from: 'agua', to: 'cidades' },
-  { from: 'agua', to: 'sustentabilidade' },
-  { from: 'fauna', to: 'cidades' },
-  { from: 'poluicao', to: 'energia' },
-  { from: 'energia', to: 'clima' },
-  { from: 'clima', to: 'sustentabilidade' },
-  { from: 'sustentabilidade', to: 'agricultura' },
-  { from: 'agricultura', to: 'geologia' },
-  { from: 'geologia', to: 'cidades' },
-];
+  return entries.map(([id, biome], index) => {
+    const angle = -Math.PI / 2 + (Math.PI * 2 * index) / entries.length;
+    return {
+      id,
+      label: biome.nome,
+      icon: biome.icone,
+      x: Math.round(centerX + Math.cos(angle) * radiusX),
+      y: Math.round(centerY + Math.sin(angle) * radiusY),
+      unlocked: true,
+    };
+  });
+}
+
+function getRoadmapPaths(nodes) {
+  return nodes.map((node, index) => ({
+    from: node.id,
+    to: nodes[(index + 1) % nodes.length].id,
+  }));
+}
 
 function renderRoadmap() {
   const svg = document.getElementById('roadmap-svg');
+  const nodes = getRoadmapNodes();
+  const paths = getRoadmapPaths(nodes);
 
-  const pathsHtml = ROADMAP_PATHS.map(p => {
-    const from = ROADMAP_NODES.find(n => n.id === p.from);
-    const to = ROADMAP_NODES.find(n => n.id === p.to);
+  const pathsHtml = paths.map(p => {
+    const from = nodes.find(n => n.id === p.from);
+    const to = nodes.find(n => n.id === p.to);
     if (!from || !to) return '';
     const completed = state.biomesCompleted[p.from] && state.biomesCompleted[p.to];
     return `<line x1="${from.x}" y1="${from.y}" x2="${to.x}" y2="${to.y}"
@@ -1815,7 +1804,7 @@ function renderRoadmap() {
       stroke-width="2" stroke-linecap="round"/>`;
   }).join('');
 
-  const nodesHtml = ROADMAP_NODES.map(n => {
+  const nodesHtml = nodes.map(n => {
     const played = state.biomesPlayed.includes(n.id);
     const completed = state.biomesCompleted[n.id];
     const score = state.biomeScores[n.id] || 0;
@@ -1829,8 +1818,8 @@ function renderRoadmap() {
     const biome = PERGUNTAS[n.id];
     const color = biome ? biome.cor : '#2ECC71';
 
-    const isLocked = !n.unlocked && !played;
-    const clickHandler = isLocked ? '' : `onclick="showBiomeSelectorFromRoadmap('${n.id}')"`;
+    const isLocked = false;
+    const clickHandler = `onclick="showBiomeSelectorFromRoadmap('${n.id}')"`;
 
     return `<g class="${cls}" ${clickHandler}>
       <circle cx="${n.x}" cy="${n.y}" r="22"
@@ -1931,6 +1920,274 @@ function shuffle(arr) {
     [a[i], a[j]] = [a[j], a[i]];
   }
   return a;
+}
+
+// ─── PASSA OU REPASSA ──────────────────────────────────────
+const repassaState = {
+  scores: { a: 0, b: 0 },
+  round: 1,
+  currentBiome: null,
+  currentQuestion: null,
+  answerVisible: false,
+  wheelRotation: 0,
+  rendered: false,
+  usedQuestionKeys: new Set(),
+};
+
+function getBiomeEntries() {
+  return Object.entries(PERGUNTAS).filter(([, biome]) => Array.isArray(biome.perguntas) && biome.perguntas.length > 0);
+}
+
+function renderPassaRepassa() {
+  renderRepassaPlayers('a');
+  renderRepassaPlayers('b');
+  renderRepassaWheel();
+  updateRepassaScoreboard();
+  repassaState.rendered = true;
+}
+
+function renderRepassaPlayers(team) {
+  const container = document.getElementById(`repassa-players-${team}`);
+  if (!container || container.children.length) return;
+
+  for (let i = 1; i <= 3; i++) {
+    const input = document.createElement('input');
+    input.className = 'repassa-player';
+    input.maxLength = 18;
+    input.placeholder = `Jogador ${i}`;
+    input.value = team === 'a' ? `A${i}` : `B${i}`;
+    input.setAttribute('aria-label', `Jogador ${i} do Time ${team.toUpperCase()}`);
+    container.appendChild(input);
+  }
+}
+
+function renderRepassaWheel() {
+  const wheel = document.getElementById('repassa-wheel');
+  if (!wheel || wheel.children.length) return;
+
+  const biomes = getBiomeEntries();
+  const step = 360 / biomes.length;
+  wheel.style.background = `conic-gradient(${biomes.map(([, biome], index) => {
+    const start = (index * step).toFixed(2);
+    const end = ((index + 1) * step).toFixed(2);
+    return `${biome.cor || '#2ECC71'} ${start}deg ${end}deg`;
+  }).join(', ')})`;
+  biomes.forEach(([, biome], index) => {
+    const label = document.createElement('div');
+    label.className = 'repassa-slice-label';
+    label.style.transform = `rotate(${index * step + step / 2}deg) translate(24%, -50%) rotate(90deg)`;
+    label.textContent = biome.icone;
+    wheel.appendChild(label);
+  });
+}
+
+function updateRepassaScoreboard() {
+  const scoreA = document.getElementById('repassa-score-a');
+  const scoreB = document.getElementById('repassa-score-b');
+  const round = document.getElementById('repassa-round');
+  if (scoreA) scoreA.textContent = repassaState.scores.a;
+  if (scoreB) scoreB.textContent = repassaState.scores.b;
+  if (round) round.textContent = repassaState.round;
+}
+
+function changeRepassaScore(team, amount) {
+  if (!repassaState.scores.hasOwnProperty(team)) return;
+  repassaState.scores[team] = Math.max(0, repassaState.scores[team] + amount);
+  updateRepassaScoreboard();
+  playSound(amount > 0 ? 'correct' : 'wrong');
+}
+
+function spinRepassaWheel() {
+  const wheel = document.getElementById('repassa-wheel');
+  const result = document.getElementById('repassa-biome-result');
+  const biomes = getBiomeEntries();
+  if (!wheel || !biomes.length) return;
+
+  const selectedIndex = Math.floor(Math.random() * biomes.length);
+  const [key, biome] = biomes[selectedIndex];
+  const step = 360 / biomes.length;
+  const targetAngle = selectedIndex * step + step / 2;
+  const extraTurns = 4 + Math.floor(Math.random() * 3);
+
+  repassaState.currentBiome = key;
+  repassaState.wheelRotation += extraTurns * 360 + (360 - targetAngle);
+  wheel.style.transform = `rotate(${repassaState.wheelRotation}deg)`;
+
+  if (result) {
+    result.textContent = 'Girando...';
+    setTimeout(() => {
+      result.textContent = `${biome.icone} ${biome.nome}`;
+      const meta = document.getElementById('repassa-question-biome');
+      if (meta) meta.textContent = `${biome.icone} ${biome.nome}`;
+      playSound('levelup');
+    }, 4300);
+  }
+}
+
+function toSentenceCase(text) {
+  const value = String(text || '').trim();
+  if (!value) return '';
+  return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
+function cleanRepassaQuestionText(text) {
+  let value = String(text || '').trim();
+  value = value
+    .replace(/^como podemos explicar\s+/i, 'O que significa ')
+    .replace(/^qual o maior/i, 'Qual é o maior')
+    .replace(/^O que mais/i, 'Qual é a principal causa de')
+    .replace(/\s+/g, ' ')
+    .replace(/,\s*O que/g, ', o que');
+
+  return toSentenceCase(value);
+}
+
+function extractRepassaFocus(questionText, biomeName) {
+  let focus = cleanRepassaQuestionText(questionText)
+    .replace(/\?$/, '')
+    .replace(/^O que significa\s+/i, '')
+    .replace(/^Qual é\s+/i, '')
+    .replace(/^Qual\s+/i, '')
+    .replace(/^Quanto da\s+/i, '')
+    .replace(/^Quanto do\s+/i, '')
+    .replace(/^Quanto tempo\s+/i, '')
+    .replace(/^Cerca de quantas\s+/i, '')
+    .replace(/^Como chamamos\s+/i, '')
+    .replace(/^Quantas\s+/i, '')
+    .replace(/^A principal causa de\s+/i, '')
+    .trim();
+
+  if (!focus || focus.length < 4) return biomeName;
+  return focus.charAt(0).toLowerCase() + focus.slice(1);
+}
+
+function buildRepassaVariations(biomeKey, biome, question, index) {
+  const focus = extractRepassaFocus(question.pergunta, biome.nome);
+  const correct = question.alternativas[question.correta];
+  const explanation = String(question.explicacao || '').replace(/\s+/g, ' ').trim();
+
+  return [
+    {
+      key: `${biomeKey}-${index}-resumo`,
+      type: 'Compreensão',
+      pergunta: `A ideia central é: ${explanation} Qual alternativa resume melhor essa informação?`,
+      alternativas: question.alternativas,
+      correta: question.correta,
+      explicacao: `A alternativa correta é ${correct}. ${explanation}`,
+    },
+    {
+      key: `${biomeKey}-${index}-aplicacao`,
+      type: 'Aplicação',
+      pergunta: `Em uma conversa sobre ${biome.nome}, alguém precisa explicar ${focus}. Qual resposta seria a mais correta?`,
+      alternativas: question.alternativas,
+      correta: question.correta,
+      explicacao: `A melhor resposta é ${correct}. ${explanation}`,
+    },
+    {
+      key: `${biomeKey}-${index}-desafio`,
+      type: 'Desafio rápido',
+      pergunta: `Sem decorar a frase da pergunta anterior: qual alternativa se conecta diretamente a ${focus}?`,
+      alternativas: question.alternativas,
+      correta: question.correta,
+      explicacao: `${correct} se conecta ao tema porque: ${explanation}`,
+    },
+  ];
+}
+
+function buildRepassaPool(biomeKey) {
+  const biome = PERGUNTAS[biomeKey];
+  if (!biome) return [];
+
+  return biome.perguntas.flatMap((question, index) => {
+    const original = {
+      key: `${biomeKey}-${index}-original`,
+      type: 'Pergunta anterior',
+      pergunta: cleanRepassaQuestionText(question.pergunta),
+      alternativas: question.alternativas,
+      correta: question.correta,
+      explicacao: question.explicacao,
+    };
+
+    return [original, ...buildRepassaVariations(biomeKey, biome, question, index)];
+  });
+}
+
+function drawRepassaQuestion() {
+  const biomes = getBiomeEntries();
+  if (!repassaState.currentBiome && biomes.length) {
+    repassaState.currentBiome = biomes[Math.floor(Math.random() * biomes.length)][0];
+  }
+
+  let pool = buildRepassaPool(repassaState.currentBiome);
+  let available = pool.filter(q => !repassaState.usedQuestionKeys.has(q.key));
+  if (!available.length) {
+    repassaState.usedQuestionKeys.clear();
+    available = pool;
+  }
+  if (!available.length) return;
+
+  const question = available[Math.floor(Math.random() * available.length)];
+  repassaState.currentQuestion = question;
+  repassaState.answerVisible = false;
+  repassaState.usedQuestionKeys.add(question.key);
+
+  const biome = PERGUNTAS[repassaState.currentBiome];
+  const meta = document.getElementById('repassa-question-biome');
+  const type = document.getElementById('repassa-question-type');
+  const questionEl = document.getElementById('repassa-question');
+  const optionsEl = document.getElementById('repassa-options');
+  const answerEl = document.getElementById('repassa-answer');
+
+  if (meta) meta.textContent = `${biome.icone} ${biome.nome}`;
+  if (type) type.textContent = question.type;
+  if (questionEl) questionEl.textContent = question.pergunta;
+  if (optionsEl) {
+    optionsEl.innerHTML = question.alternativas.map((alt, index) => `
+      <div class="repassa-option">
+        <strong>${String.fromCharCode(65 + index)}</strong>
+        <span>${escapeHTML(alt)}</span>
+      </div>
+    `).join('');
+  }
+  if (answerEl) {
+    answerEl.classList.remove('visible');
+    answerEl.textContent = '';
+  }
+
+  playSound('click');
+}
+
+function toggleRepassaAnswer() {
+  const answerEl = document.getElementById('repassa-answer');
+  const question = repassaState.currentQuestion;
+  if (!answerEl || !question) return;
+
+  repassaState.answerVisible = !repassaState.answerVisible;
+  const letter = String.fromCharCode(65 + question.correta);
+  const correct = question.alternativas[question.correta];
+  answerEl.textContent = `${letter}) ${correct} · ${question.explicacao}`;
+  answerEl.classList.toggle('visible', repassaState.answerVisible);
+  playSound(repassaState.answerVisible ? 'correct' : 'click');
+}
+
+function nextRepassaRound() {
+  repassaState.round += 1;
+  repassaState.currentQuestion = null;
+  repassaState.answerVisible = false;
+  updateRepassaScoreboard();
+
+  const type = document.getElementById('repassa-question-type');
+  const questionEl = document.getElementById('repassa-question');
+  const optionsEl = document.getElementById('repassa-options');
+  const answerEl = document.getElementById('repassa-answer');
+  if (type) type.textContent = 'Banco novo · 5º ano';
+  if (questionEl) questionEl.textContent = 'Sorteie o proximo bioma ou mantenha o bioma atual, depois gere uma nova pergunta.';
+  if (optionsEl) optionsEl.innerHTML = '';
+  if (answerEl) {
+    answerEl.classList.remove('visible');
+    answerEl.textContent = '';
+  }
+  playSound('click');
 }
 
 // ─── INIT ───────────────────────────────────────────────────

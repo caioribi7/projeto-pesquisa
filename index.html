@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ECOQUEST — Conhecimento para Regenerar</title>
+  <title>ECOQUEST — Passa ou Repassa Ambiental</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌱</text></svg>">
 </head>
@@ -80,16 +80,17 @@
             <span>EC</span><span class="o-letter">O</span><span>QUEST</span>
           </div>
         </div>
-        <div class="initial-subtitle">CONHECIMENTO PARA REGENERAR</div>
+        <div class="initial-subtitle">PASSA OU REPASSA AMBIENTAL · 5º ANO</div>
         <button class="btn-crystal" onclick="showScreen('screen-login')">
           ▶ Começar
         </button>
         <div style="margin-top:12px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <button class="btn-crystal gold small" onclick="showScreen('screen-passa-repassa')">🎡 Passa ou Repassa</button>
           <button class="btn-crystal secondary small" onclick="showScreen('screen-roadmap')">🗺️ Mapa</button>
           <button class="btn-crystal secondary small" onclick="showScreen('screen-ranking')">🏆 Ranking</button>
           <button class="btn-crystal secondary small" onclick="showScreen('screen-performance')">📊 Desempenho</button>
         </div>
-        <div class="initial-quote">"O conhecimento é a semente que regenera o mundo."</div>
+        <div class="initial-quote">"Aprender sobre a natureza tambem e cuidar do futuro."</div>
       </div>
     </div>
 
@@ -113,6 +114,11 @@
           <span class="menu-item-icon">🌿</span>
           <div class="menu-item-label">Jogar Quiz</div>
           <div class="menu-item-desc">Teste seus conhecimentos</div>
+        </div>
+        <div class="menu-item" onclick="showScreen('screen-passa-repassa')">
+          <span class="menu-item-icon">🎡</span>
+          <div class="menu-item-label">Passa ou Repassa</div>
+          <div class="menu-item-desc">180 perguntas para projetor</div>
         </div>
         <div class="menu-item" onclick="showScreen('screen-roadmap')">
           <span class="menu-item-icon">🗺️</span>
@@ -142,7 +148,7 @@
         <div class="menu-item" onclick="showScreen('screen-performance')">
           <span class="menu-item-icon">📊</span>
           <div class="menu-item-label">Desempenho</div>
-          <div class="menu-item-desc">Médias dos biomas</div>
+          <div class="menu-item-desc">Médias dos temas</div>
         </div>
         <div class="menu-item" onclick="showScreen('screen-achievements')">
           <span class="menu-item-icon">🎖️</span>
@@ -186,7 +192,7 @@
         <div class="quiz-header">
           <div class="quiz-biome">
             <span class="quiz-biome-icon" id="quiz-biome-icon">🌲</span>
-            <span id="quiz-biome-name">Florestas</span>
+            <span id="quiz-biome-name">Amazônia</span>
           </div>
           <div class="quiz-progress-text" id="quiz-progress">1/10</div>
           <div class="quiz-difficulty" id="quiz-difficulty">🌱 Fácil</div>
@@ -333,6 +339,68 @@
       <button class="back-btn" onclick="showScreen('screen-menu')">← Voltar</button>
     </div>
 
+    <!-- SCREEN: PASSA OU REPASSA -->
+    <div class="screen" id="screen-passa-repassa">
+      <div class="repassa-stage">
+        <div class="repassa-scoreboard">
+          <section class="repassa-team team-a">
+            <div class="repassa-team-head">
+              <input id="repassa-team-a-name" class="repassa-team-name" value="Time A" maxlength="18" aria-label="Nome do Time A">
+              <div class="repassa-score" id="repassa-score-a">0</div>
+            </div>
+            <div class="repassa-players" id="repassa-players-a"></div>
+            <div class="repassa-score-actions">
+              <button onclick="changeRepassaScore('a', -1)">−</button>
+              <button onclick="changeRepassaScore('a', 1)">+</button>
+            </div>
+          </section>
+
+          <section class="repassa-center">
+            <div class="repassa-kicker">Ecoquest presencial</div>
+            <h1>Passa ou Repassa</h1>
+            <div class="repassa-round">Rodada <span id="repassa-round">1</span></div>
+          </section>
+
+          <section class="repassa-team team-b">
+            <div class="repassa-team-head">
+              <input id="repassa-team-b-name" class="repassa-team-name" value="Time B" maxlength="18" aria-label="Nome do Time B">
+              <div class="repassa-score" id="repassa-score-b">0</div>
+            </div>
+            <div class="repassa-players" id="repassa-players-b"></div>
+            <div class="repassa-score-actions">
+              <button onclick="changeRepassaScore('b', -1)">−</button>
+              <button onclick="changeRepassaScore('b', 1)">+</button>
+            </div>
+          </section>
+        </div>
+
+        <div class="repassa-main">
+          <section class="repassa-wheel-panel">
+            <div class="repassa-pointer"></div>
+            <div class="repassa-wheel" id="repassa-wheel"></div>
+            <div class="repassa-biome-result" id="repassa-biome-result">Todos os temas na roleta</div>
+            <button class="btn-crystal gold" onclick="spinRepassaWheel()">🎡 Sortear bioma</button>
+          </section>
+
+          <section class="repassa-question-panel">
+            <div class="repassa-question-meta">
+              <span id="repassa-question-biome">Aguardando sorteio</span>
+              <span id="repassa-question-type">Banco novo · 5º ano</span>
+            </div>
+            <div class="repassa-question" id="repassa-question">Escolha os 6 nomes, sorteie um tema e gere uma pergunta do novo banco para aparecer no projetor.</div>
+            <div class="repassa-options" id="repassa-options"></div>
+            <div class="repassa-answer" id="repassa-answer"></div>
+            <div class="repassa-controls">
+              <button class="btn-crystal" onclick="drawRepassaQuestion()">❔ Sortear pergunta</button>
+              <button class="btn-crystal secondary" onclick="toggleRepassaAnswer()">👁️ Mostrar resposta</button>
+              <button class="btn-crystal secondary" onclick="nextRepassaRound()">↻ Próxima rodada</button>
+            </div>
+          </section>
+        </div>
+      </div>
+      <button class="back-btn" onclick="showScreen('screen-menu')">← Voltar</button>
+    </div>
+
     <!-- SCREEN: ROADMAP -->
     <div class="screen" id="screen-roadmap">
       <div class="roadmap-container">
@@ -385,7 +453,7 @@
       <div class="perf-dashboard">
         <div class="perf-header">
           <div class="perf-title">📊 Desempenho por Bioma</div>
-          <div class="perf-subtitle">Dados do jogador, da turma ou demonstração inicial</div>
+        <div class="perf-subtitle">Dados por tema do banco ambiental do 5º ano</div>
         </div>
         <div class="perf-main">
           <div class="perf-chart-area" id="perf-chart-area">
@@ -408,8 +476,8 @@
         <div class="about-title">📖 Sobre o ECOQUEST</div>
         <div class="glass" style="padding:24px;">
           <div class="about-content">
-            <p><strong>ECOQUEST</strong> é um projeto educacional interativo que usa quizzes para ensinar sobre meio ambiente de forma divertida.</p>
-            <p>🌱 <strong>Missão:</strong> Transformar conhecimento ambiental em uma experiência de jogo inesquecível.</p>
+            <p><strong>ECOQUEST</strong> é um projeto educacional interativo que usa quizzes e Passa ou Repassa para ensinar meio ambiente ao 5º ano.</p>
+            <p>🌱 <strong>Missão:</strong> Transformar conhecimento ambiental em uma experiência presencial divertida e clara.</p>
             <p>🌍 <strong>Visão:</strong> Um mundo onde cada pessoa entende seu papel na proteção do planeta.</p>
             <p>💚 <strong>Valores:</strong> Sustentabilidade, educação, diversão e esperança.</p>
             <p style="margin-top:16px;text-align:center;color:var(--emerald-glow);">
