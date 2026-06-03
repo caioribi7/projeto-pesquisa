@@ -5,13 +5,19 @@ const PERGUNTAS = {
     cor: "#2ECC71",
     perguntas: [
       {
-        pergunta: "Qual é a maior floresta tropical do mundo?",
-        alternativas: ["Floresta Amazônica", "Floresta do Congo", "Floresta de Bornéu", "Floresta da Indonésia"],
+        pergunta: "Em uma aula sobre florestas, qual é a maior floresta tropical do mundo?",
+        alternativas: [
+          "Floresta Amazônica",
+          "Floresta do Congo",
+          "Floresta de Bornéu",
+          "Floresta da Indonésia"
+        ],
         correta: 0,
+        dica: "Compare a ideia de tamanho ou quantidade, sem se deixar levar pelo nome mais conhecido.",
         explicacao: "A Amazônia é a maior floresta tropical do mundo."
       },
       {
-        pergunta: "O que é desmatamento ilegal?",
+        pergunta: "Em uma aula sobre florestas, como podemos explicar desmatamento ilegal?",
         alternativas: [
           "Cortar árvores com licença",
           "Cortar árvores sem licença",
@@ -19,22 +25,35 @@ const PERGUNTAS = {
           "Fogo que vem da natureza"
         ],
         correta: 1,
+        dica: "Observe se a ação respeita regras e permissão das autoridades.",
         explicacao: "É cortar árvores sem permissão do governo."
       },
       {
-        pergunta: "Quanto da Amazônia já foi desmatado?",
-        alternativas: ["5%", "17%", "50%", "2%"],
+        pergunta: "Em uma aula sobre florestas, quanto da Amazônia já foi desmatado?",
+        alternativas: [
+          "5%",
+          "17%",
+          "50%",
+          "2%"
+        ],
         correta: 1,
+        dica: "Pense em perda de vegetação e em lugares muito ocupados por pessoas.",
         explicacao: "Quase 17% da Amazônia já foi desmatada."
       },
       {
-        pergunta: "Qual bioma brasileiro é o mais ameaçado?",
-        alternativas: ["Amazônia", "Cerrado", "Mata Atlântica", "Caatinga"],
+        pergunta: "Em uma aula sobre florestas, qual bioma brasileiro é o mais ameaçado?",
+        alternativas: [
+          "Amazônia",
+          "Cerrado",
+          "Mata Atlântica",
+          "Caatinga"
+        ],
         correta: 2,
+        dica: "Pense em perda de vegetação e em lugares muito ocupados por pessoas.",
         explicacao: "A Mata Atlântica perdeu quase toda sua mata."
       },
       {
-        pergunta: "O que é reflorestamento?",
+        pergunta: "Em uma aula sobre florestas, como podemos explicar reflorestamento?",
         alternativas: [
           "Cortar muitas árvores",
           "Plantar árvores de novo",
@@ -42,16 +61,23 @@ const PERGUNTAS = {
           "Extrair madeira legal"
         ],
         correta: 1,
+        dica: "Procure a alternativa ligada a recuperar uma área com novas plantas.",
         explicacao: "É plantar árvores onde a mata foi cortada."
       },
       {
-        pergunta: "Qual árvore é símbolo nacional do Brasil?",
-        alternativas: ["Pau-Brasil", "Ipê", "Jequitibá", "Seringueira"],
+        pergunta: "Em uma aula sobre florestas, qual árvore é símbolo nacional do Brasil?",
+        alternativas: [
+          "Pau-Brasil",
+          "Ipê",
+          "Jequitibá",
+          "Seringueira"
+        ],
         correta: 0,
+        dica: "Pense no que melhor protege florestas e melhora a vida dos seres vivos.",
         explicacao: "O Pau-Brasil é a árvore símbolo do Brasil."
       },
       {
-        pergunta: "O que são corredores ecológicos?",
+        pergunta: "Em uma aula sobre florestas, como podemos explicar corredores ecológicos?",
         alternativas: [
           "Estradas dentro de florestas",
           "Áreas que ligam florestas",
@@ -59,22 +85,35 @@ const PERGUNTAS = {
           "Trilhas para visitantes"
         ],
         correta: 1,
+        dica: "Imagine caminhos seguros que conectam áreas naturais separadas.",
         explicacao: "Eles ligam partes da floresta para os animais."
       },
       {
-        pergunta: "Como se chama quando árvores perdem as folhas?",
-        alternativas: ["Caducifólia", "Fotossíntese", "Transpiração", "Germinação"],
+        pergunta: "Em uma aula sobre florestas, como chamamos as árvores que perdem as folhas em certas épocas?",
+        alternativas: [
+          "Caducifólia",
+          "Fotossíntese",
+          "Transpiração",
+          "Germinação"
+        ],
         correta: 0,
+        dica: "Lembre que algumas plantas mudam durante o ano para economizar energia e água.",
         explicacao: "É quando as árvores perdem suas folhas."
       },
       {
-        pergunta: "Quantas árvores fazem 1 tonelada de papel?",
-        alternativas: ["5-10 árvores", "2-3 árvores", "15-20 árvores", "1 árvore"],
+        pergunta: "Em uma aula sobre florestas, cerca de quantas árvores podem ser usadas para produzir 1 tonelada de papel?",
+        alternativas: [
+          "5-10 árvores",
+          "2-3 árvores",
+          "15-20 árvores",
+          "1 árvore"
+        ],
         correta: 2,
+        dica: "Pense na matéria-prima usada para fabricar papel.",
         explicacao: "Precisa de 15 a 20 árvores para fazer papel."
       },
       {
-        pergunta: "O que mais causa incêndios nas florestas?",
+        pergunta: "Em uma aula sobre florestas, O que mais causa incêndios nas florestas?",
         alternativas: [
           "Causado por raios",
           "Causado por pessoas",
@@ -82,6 +121,7 @@ const PERGUNTAS = {
           "Causado pelo calor"
         ],
         correta: 1,
+        dica: "Compare a ideia de tamanho ou quantidade, sem se deixar levar pelo nome mais conhecido.",
         explicacao: "Pessoas causam a maioria dos incêndios florestais."
       }
     ]
@@ -92,13 +132,19 @@ const PERGUNTAS = {
     cor: "#1ABC9C",
     perguntas: [
       {
-        pergunta: "Quanto da Terra é coberto por oceanos?",
-        alternativas: ["50%", "71%", "80%", "60%"],
+        pergunta: "Ao estudar os oceanos, quanto da Terra é coberto por oceanos?",
+        alternativas: [
+          "50%",
+          "71%",
+          "80%",
+          "60%"
+        ],
         correta: 1,
+        dica: "Compare água e terra no planeta: a água ocupa a maior parte.",
         explicacao: "Os oceanos cobrem 71% da superfície da Terra."
       },
       {
-        pergunta: "O que é a mancha de lixo no Pacífico?",
+        pergunta: "Ao estudar os oceanos, como podemos explicar a mancha de lixo no Pacífico?",
         alternativas: [
           "Ilha de plástico boiando",
           "Plástico juntado no oceano",
@@ -106,16 +152,23 @@ const PERGUNTAS = {
           "Algas crescendo no mar"
         ],
         correta: 1,
+        dica: "Pense no material que demora muito para se decompor e aparece em rios e mares.",
         explicacao: "É muito plástico juntado no Oceano Pacífico."
       },
       {
-        pergunta: "Qual o maior animal do oceano?",
-        alternativas: ["Tubarão-baleia", "Baleia-azul", "Polvo-gigante", "Lula-colossal"],
+        pergunta: "Ao estudar os oceanos, qual o maior animal do oceano?",
+        alternativas: [
+          "Tubarão-baleia",
+          "Baleia-azul",
+          "Polvo-gigante",
+          "Lula-colossal"
+        ],
         correta: 1,
+        dica: "Compare a ideia de tamanho ou quantidade, sem se deixar levar pelo nome mais conhecido.",
         explicacao: "A baleia-azul é o maior animal do planeta."
       },
       {
-        pergunta: "O que é branqueamento de corais?",
+        pergunta: "Ao estudar os oceanos, como podemos explicar branqueamento de corais?",
         alternativas: [
           "Morte natural dos corais",
           "Corais perdem a cor",
@@ -123,16 +176,23 @@ const PERGUNTAS = {
           "Algas brancas no mar"
         ],
         correta: 1,
+        dica: "Pense no efeito do aquecimento da água sobre seres vivos sensiveis.",
         explicacao: "Corais perdem a cor quando a água esquenta."
       },
       {
-        pergunta: "Quanto do oxigênio vem dos oceanos?",
-        alternativas: ["30% do ar", "Mais da metade", "10% do ar", "70% do ar"],
+        pergunta: "Ao estudar os oceanos, quanto do oxigênio vem dos oceanos?",
+        alternativas: [
+          "30% do ar",
+          "Mais da metade",
+          "10% do ar",
+          "70% do ar"
+        ],
         correta: 1,
+        dica: "Lembre que seres microscopicos tambem produzem oxigênio pela fotossintese.",
         explicacao: "O mar produz mais da metade do oxigênio."
       },
       {
-        pergunta: "O que é a acidificação dos oceanos?",
+        pergunta: "Ao estudar os oceanos, como podemos explicar a acidificação dos oceanos?",
         alternativas: [
           "Aquecer a água do mar",
           "Tornar o mar mais ácido",
@@ -140,22 +200,35 @@ const PERGUNTAS = {
           "Secar toda água do mar"
         ],
         correta: 1,
+        dica: "Procure a ideia de mudança química causada por gases absorvidos pela água.",
         explicacao: "O mar fica ácido ao absorver CO₂ do ar."
       },
       {
-        pergunta: "Quanto tempo o plástico dura no mar?",
-        alternativas: ["10 anos", "50 anos", "450 anos", "2 anos"],
+        pergunta: "Ao estudar os oceanos, quanto tempo o plástico dura no mar?",
+        alternativas: [
+          "10 anos",
+          "50 anos",
+          "450 anos",
+          "2 anos"
+        ],
         correta: 2,
+        dica: "Pense no que melhor protege oceanos e melhora a vida dos seres vivos.",
         explicacao: "O plástico pode ficar 450 anos no mar."
       },
       {
-        pergunta: "Qual oceano é o maior do mundo?",
-        alternativas: ["Atlântico", "Índico", "Pacífico", "Ártico"],
+        pergunta: "Ao estudar os oceanos, qual oceano é o maior do mundo?",
+        alternativas: [
+          "Atlântico",
+          "Índico",
+          "Pacífico",
+          "Ártico"
+        ],
         correta: 2,
+        dica: "Compare a ideia de tamanho ou quantidade, sem se deixar levar pelo nome mais conhecido.",
         explicacao: "O Oceano Pacífico é o maior de todos."
       },
       {
-        pergunta: "O que são manguezais?",
+        pergunta: "Ao estudar os oceanos, como podemos explicar manguezais?",
         alternativas: [
           "Mata que cresce em água doce",
           "Mata na beira do mar salgado",
@@ -163,12 +236,19 @@ const PERGUNTAS = {
           "Duna de areia na praia"
         ],
         correta: 1,
+        dica: "Pense em áreas entre rio e mar, com água salgada ou salobra.",
         explicacao: "São matas na beira do mar salgado."
       },
       {
-        pergunta: "Qual poluente marinho mais prejudicial?",
-        alternativas: ["Areia", "Plástico", "Conchas", "Sal"],
+        pergunta: "Ao estudar os oceanos, qual poluente marinho mais prejudicial?",
+        alternativas: [
+          "Areia",
+          "Plástico",
+          "Conchas",
+          "Sal"
+        ],
         correta: 1,
+        dica: "Pense no material que demora muito para se decompor e aparece em rios e mares.",
         explicacao: "O plástico é o pior poluente do mar."
       }
     ]
@@ -179,7 +259,7 @@ const PERGUNTAS = {
     cor: "#E74C3C",
     perguntas: [
       {
-        pergunta: "O que é efeito estufa?",
+        pergunta: "Pensando no clima da Terra, como podemos explicar efeito estufa?",
         alternativas: [
           "Furar a camada de ozônio",
           "Calor preso na atmosfera",
@@ -187,16 +267,23 @@ const PERGUNTAS = {
           "Esquentar a água do mar"
         ],
         correta: 1,
+        dica: "Pense em uma camada que segura calor; o problema e o excesso.",
         explicacao: "Efeito estufa prende o calor na atmosfera."
       },
       {
-        pergunta: "Qual gás mais esquenta o planeta?",
-        alternativas: ["Oxigênio (O₂)", "Gás Carbônico (CO₂)", "Nitrogênio (N₂)", "Hidrogênio (H₂)"],
+        pergunta: "Pensando no clima da Terra, qual gás mais esquenta o planeta?",
+        alternativas: [
+          "Oxigênio (O₂)",
+          "Gás Carbônico (CO₂)",
+          "Nitrogênio (N₂)",
+          "Hidrogênio (H₂)"
+        ],
         correta: 1,
+        dica: "Observe qual opcao fala de gases liberados por atividades humanas.",
         explicacao: "CO₂ é o gás que mais aquece a Terra."
       },
       {
-        pergunta: "O que é o aquecimento global?",
+        pergunta: "Pensando no clima da Terra, como podemos explicar o aquecimento global?",
         alternativas: [
           "Terra mais quente naturalmente",
           "Terra mais quente por pessoas",
@@ -204,10 +291,11 @@ const PERGUNTAS = {
           "Mar mais quente que antes"
         ],
         correta: 1,
+        dica: "Procure a alternativa que relaciona aumento de temperatura e acoes humanas.",
         explicacao: "É a Terra ficando mais quente por poluição."
       },
       {
-        pergunta: "Qual a diferença entre tempo e clima?",
+        pergunta: "Pensando no clima da Terra, qual a diferença entre tempo e clima?",
         alternativas: [
           "São a mesma coisa",
           "Tempo é hoje; clima são anos",
@@ -215,10 +303,11 @@ const PERGUNTAS = {
           "Tempo do mundo; clima local"
         ],
         correta: 1,
+        dica: "Tempo muda no dia a dia; clima e observado por muitos anos.",
         explicacao: "Tempo é hoje. Clima são muitos anos."
       },
       {
-        pergunta: "O que são energias renováveis?",
+        pergunta: "Pensando no clima da Terra, como podemos explicar energias renováveis?",
         alternativas: [
           "Sujam a natureza",
           "Nunca acabam na natureza",
@@ -226,10 +315,11 @@ const PERGUNTAS = {
           "Vêm do petróleo"
         ],
         correta: 1,
+        dica: "Pense em fontes que a natureza repoe continuamente.",
         explicacao: "Vêm da natureza e nunca se acabam."
       },
       {
-        pergunta: "O que mais esquenta a Terra?",
+        pergunta: "Pensando no clima da Terra, qual atividade humana mais aumenta o aquecimento do planeta?",
         alternativas: [
           "Cultivar alimentos naturais",
           "Queimar gasolina e carvão",
@@ -237,10 +327,11 @@ const PERGUNTAS = {
           "Plantar mudas de árvores"
         ],
         correta: 1,
+        dica: "Observe qual opcao fala de gases liberados por atividades humanas.",
         explicacao: "Queimar gasolina e carvão aquece o planeta."
       },
       {
-        pergunta: "O que é a pegada de carbono?",
+        pergunta: "Pensando no clima da Terra, como podemos explicar a pegada de carbono?",
         alternativas: [
           "Marca de pé no chão",
           "Gases que produzimos",
@@ -248,16 +339,23 @@ const PERGUNTAS = {
           "Fumaça que vemos no ar"
         ],
         correta: 1,
+        dica: "Observe qual opcao fala de gases liberados por atividades humanas.",
         explicacao: "São os gases que jogamos na atmosfera."
       },
       {
-        pergunta: "Qual acordo mundial ajuda o clima?",
-        alternativas: ["Tratado de Tordesilhas", "Acordo de Paris", "Protocolo de Kyoto", "Carta da ONU"],
+        pergunta: "Pensando no clima da Terra, qual acordo mundial ajuda o clima?",
+        alternativas: [
+          "Tratado de Tordesilhas",
+          "Acordo de Paris",
+          "Protocolo de Kyoto",
+          "Carta da ONU"
+        ],
         correta: 1,
+        dica: "Procure o acordo internacional ligado a metas climaticas atuais.",
         explicacao: "Acordo de Paris é para salvar o clima."
       },
       {
-        pergunta: "O que é neutralidade de carbono?",
+        pergunta: "Pensando no clima da Terra, como podemos explicar neutralidade de carbono?",
         alternativas: [
           "Soltar mais gás que o normal",
           "Soltar e tirar o mesmo tanto",
@@ -265,12 +363,19 @@ const PERGUNTAS = {
           "Só usar carvão de madeira"
         ],
         correta: 1,
+        dica: "Observe qual opcao fala de gases liberados por atividades humanas.",
         explicacao: "É soltar e tirar a mesma quantidade."
       },
       {
-        pergunta: "Quanto a Terra já esquentou desde 1800?",
-        alternativas: ["0,5°C", "Cerca de 1,1°C", "5°C", "10°C"],
+        pergunta: "Pensando no clima da Terra, quanto a Terra já esquentou desde 1800?",
+        alternativas: [
+          "0,5°C",
+          "Cerca de 1,1°C",
+          "5°C",
+          "10°C"
+        ],
         correta: 1,
+        dica: "Pense no que melhor protege clima e melhora a vida dos seres vivos.",
         explicacao: "A Terra já esquentou cerca de 1,1°C."
       }
     ]
@@ -281,7 +386,7 @@ const PERGUNTAS = {
     cor: "#F39C12",
     perguntas: [
       {
-        pergunta: "O que significam os 3 Rs?",
+        pergunta: "Na oficina de reciclagem da escola, O que significam os 3 Rs?",
         alternativas: [
           "Rezar, Repetir, Renovar",
           "Reduzir, Reutilizar, Reciclar",
@@ -289,28 +394,47 @@ const PERGUNTAS = {
           "Repensar, Reprovar, Recomeçar"
         ],
         correta: 1,
+        dica: "Pense em transformar materiais usados em novos produtos.",
         explicacao: "São Reduzir, Reutilizar e Reciclar."
       },
       {
-        pergunta: "Quanto tempo uma lata de alumínio dura?",
-        alternativas: ["1 ano", "5 anos", "Mais de 100 anos", "200 anos"],
+        pergunta: "Na oficina de reciclagem da escola, quanto tempo uma lata de alumínio dura?",
+        alternativas: [
+          "1 ano",
+          "5 anos",
+          "Mais de 100 anos",
+          "200 anos"
+        ],
         correta: 2,
+        dica: "Pense no que melhor protege reciclagem e melhora a vida dos seres vivos.",
         explicacao: "Latas de alumínio duram mais de 100 anos."
       },
       {
-        pergunta: "Qual material é mais reciclado no mundo?",
-        alternativas: ["Plástico", "Vidro", "Papel", "Alumínio"],
+        pergunta: "Na oficina de reciclagem da escola, qual material é mais reciclado no mundo?",
+        alternativas: [
+          "Plástico",
+          "Vidro",
+          "Papel",
+          "Alumínio"
+        ],
         correta: 2,
+        dica: "Pense na matéria-prima usada para fabricar papel.",
         explicacao: "O papel é o material mais reciclado."
       },
       {
-        pergunta: "Qual a cor da lixeira para plástico?",
-        alternativas: ["Azul", "Vermelho", "Verde", "Amarelo"],
+        pergunta: "Na oficina de reciclagem da escola, qual a cor da lixeira para plástico?",
+        alternativas: [
+          "Azul",
+          "Vermelho",
+          "Verde",
+          "Amarelo"
+        ],
         correta: 1,
+        dica: "Pense no que melhor protege reciclagem e melhora a vida dos seres vivos.",
         explicacao: "Vermelho é a cor do plástico na coleta seletiva."
       },
       {
-        pergunta: "O que é compostagem?",
+        pergunta: "Na oficina de reciclagem da escola, como podemos explicar compostagem?",
         alternativas: [
           "Reciclar plásticos",
           "Transformar lixo em adubo",
@@ -318,16 +442,23 @@ const PERGUNTAS = {
           "Enterrar os resíduos"
         ],
         correta: 1,
+        dica: "Pense no material que demora muito para se decompor e aparece em rios e mares.",
         explicacao: "Compostagem vira lixo orgânico em adubo."
       },
       {
-        pergunta: "Quantas vezes o vidro pode ser reciclado?",
-        alternativas: ["5 vezes", "10 vezes", "Infinitas vezes", "3 vezes"],
+        pergunta: "Na oficina de reciclagem da escola, quantas vezes o vidro pode voltar para a reciclagem?",
+        alternativas: [
+          "5 vezes",
+          "10 vezes",
+          "Infinitas vezes",
+          "3 vezes"
+        ],
         correta: 2,
+        dica: "Pense no que melhor protege reciclagem e melhora a vida dos seres vivos.",
         explicacao: "O vidro pode ser reciclado para sempre."
       },
       {
-        pergunta: "O que é upcycling?",
+        pergunta: "Na oficina de reciclagem da escola, como podemos explicar upcycling?",
         alternativas: [
           "Reciclagem comum",
           "Criar algo melhor com lixo",
@@ -335,16 +466,23 @@ const PERGUNTAS = {
           "Queimar lixo para energia"
         ],
         correta: 1,
+        dica: "Pense no que melhor protege reciclagem e melhora a vida dos seres vivos.",
         explicacao: "É fazer algo melhor com materiais velhos."
       },
       {
-        pergunta: "Qual país recicla mais no mundo?",
-        alternativas: ["Brasil", "EUA", "Alemanha", "Japão"],
+        pergunta: "Na oficina de reciclagem da escola, qual país recicla mais no mundo?",
+        alternativas: [
+          "Brasil",
+          "EUA",
+          "Alemanhã",
+          "Japão"
+        ],
         correta: 2,
-        explicacao: "A Alemanha é líder mundial em reciclagem."
+        dica: "Pense em transformar materiais usados em novos produtos.",
+        explicacao: "A Alemanhã é líder mundial em reciclagem."
       },
       {
-        pergunta: "O que são resíduos eletrônicos?",
+        pergunta: "Na oficina de reciclagem da escola, como podemos explicar resíduos eletrônicos?",
         alternativas: [
           "Lixo da internet",
           "Aparelhos usados descartados",
@@ -352,10 +490,11 @@ const PERGUNTAS = {
           "Só pilhas e baterias"
         ],
         correta: 1,
+        dica: "Pense no material que demora muito para se decompor e aparece em rios e mares.",
         explicacao: "São aparelhos elétricos que viram lixo."
       },
       {
-        pergunta: "Onde jogar pilhas e baterias?",
+        pergunta: "Na oficina de reciclagem da escola, Onde jogar pilhas e baterias?",
         alternativas: [
           "Lixo comum",
           "Pontos de coleta",
@@ -363,23 +502,30 @@ const PERGUNTAS = {
           "Lixeira azul"
         ],
         correta: 1,
+        dica: "Pense no que melhor protege reciclagem e melhora a vida dos seres vivos.",
         explicacao: "Pilhas têm veneno e vão em coleta especial."
       }
     ]
   },
-  agua: {
+  água: {
     nome: "Água",
     icone: "💧",
     cor: "#3498DB",
     perguntas: [
       {
-        pergunta: "Quanta água doce temos para beber?",
-        alternativas: ["10%", "Menos de 1%", "5%", "25%"],
+        pergunta: "Ao investigar o uso da água, Quanta água doce temos para beber?",
+        alternativas: [
+          "10%",
+          "Menos de 1%",
+          "5%",
+          "25%"
+        ],
         correta: 1,
+        dica: "Observe se a alternativa protege rios, evita desperdicio ou melhora o tratamento.",
         explicacao: "Menos de 1% da água é doce e acessível."
       },
       {
-        pergunta: "O que é o ciclo da água?",
+        pergunta: "Ao investigar o uso da água, como podemos explicar o ciclo da água?",
         alternativas: [
           "Tratamento da água",
           "Água andando na natureza",
@@ -387,16 +533,23 @@ const PERGUNTAS = {
           "Água nos canos"
         ],
         correta: 1,
+        dica: "Observe se a alternativa protege rios, evita desperdicio ou melhora o tratamento.",
         explicacao: "É a água circulando entre Terra e céu."
       },
       {
-        pergunta: "Quantos litros de água uma pessoa gasta por dia?",
-        alternativas: ["50 litros", "Cerca de 150 litros", "500 litros", "20 litros"],
+        pergunta: "Ao investigar o uso da água, cerca de quantos litros uma pessoa pode gastar por dia?",
+        alternativas: [
+          "50 litros",
+          "Cerca de 150 litros",
+          "500 litros",
+          "20 litros"
+        ],
         correta: 1,
+        dica: "Observe qual opcao fala de gases liberados por atividades humanas.",
         explicacao: "Cada pessoa gasta cerca de 150 litros por dia."
       },
       {
-        pergunta: "O que é uma bacia hidrográfica?",
+        pergunta: "Ao investigar o uso da água, como podemos explicar uma bacia hidrográfica?",
         alternativas: [
           "Tanque de água",
           "Área que leva água ao rio",
@@ -404,16 +557,23 @@ const PERGUNTAS = {
           "Região alagada"
         ],
         correta: 1,
+        dica: "Pense no que melhor protege água e melhora a vida dos seres vivos.",
         explicacao: "É onde a chuva escorre para um rio."
       },
       {
-        pergunta: "Qual doença vem da água suja?",
-        alternativas: ["Gripe", "Cólera", "Diabetes", "Asma"],
+        pergunta: "Ao investigar o uso da água, qual doença vem da água suja?",
+        alternativas: [
+          "Gripe",
+          "Cólera",
+          "Diabetes",
+          "Asma"
+        ],
         correta: 1,
+        dica: "Observe se a alternativa protege rios, evita desperdicio ou melhora o tratamento.",
         explicacao: "Cólera é doença de água contaminada."
       },
       {
-        pergunta: "O que é o lençol freático?",
+        pergunta: "Ao investigar o uso da água, como podemos explicar o lençol freático?",
         alternativas: [
           "Rio na superfície",
           "Água guardada no subsolo",
@@ -421,10 +581,11 @@ const PERGUNTAS = {
           "Gelo das montanhas"
         ],
         correta: 1,
+        dica: "Observe se a alternativa protege rios, evita desperdicio ou melhora o tratamento.",
         explicacao: "É a água que fica debaixo da terra."
       },
       {
-        pergunta: "Como economizar água no banho?",
+        pergunta: "Ao investigar o uso da água, como economizar água no banho?",
         alternativas: [
           "Banho de 5 minutos",
           "Banho de 20 minutos",
@@ -432,10 +593,11 @@ const PERGUNTAS = {
           "Ligar dois chuveiros"
         ],
         correta: 0,
+        dica: "Observe se a alternativa protege rios, evita desperdicio ou melhora o tratamento.",
         explicacao: "Banho de 5 minutos economiza muita água."
       },
       {
-        pergunta: "O que é a água virtual?",
+        pergunta: "Ao investigar o uso da água, como podemos explicar a água virtual?",
         alternativas: [
           "Água da chuva",
           "Água gasta para fazer coisas",
@@ -443,16 +605,23 @@ const PERGUNTAS = {
           "Água mineral"
         ],
         correta: 1,
+        dica: "Observe se a alternativa protege rios, evita desperdicio ou melhora o tratamento.",
         explicacao: "É a água usada para produzir alimentos."
       },
       {
-        pergunta: "Quantos litros para fazer 1kg de carne?",
-        alternativas: ["100 litros", "1.000 litros", "15.000 litros", "50 litros"],
+        pergunta: "Ao investigar o uso da água, cerca de quantos litros podem ser usados para produzir 1 kg de carne?",
+        alternativas: [
+          "100 litros",
+          "1.000 litros",
+          "15.000 litros",
+          "50 litros"
+        ],
         correta: 2,
+        dica: "Pense no que melhor protege água e melhora a vida dos seres vivos.",
         explicacao: "Precisa de 15.000 litros para fazer 1kg de carne."
       },
       {
-        pergunta: "O que é dessalinização?",
+        pergunta: "Ao investigar o uso da água, como podemos explicar dessalinização?",
         alternativas: [
           "Sujar a água doce",
           "Tirar o sal da água do mar",
@@ -460,6 +629,7 @@ const PERGUNTAS = {
           "Tratar o esgoto"
         ],
         correta: 1,
+        dica: "Observe se a alternativa protege rios, evita desperdicio ou melhora o tratamento.",
         explicacao: "Tira o sal do mar para virar água potável."
       }
     ]
@@ -470,13 +640,19 @@ const PERGUNTAS = {
     cor: "#F1C40F",
     perguntas: [
       {
-        pergunta: "Qual a principal fonte de energia no Brasil?",
-        alternativas: ["Carvão mineral", "Petróleo", "Hidrelétrica", "Nuclear"],
+        pergunta: "Pensando nas fontes de energia, qual a principal fonte de energia no Brasil?",
+        alternativas: [
+          "Carvão mineral",
+          "Petróleo",
+          "Hidrelétrica",
+          "Nuclear"
+        ],
         correta: 2,
+        dica: "Compare fontes que poluem muito com fontes mais limpas.",
         explicacao: "O Brasil usa mais energia das hidrelétricas."
       },
       {
-        pergunta: "O que é energia solar?",
+        pergunta: "Pensando nas fontes de energia, como podemos explicar energia solar?",
         alternativas: [
           "Energia do vento",
           "Luz do sol virada em energia",
@@ -484,10 +660,11 @@ const PERGUNTAS = {
           "Energia nuclear"
         ],
         correta: 1,
+        dica: "Compare fontes que poluem muito com fontes mais limpas.",
         explicacao: "Energia solar vem da luz do sol."
       },
       {
-        pergunta: "Qual a vantagem da energia eólica?",
+        pergunta: "Pensando nas fontes de energia, qual a vantagem da energia eólica?",
         alternativas: [
           "Polui o ar",
           "É limpa e não polui",
@@ -495,10 +672,11 @@ const PERGUNTAS = {
           "Ocupa pouco espaço"
         ],
         correta: 1,
+        dica: "Compare fontes que poluem muito com fontes mais limpas.",
         explicacao: "Energia eólica é limpa e não polui."
       },
       {
-        pergunta: "O que é biomassa?",
+        pergunta: "Pensando nas fontes de energia, como podemos explicar biomassa?",
         alternativas: [
           "Energia do vento",
           "Energia de restos de plantas",
@@ -506,16 +684,23 @@ const PERGUNTAS = {
           "Energia solar"
         ],
         correta: 1,
+        dica: "Compare fontes que poluem muito com fontes mais limpas.",
         explicacao: "Biomassa usa restos de plantas para energia."
       },
       {
-        pergunta: "Qual país mais investe em energia solar?",
-        alternativas: ["Brasil", "Alemanha", "China", "Austrália"],
+        pergunta: "Pensando nas fontes de energia, qual país mais investe em energia solar?",
+        alternativas: [
+          "Brasil",
+          "Alemanhã",
+          "China",
+          "Austrália"
+        ],
         correta: 2,
+        dica: "Compare fontes que poluem muito com fontes mais limpas.",
         explicacao: "A China é quem mais investe em energia solar."
       },
       {
-        pergunta: "O que são combustíveis fósseis?",
+        pergunta: "Pensando nas fontes de energia, como podemos explicar combustíveis fósseis?",
         alternativas: [
           "Energia do sol",
           "Restos antigos viram combustível",
@@ -523,10 +708,11 @@ const PERGUNTAS = {
           "Energia da água"
         ],
         correta: 1,
+        dica: "Pense no que melhor protege energia e melhora a vida dos seres vivos.",
         explicacao: "Petróleo e carvão são combustíveis fósseis."
       },
       {
-        pergunta: "O que é eficiência energética?",
+        pergunta: "Pensando nas fontes de energia, como podemos explicar eficiência energética?",
         alternativas: [
           "Usar mais energia",
           "Gastar menos energia",
@@ -534,16 +720,23 @@ const PERGUNTAS = {
           "Usar energia nuclear"
         ],
         correta: 1,
+        dica: "Compare fontes que poluem muito com fontes mais limpas.",
         explicacao: "É fazer a mesma coisa com menos energia."
       },
       {
-        pergunta: "Qual a maior usina hidrelétrica do Brasil?",
-        alternativas: ["Tucuruí", "Itaipu", "Belo Monte", "Sobradinho"],
+        pergunta: "Pensando nas fontes de energia, qual a maior usina hidrelétrica do Brasil?",
+        alternativas: [
+          "Tucuruí",
+          "Itaipu",
+          "Belo Monte",
+          "Sobradinho"
+        ],
         correta: 1,
+        dica: "Compare a ideia de tamanho ou quantidade, sem se deixar levar pelo nome mais conhecido.",
         explicacao: "Itaipu é a maior hidrelétrica do Brasil."
       },
       {
-        pergunta: "O que é energia geotérmica?",
+        pergunta: "Pensando nas fontes de energia, como podemos explicar energia geotérmica?",
         alternativas: [
           "Energia do sol",
           "Calor da Terra vira energia",
@@ -551,10 +744,11 @@ const PERGUNTAS = {
           "Energia nuclear"
         ],
         correta: 1,
+        dica: "Compare fontes que poluem muito com fontes mais limpas.",
         explicacao: "Usa o calor de dentro da Terra."
       },
       {
-        pergunta: "O que é ilha de calor nas cidades?",
+        pergunta: "Pensando nas fontes de energia, como podemos explicar ilha de calor nas cidades?",
         alternativas: [
           "Cidade mais fria que o campo",
           "Cidade mais quente que o campo",
@@ -562,6 +756,7 @@ const PERGUNTAS = {
           "Só aquecimento global"
         ],
         correta: 1,
+        dica: "Pense em solucoes que melhoram a vida das pessoas e reduzem impactos ambientais.",
         explicacao: "Cidades são mais quentes que o campo."
       }
     ]
@@ -572,7 +767,7 @@ const PERGUNTAS = {
     cor: "#9B59B6",
     perguntas: [
       {
-        pergunta: "O que significa biodiversidade?",
+        pergunta: "Ao observar a biodiversidade, O que significa biodiversidade?",
         alternativas: [
           "Só variedade de animais",
           "Toda forma de vida na Terra",
@@ -580,16 +775,23 @@ const PERGUNTAS = {
           "Só tamanho das florestas"
         ],
         correta: 1,
+        dica: "Pense na variedade de seres vivos em um ambiente.",
         explicacao: "É a variedade de vida no planeta."
       },
       {
-        pergunta: "Qual país tem a maior biodiversidade?",
-        alternativas: ["Estados Unidos", "Brasil", "Índia", "Austrália"],
+        pergunta: "Ao observar a biodiversidade, qual país tem a maior biodiversidade?",
+        alternativas: [
+          "Estados Unidos",
+          "Brasil",
+          "Índia",
+          "Austrália"
+        ],
         correta: 1,
+        dica: "Compare a ideia de tamanho ou quantidade, sem se deixar levar pelo nome mais conhecido.",
         explicacao: "O Brasil tem a maior biodiversidade do mundo."
       },
       {
-        pergunta: "O que é uma espécie endêmica?",
+        pergunta: "Ao observar a biodiversidade, como podemos explicar uma espécie endêmica?",
         alternativas: [
           "Espécie do mundo todo",
           "Espécie que só existe num lugar",
@@ -597,16 +799,23 @@ const PERGUNTAS = {
           "Espécie extinta"
         ],
         correta: 1,
+        dica: "Pense no que melhor protege biodiversidade e melhora a vida dos seres vivos.",
         explicacao: "Só existe em uma região específica."
       },
       {
-        pergunta: "Quantas espécies existem no planeta?",
-        alternativas: ["1 milhão", "8,7 milhões", "100 mil", "500 milhões"],
+        pergunta: "Ao observar a biodiversidade, Quantas espécies existem no planeta?",
+        alternativas: [
+          "1 milhão",
+          "8,7 milhões",
+          "100 mil",
+          "500 milhões"
+        ],
         correta: 1,
+        dica: "Pense no que melhor protege biodiversidade e melhora a vida dos seres vivos.",
         explicacao: "Estima-se 8,7 milhões de espécies no planeta."
       },
       {
-        pergunta: "O que é extinção de espécies?",
+        pergunta: "Ao observar a biodiversidade, como podemos explicar extinção de espécies?",
         alternativas: [
           "Bichos mudando de lugar",
           "Espécie que desaparece para sempre",
@@ -614,10 +823,11 @@ const PERGUNTAS = {
           "Mudança de habitat"
         ],
         correta: 1,
+        dica: "Pense no que melhor protege biodiversidade e melhora a vida dos seres vivos.",
         explicacao: "É quando uma espécie some para sempre."
       },
       {
-        pergunta: "O que são espécies invasoras?",
+        pergunta: "Ao observar a biodiversidade, como podemos explicar espécies invasoras?",
         alternativas: [
           "Espécies da região",
           "Espécies que chegam e prejudicam",
@@ -625,16 +835,23 @@ const PERGUNTAS = {
           "Plantas de jardim"
         ],
         correta: 1,
+        dica: "Pense em cuidar do solo, da água e dos alimentos ao mesmo tempo.",
         explicacao: "São bichos ou plantas que invadem outro lugar."
       },
       {
-        pergunta: "Qual bioma brasileiro tem mais espécies?",
-        alternativas: ["Cerrado", "Mata Atlântica", "Amazônia", "Pantanal"],
+        pergunta: "Ao observar a biodiversidade, qual bioma brasileiro tem mais espécies?",
+        alternativas: [
+          "Cerrado",
+          "Mata Atlântica",
+          "Amazônia",
+          "Pantanal"
+        ],
         correta: 2,
+        dica: "Pense no que melhor protege biodiversidade e melhora a vida dos seres vivos.",
         explicacao: "A Amazônia tem mais espécies que qualquer bioma."
       },
       {
-        pergunta: "O que é seleção natural?",
+        pergunta: "Ao observar a biodiversidade, como podemos explicar seleção natural?",
         alternativas: [
           "Pessoas escolhem espécies",
           "Os mais fortes sobrevivem",
@@ -642,16 +859,23 @@ const PERGUNTAS = {
           "Morte de todas espécies"
         ],
         correta: 1,
+        dica: "Pense no que melhor protege biodiversidade e melhora a vida dos seres vivos.",
         explicacao: "Os seres mais adaptados sobrevivem na natureza."
       },
       {
-        pergunta: "Quantas abelhas polinizam 1 hectare?",
-        alternativas: ["10 abelhas", "100 abelhas", "Milhares de abelhas", "1 milhão de abelhas"],
+        pergunta: "Ao observar a biodiversidade, cerca de quantas abelhas podem ajudar a polinizar 1 hectare?",
+        alternativas: [
+          "10 abelhas",
+          "100 abelhas",
+          "Milhares de abelhas",
+          "1 milhão de abelhas"
+        ],
         correta: 2,
+        dica: "Pense no que melhor protege biodiversidade e melhora a vida dos seres vivos.",
         explicacao: "Milhares de abelhas são necessárias para polinizar."
       },
       {
-        pergunta: "O que é a Lista Vermelha da IUCN?",
+        pergunta: "Ao observar a biodiversidade, como podemos explicar a Lista Vermelha da IUCN?",
         alternativas: [
           "Lista de espécies extintas",
           "Lista de espécies em perigo",
@@ -659,17 +883,18 @@ const PERGUNTAS = {
           "Lista de bichos de estimação"
         ],
         correta: 1,
+        dica: "Pense no que melhor protege biodiversidade e melhora a vida dos seres vivos.",
         explicacao: "Mostra quais espécies correm risco de sumir."
       }
     ]
   },
-  poluicao: {
+  poluição: {
     nome: "Poluição",
     icone: "💨",
     cor: "#95A5A6",
     perguntas: [
       {
-        pergunta: "O que é poluição do ar?",
+        pergunta: "Ao analisar a poluição no ambiente, como podemos explicar poluição do ar?",
         alternativas: [
           "Só fumaça de carros",
           "Sujeira no ar que respiramos",
@@ -677,16 +902,23 @@ const PERGUNTAS = {
           "Vento bem forte"
         ],
         correta: 1,
+        dica: "Procure a opcao que mostra sujeira ou contaminação prejudicando seres vivos.",
         explicacao: "É sujeira no ar que faz mal à saúde."
       },
       {
-        pergunta: "Qual cidade brasileira tem o ar mais poluído?",
-        alternativas: ["São Paulo", "Rio de Janeiro", "Manaus", "Belo Horizonte"],
+        pergunta: "Ao analisar a poluição no ambiente, qual cidade brasileira tem o ar mais poluído?",
+        alternativas: [
+          "São Paulo",
+          "Rio de Janeiro",
+          "Manaus",
+          "Belo Horizonte"
+        ],
         correta: 0,
+        dica: "Pense em solucoes que melhoram a vida das pessoas e reduzem impactos ambientais.",
         explicacao: "São Paulo tem o ar mais poluído do Brasil."
       },
       {
-        pergunta: "O que é chuva ácida?",
+        pergunta: "Ao analisar a poluição no ambiente, como podemos explicar chuva ácida?",
         alternativas: [
           "Chuva normal e limpa",
           "Chuva com poluição ácida",
@@ -694,16 +926,23 @@ const PERGUNTAS = {
           "Chuva radioativa"
         ],
         correta: 1,
+        dica: "Procure a opcao que mostra sujeira ou contaminação prejudicando seres vivos.",
         explicacao: "Chuva ácida tem poluição que forma ácidos."
       },
       {
-        pergunta: "Qual a maior fonte de poluição do mar?",
-        alternativas: ["Navios", "Atividades em terra", "Turismo", "Pesca"],
+        pergunta: "Ao analisar a poluição no ambiente, qual a maior fonte de poluição do mar?",
+        alternativas: [
+          "Navios",
+          "Atividades em terra",
+          "Turismo",
+          "Pesca"
+        ],
         correta: 1,
+        dica: "Compare a ideia de tamanho ou quantidade, sem se deixar levar pelo nome mais conhecido.",
         explicacao: "80% da poluição do mar vem de terra."
       },
       {
-        pergunta: "O que são microplásticos?",
+        pergunta: "Ao analisar a poluição no ambiente, como podemos explicar microplásticos?",
         alternativas: [
           "Plástico reciclável",
           "Pedaços de plástico bem pequenos",
@@ -711,10 +950,11 @@ const PERGUNTAS = {
           "Sacos e garrafas plásticas"
         ],
         correta: 1,
+        dica: "Pense no que melhor protege poluição e melhora a vida dos seres vivos.",
         explicacao: "São pedacinhos de plástico menores que 5mm."
       },
       {
-        pergunta: "O que é poluição do solo?",
+        pergunta: "Ao analisar a poluição no ambiente, como podemos explicar poluição do solo?",
         alternativas: [
           "Só lixo no chão",
           "Veneno e lixo no solo",
@@ -722,10 +962,11 @@ const PERGUNTAS = {
           "Terra bem dura"
         ],
         correta: 1,
+        dica: "Pense no material que demora muito para se decompor e aparece em rios e mares.",
         explicacao: "É sujeira química e lixo no chão."
       },
       {
-        pergunta: "O que é poluição sonora?",
+        pergunta: "Ao analisar a poluição no ambiente, como podemos explicar poluição sonora?",
         alternativas: [
           "Som da natureza",
           "Barulho demais das pessoas",
@@ -733,16 +974,23 @@ const PERGUNTAS = {
           "Som dos animais"
         ],
         correta: 1,
+        dica: "Procure a opcao que mostra sujeira ou contaminação prejudicando seres vivos.",
         explicacao: "É muito barulho que faz mal à saúde."
       },
       {
-        pergunta: "Qual metal tóxico existe em pilhas?",
-        alternativas: ["Ferro", "Cádmio", "Alumínio", "Cobre"],
+        pergunta: "Ao analisar a poluição no ambiente, qual metal tóxico existe em pilhas?",
+        alternativas: [
+          "Ferro",
+          "Cádmio",
+          "Alumínio",
+          "Cobre"
+        ],
         correta: 1,
+        dica: "Pense no que melhor protege poluição e melhora a vida dos seres vivos.",
         explicacao: "Cádmio é um metal tóxico em pilhas."
       },
       {
-        pergunta: "O que é esgoto não tratado?",
+        pergunta: "Ao analisar a poluição no ambiente, como podemos explicar esgoto não tratado?",
         alternativas: [
           "Água limpa",
           "Sujeira líquida sem tratamento",
@@ -750,12 +998,19 @@ const PERGUNTAS = {
           "Água mineral"
         ],
         correta: 1,
+        dica: "Pense no que melhor protege poluição e melhora a vida dos seres vivos.",
         explicacao: "É esgoto jogado nos rios sem tratamento."
       },
       {
-        pergunta: "Quantas pessoas morrem por poluição do ar?",
-        alternativas: ["1.000", "100.000", "7 milhões", "1 bilhão"],
+        pergunta: "Ao analisar a poluição no ambiente, Quantas pessoas morrem por poluição do ar?",
+        alternativas: [
+          "1.000",
+          "100.000",
+          "7 milhões",
+          "1 bilhão"
+        ],
         correta: 2,
+        dica: "Procure a opcao que mostra sujeira ou contaminação prejudicando seres vivos.",
         explicacao: "7 milhões de pessoas morrem por ar poluído."
       }
     ]
@@ -766,7 +1021,7 @@ const PERGUNTAS = {
     cor: "#27AE60",
     perguntas: [
       {
-        pergunta: "O que é desenvolvimento sustentável?",
+        pergunta: "Pensando em atitudes sustentáveis, como podemos explicar desenvolvimento sustentável?",
         alternativas: [
           "Crescer sem se importar",
           "Cuidar do hoje sem destruir o amanhã",
@@ -774,10 +1029,11 @@ const PERGUNTAS = {
           "Só proteger as florestas"
         ],
         correta: 1,
+        dica: "Pense em usar recursos hoje sem prejudicar as pessoas de amanhã.",
         explicacao: "É crescer sem destruir o futuro."
       },
       {
-        pergunta: "Quais são os três pilares da sustentabilidade?",
+        pergunta: "Pensando em atitudes sustentáveis, quais são os três pilares da sustentabilidade?",
         alternativas: [
           "Social, Cultural, Político",
           "Ambiental, Social, Econômico",
@@ -785,10 +1041,11 @@ const PERGUNTAS = {
           "Tecnologia, Inovação, Ciência"
         ],
         correta: 1,
+        dica: "Pense em usar recursos hoje sem prejudicar as pessoas de amanhã.",
         explicacao: "São ambiental, social e econômico."
       },
       {
-        pergunta: "O que é consumo consciente?",
+        pergunta: "Pensando em atitudes sustentáveis, como podemos explicar consumo consciente?",
         alternativas: [
           "Comprar sem pensar",
           "Escolher sem prejudicar o planeta",
@@ -796,10 +1053,11 @@ const PERGUNTAS = {
           "Comprar tudo que vê"
         ],
         correta: 1,
+        dica: "Pense no que melhor protege sustentabilidade e melhora a vida dos seres vivos.",
         explicacao: "É comprar pensando no meio ambiente."
       },
       {
-        pergunta: "O que é a Agenda 2030 da ONU?",
+        pergunta: "Pensando em atitudes sustentáveis, como podemos explicar a Agenda 2030 da ONU?",
         alternativas: [
           "Calendário de eventos",
           "Plano com 17 metas para o mundo",
@@ -807,10 +1065,11 @@ const PERGUNTAS = {
           "Plano de reciclagem"
         ],
         correta: 1,
+        dica: "Pense no que melhor protege sustentabilidade e melhora a vida dos seres vivos.",
         explicacao: "São 17 metas para um futuro melhor."
       },
       {
-        pergunta: "O que é agricultura sustentável?",
+        pergunta: "Pensando em atitudes sustentáveis, como podemos explicar agricultura sustentável?",
         alternativas: [
           "Usar muito veneno",
           "Plantar sem destruir a natureza",
@@ -818,10 +1077,11 @@ const PERGUNTAS = {
           "Plantar só uma coisa"
         ],
         correta: 1,
+        dica: "Pense em usar recursos hoje sem prejudicar as pessoas de amanhã.",
         explicacao: "É produzir alimentos cuidando da natureza."
       },
       {
-        pergunta: "O que é uma cidade sustentável?",
+        pergunta: "Pensando em atitudes sustentáveis, como podemos explicar uma cidade sustentável?",
         alternativas: [
           "Cidade com muitos carros",
           "Cidade boa para viver e para o planeta",
@@ -829,10 +1089,11 @@ const PERGUNTAS = {
           "Cidade com prédios enormes"
         ],
         correta: 1,
+        dica: "Pense em usar recursos hoje sem prejudicar as pessoas de amanhã.",
         explicacao: "Une qualidade de vida e cuidado ambiental."
       },
       {
-        pergunta: "O que é economia circular?",
+        pergunta: "Pensando em atitudes sustentáveis, como podemos explicar economia circular?",
         alternativas: [
           "Economia comum",
           "Reutilizar tudo sem gerar lixo",
@@ -840,10 +1101,11 @@ const PERGUNTAS = {
           "Só reciclar"
         ],
         correta: 1,
+        dica: "Pense no que melhor protege sustentabilidade e melhora a vida dos seres vivos.",
         explicacao: "É usar coisas de novo sem desperdiçar."
       },
       {
-        pergunta: "O que é certificação ambiental?",
+        pergunta: "Pensando em atitudes sustentáveis, como podemos explicar certificação ambiental?",
         alternativas: [
           "Multa ambiental",
           "Selo de produto sustentável",
@@ -851,10 +1113,11 @@ const PERGUNTAS = {
           "Registro de área verde"
         ],
         correta: 1,
+        dica: "Pense em usar recursos hoje sem prejudicar as pessoas de amanhã.",
         explicacao: "Selo que mostra que algo é sustentável."
       },
       {
-        pergunta: "Qual o objetivo do ODS 13?",
+        pergunta: "Pensando em atitudes sustentáveis, qual o objetivo do ODS 13?",
         alternativas: [
           "Acabar com a pobreza",
           "Combater a mudança do clima",
@@ -862,10 +1125,11 @@ const PERGUNTAS = {
           "Vida na água"
         ],
         correta: 1,
+        dica: "Pense no que melhor protege sustentabilidade e melhora a vida dos seres vivos.",
         explicacao: "ODS 13 é para combater as mudanças climáticas."
       },
       {
-        pergunta: "O que significa ESG?",
+        pergunta: "Pensando em atitudes sustentáveis, O que significa ESG?",
         alternativas: [
           "Empresa Sem Gerenciamento",
           "Ambiental, Social e Governança",
@@ -873,6 +1137,7 @@ const PERGUNTAS = {
           "Energia Solar Garantida"
         ],
         correta: 1,
+        dica: "Pense em usar recursos hoje sem prejudicar as pessoas de amanhã.",
         explicacao: "São regras para empresas sustentáveis."
       }
     ]
@@ -881,22 +1146,33 @@ const PERGUNTAS = {
     nome: "Animais em Extinção",
     icone: "🦏",
     cor: "#E67E22",
-    ordem: 7,
     perguntas: [
       {
-        pergunta: "Quantas espécies estão ameaçadas hoje?",
-        alternativas: ["1.000", "10.000", "Mais de 40.000", "100.000"],
+        pergunta: "Ao estudar animais ameaçados, Quantas espécies estão ameaçadas hoje?",
+        alternativas: [
+          "1.000",
+          "10.000",
+          "Mais de 40.000",
+          "100.000"
+        ],
         correta: 2,
+        dica: "Pense no que melhor protege animais em extinção e melhora a vida dos seres vivos.",
         explicacao: "Mais de 40.000 espécies estão em perigo."
       },
       {
-        pergunta: "Qual animal brasileiro luta contra a extinção?",
-        alternativas: ["Arara-azul", "Tatu-bola", "Mico-leão-dourado", "Lobo-guará"],
+        pergunta: "Ao estudar animais ameaçados, qual animal brasileiro luta contra a extinção?",
+        alternativas: [
+          "Arara-azul",
+          "Tatu-bola",
+          "Mico-leão-dourado",
+          "Lobo-guará"
+        ],
         correta: 2,
+        dica: "Compare tamanho, habitat e risco de desaparecer.",
         explicacao: "Mico-leão-dourado é símbolo da conservação."
       },
       {
-        pergunta: "O que é a IUCN?",
+        pergunta: "Ao estudar animais ameaçados, como podemos explicar a IUCN?",
         alternativas: [
           "Instituto de Urbanismo",
           "União de Conservação da Natureza",
@@ -904,16 +1180,23 @@ const PERGUNTAS = {
           "Fundo Ambiental Global"
         ],
         correta: 1,
+        dica: "Pense no que melhor protege animais em extinção e melhora a vida dos seres vivos.",
         explicacao: "Protege a natureza e as espécies ameaçadas."
       },
       {
-        pergunta: "Qual a maior causa de extinção hoje?",
-        alternativas: ["Caça de animais", "Perda do lar dos bichos", "Mudanças naturais", "Barulho demais"],
+        pergunta: "Ao estudar animais ameaçados, qual a maior causa de extinção hoje?",
+        alternativas: [
+          "Caça de animais",
+          "Perda do lar dos bichos",
+          "Mudanças naturais",
+          "Barulho demais"
+        ],
         correta: 1,
+        dica: "Compare a ideia de tamanho ou quantidade, sem se deixar levar pelo nome mais conhecido.",
         explicacao: "Bichos perdem suas casas pelas ações humanas."
       },
       {
-        pergunta: "O que é uma espécie criticamente ameaçada?",
+        pergunta: "Ao estudar animais ameaçados, como podemos explicar uma espécie criticamente ameaçada?",
         alternativas: [
           "Espécie sem nenhum risco",
           "Espécie com risco muito alto",
@@ -921,16 +1204,23 @@ const PERGUNTAS = {
           "Espécie se recuperando"
         ],
         correta: 1,
+        dica: "Pense no que melhor protege animais em extinção e melhora a vida dos seres vivos.",
         explicacao: "Tem risco muito grande de desaparecer."
       },
       {
-        pergunta: "Qual animal está ameaçado na Mata Atlântica?",
-        alternativas: ["Capivara", "Tamanduá-bandeira", "Muriqui-do-norte", "Tucano"],
+        pergunta: "Ao estudar animais ameaçados, qual animal está ameaçado na Mata Atlântica?",
+        alternativas: [
+          "Capivara",
+          "Tamanduá-bandeira",
+          "Muriqui-do-norte",
+          "Tucano"
+        ],
         correta: 2,
+        dica: "Compare tamanho, habitat e risco de desaparecer.",
         explicacao: "Muriqui-do-norte é um dos primatas mais ameaçados."
       },
       {
-        pergunta: "O que é a CITES?",
+        pergunta: "Ao estudar animais ameaçados, como podemos explicar a CITES?",
         alternativas: [
           "Controle do comércio de espécies",
           "Lei brasileira de animais",
@@ -938,16 +1228,23 @@ const PERGUNTAS = {
           "Acordo do clima"
         ],
         correta: 0,
+        dica: "Pense no que melhor protege animais em extinção e melhora a vida dos seres vivos.",
         explicacao: "Regula o comércio de espécies ameaçadas."
       },
       {
-        pergunta: "Quantas onças-pintadas existem na Amazônia?",
-        alternativas: ["Mais de 10.000", "Menos de 500", "Cerca de 2.000", "100.000"],
+        pergunta: "Ao estudar animais ameaçados, cerca de quantas onças-pintadas existem na Amazônia?",
+        alternativas: [
+          "Mais de 10.000",
+          "Menos de 500",
+          "Cerca de 2.000",
+          "100.000"
+        ],
         correta: 0,
+        dica: "Pense no que melhor protege animais em extinção e melhora a vida dos seres vivos.",
         explicacao: "Existem mais de 10.000 onças na Amazônia."
       },
       {
-        pergunta: "O que é extinção em massa?",
+        pergunta: "Ao estudar animais ameaçados, como podemos explicar extinção em massa?",
         alternativas: [
           "Evento natural e raro",
           "Muitas espécies somem de uma vez",
@@ -955,12 +1252,19 @@ const PERGUNTAS = {
           "Nova espécie surgindo"
         ],
         correta: 1,
+        dica: "Pense no que melhor protege animais em extinção e melhora a vida dos seres vivos.",
         explicacao: "Muitas espécies desaparecem ao mesmo tempo."
       },
       {
-        pergunta: "Qual bioma brasileiro perdeu mais espécies?",
-        alternativas: ["Amazônia", "Mata Atlântica", "Cerrado", "Pantanal"],
+        pergunta: "Ao estudar animais ameaçados, qual bioma brasileiro perdeu mais espécies?",
+        alternativas: [
+          "Amazônia",
+          "Mata Atlântica",
+          "Cerrado",
+          "Pantanal"
+        ],
         correta: 1,
+        dica: "Pense em perda de vegetação e em lugares muito ocupados por pessoas.",
         explicacao: "A Mata Atlântica perdeu mais de 90% da mata."
       }
     ]
@@ -969,10 +1273,9 @@ const PERGUNTAS = {
     nome: "Agricultura Sustentável",
     icone: "🌾",
     cor: "#8BC34A",
-    ordem: 8,
     perguntas: [
       {
-        pergunta: "O que é agricultura orgânica?",
+        pergunta: "Em uma horta ou fazenda sustentável, como podemos explicar agricultura orgânica?",
         alternativas: [
           "Plantar com veneno",
           "Plantar sem veneno",
@@ -980,10 +1283,11 @@ const PERGUNTAS = {
           "Plantar com máquinas"
         ],
         correta: 1,
+        dica: "Pense em cuidar do solo, da água e dos alimentos ao mesmo tempo.",
         explicacao: "É cultivar sem usar agrotóxicos."
       },
       {
-        pergunta: "O que é rotação de culturas?",
+        pergunta: "Em uma horta ou fazenda sustentável, como podemos explicar rotação de culturas?",
         alternativas: [
           "Plantar sempre a mesma coisa",
           "Trocar o que planta no solo",
@@ -991,10 +1295,11 @@ const PERGUNTAS = {
           "Plantar em círculos"
         ],
         correta: 1,
+        dica: "Pense em cuidar do solo, da água e dos alimentos ao mesmo tempo.",
         explicacao: "Alternar culturas para cuidar do solo."
       },
       {
-        pergunta: "O que são agrotóxicos?",
+        pergunta: "Em uma horta ou fazenda sustentável, como podemos explicar agrotóxicos?",
         alternativas: [
           "Adubo natural",
           "Veneno para matar pragas",
@@ -1002,10 +1307,11 @@ const PERGUNTAS = {
           "Água para irrigar"
         ],
         correta: 1,
+        dica: "Observe qual opcao fala de gases liberados por atividades humanas.",
         explicacao: "São venenos contra pragas na lavoura."
       },
       {
-        pergunta: "O que é agrofloresta?",
+        pergunta: "Em uma horta ou fazenda sustentável, como podemos explicar agrofloresta?",
         alternativas: [
           "Plantar uma só árvore",
           "Misturar árvores com plantação",
@@ -1013,10 +1319,11 @@ const PERGUNTAS = {
           "Queimada controlada"
         ],
         correta: 1,
+        dica: "Pense em cuidar do solo, da água e dos alimentos ao mesmo tempo.",
         explicacao: "Planta árvores junto com outras culturas."
       },
       {
-        pergunta: "O que é plantio direto?",
+        pergunta: "Em uma horta ou fazenda sustentável, como podemos explicar plantio direto?",
         alternativas: [
           "Arar a terra antes",
           "Plantar sem revirar o solo",
@@ -1024,10 +1331,11 @@ const PERGUNTAS = {
           "Só colher"
         ],
         correta: 1,
+        dica: "Pense em cuidar do solo, da água e dos alimentos ao mesmo tempo.",
         explicacao: "Planta sem mexer na terra."
       },
       {
-        pergunta: "Qual vantagem da agricultura familiar?",
+        pergunta: "Em uma horta ou fazenda sustentável, qual vantagem da agricultura familiar?",
         alternativas: [
           "Produz em grande escala",
           "Menos dano à natureza",
@@ -1035,10 +1343,11 @@ const PERGUNTAS = {
           "Exporta mais"
         ],
         correta: 1,
+        dica: "Pense em cuidar do solo, da água e dos alimentos ao mesmo tempo.",
         explicacao: "Alimenta o Brasil com menos danos ambientais."
       },
       {
-        pergunta: "O que são transgênicos?",
+        pergunta: "Em uma horta ou fazenda sustentável, como podemos explicar transgênicos?",
         alternativas: [
           "Seres mudados em laboratório",
           "Plantas da natureza",
@@ -1046,10 +1355,11 @@ const PERGUNTAS = {
           "Sementes tradicionais"
         ],
         correta: 0,
+        dica: "Pense no que melhor protege agricultura sustentável e melhora a vida dos seres vivos.",
         explicacao: "São organismos com genes alterados em laboratório."
       },
       {
-        pergunta: "O que é agricultura regenerativa?",
+        pergunta: "Em uma horta ou fazenda sustentável, como podemos explicar agricultura regenerativa?",
         alternativas: [
           "Plantio que estraga o solo",
           "Práticas que curam o solo",
@@ -1057,10 +1367,11 @@ const PERGUNTAS = {
           "Plantar só uma cultura"
         ],
         correta: 1,
+        dica: "Pense em cuidar do solo, da água e dos alimentos ao mesmo tempo.",
         explicacao: "Cuida do solo e recupera a natureza."
       },
       {
-        pergunta: "O que são sementes crioulas?",
+        pergunta: "Em uma horta ou fazenda sustentável, como podemos explicar sementes crioulas?",
         alternativas: [
           "Sementes modificadas",
           "Sementes tradicionais dos agricultores",
@@ -1068,10 +1379,11 @@ const PERGUNTAS = {
           "Sementes importadas"
         ],
         correta: 1,
+        dica: "Pense no que melhor protege agricultura sustentável e melhora a vida dos seres vivos.",
         explicacao: "Sementes guardadas por agricultores há gerações."
       },
       {
-        pergunta: "O que é permacultura?",
+        pergunta: "Em uma horta ou fazenda sustentável, como podemos explicar permacultura?",
         alternativas: [
           "Cultivar sempre a mesma planta",
           "Criar espaços imitando a natureza",
@@ -1079,6 +1391,7 @@ const PERGUNTAS = {
           "Criar animais presos"
         ],
         correta: 1,
+        dica: "Pense no que melhor protege agricultura sustentável e melhora a vida dos seres vivos.",
         explicacao: "Desenha espaços que imitam a natureza."
       }
     ]
@@ -1087,10 +1400,9 @@ const PERGUNTAS = {
     nome: "Geologia e Solo",
     icone: "⛰️",
     cor: "#8D6E63",
-    ordem: 9,
     perguntas: [
       {
-        pergunta: "O que é o solo?",
+        pergunta: "Ao investigar o solo e as rochas, como podemos explicar o solo?",
         alternativas: [
           "Só terra suja",
           "Camada onde as plantas crescem",
@@ -1098,16 +1410,23 @@ const PERGUNTAS = {
           "Água subterrânea"
         ],
         correta: 1,
+        dica: "Pense em cuidar do solo, da água e dos alimentos ao mesmo tempo.",
         explicacao: "É onde as plantas crescem."
       },
       {
-        pergunta: "Quanto tempo para formar 1cm de solo?",
-        alternativas: ["1 ano", "10 anos", "100 a 1.000 anos", "1 milhão de anos"],
+        pergunta: "Ao investigar o solo e as rochas, quanto tempo para formar 1cm de solo?",
+        alternativas: [
+          "1 ano",
+          "10 anos",
+          "100 a 1.000 anos",
+          "1 milhão de anos"
+        ],
         correta: 2,
+        dica: "Pense em cuidar do solo, da água e dos alimentos ao mesmo tempo.",
         explicacao: "Leva de 100 a 1.000 anos para formar 1cm."
       },
       {
-        pergunta: "O que é erosão do solo?",
+        pergunta: "Ao investigar o solo e as rochas, como podemos explicar erosão do solo?",
         alternativas: [
           "Fertilização natural",
           "Solo sendo levado pela água ou vento",
@@ -1115,10 +1434,11 @@ const PERGUNTAS = {
           "Terra ficando dura"
         ],
         correta: 1,
+        dica: "Observe se a alternativa protege rios, evita desperdicio ou melhora o tratamento.",
         explicacao: "Água e vento levam o solo embora."
       },
       {
-        pergunta: "O que é desertificação?",
+        pergunta: "Ao investigar o solo e as rochas, como podemos explicar desertificação?",
         alternativas: [
           "Deserto virando floresta",
           "Solo virando deserto",
@@ -1126,10 +1446,11 @@ const PERGUNTAS = {
           "Plantar em terra seca"
         ],
         correta: 1,
+        dica: "Pense em cuidar do solo, da água e dos alimentos ao mesmo tempo.",
         explicacao: "Solo fértil vira deserto por ação humana."
       },
       {
-        pergunta: "O que são minerais?",
+        pergunta: "Ao investigar o solo e as rochas, como podemos explicar minerais?",
         alternativas: [
           "Só pedras preciosas",
           "Substâncias naturais e sólidas",
@@ -1137,10 +1458,11 @@ const PERGUNTAS = {
           "Água congelada"
         ],
         correta: 1,
+        dica: "Pense no que melhor protege geologia e solo e melhora a vida dos seres vivos.",
         explicacao: "São matérias-primas naturais da Terra."
       },
       {
-        pergunta: "O que é mineração sustentável?",
+        pergunta: "Ao investigar o solo e as rochas, como podemos explicar mineração sustentável?",
         alternativas: [
           "Extrair o máximo possível",
           "Extrair minério sem destruir tudo",
@@ -1148,10 +1470,11 @@ const PERGUNTAS = {
           "Mineração artesanal"
         ],
         correta: 1,
+        dica: "Pense em usar recursos hoje sem prejudicar as pessoas de amanhã.",
         explicacao: "Extrair minerais cuidando da natureza."
       },
       {
-        pergunta: "O que são aquíferos?",
+        pergunta: "Ao investigar o solo e as rochas, como podemos explicar aquíferos?",
         alternativas: [
           "Rios na superfície",
           "Água doce guardada no subsolo",
@@ -1159,16 +1482,23 @@ const PERGUNTAS = {
           "Geladeiras naturais"
         ],
         correta: 1,
+        dica: "Observe se a alternativa protege rios, evita desperdicio ou melhora o tratamento.",
         explicacao: "São reservas de água debaixo da terra."
       },
       {
-        pergunta: "Qual o maior aquífero do Brasil?",
-        alternativas: ["Aquífero Guarani", "Aquífero Alter do Chão", "Aquífero Cabeças", "Aquífero Urucuia"],
+        pergunta: "Ao investigar o solo e as rochas, qual o maior aquífero do Brasil?",
+        alternativas: [
+          "Aquífero Guarani",
+          "Aquífero Alter do Chão",
+          "Aquífero Cabeças",
+          "Aquífero Urucuia"
+        ],
         correta: 0,
+        dica: "Compare a ideia de tamanho ou quantidade, sem se deixar levar pelo nome mais conhecido.",
         explicacao: "Aquífero Guarani é um dos maiores do mundo."
       },
       {
-        pergunta: "O que é o ciclo das rochas?",
+        pergunta: "Ao investigar o solo e as rochas, como podemos explicar o ciclo das rochas?",
         alternativas: [
           "Processo de construção",
           "Rochas que se transformam",
@@ -1176,10 +1506,11 @@ const PERGUNTAS = {
           "Movimento das placas"
         ],
         correta: 1,
+        dica: "Observe processos lentos da natureza, como desgaste, camadas e formação do solo.",
         explicacao: "Rochas mudam de tipo ao longo do tempo."
       },
       {
-        pergunta: "O que são recursos minerais não renováveis?",
+        pergunta: "Ao investigar o solo e as rochas, como podemos explicar recursos minerais não renováveis?",
         alternativas: [
           "Recursos que se renovam",
           "Minerais que demoram milhões de anos",
@@ -1187,6 +1518,7 @@ const PERGUNTAS = {
           "Materiais recicláveis"
         ],
         correta: 1,
+        dica: "Pense em fontes que a natureza repoe continuamente.",
         explicacao: "Demoram milhões de anos para se formar."
       }
     ]
@@ -1195,10 +1527,9 @@ const PERGUNTAS = {
     nome: "Cidades Verdes",
     icone: "🏙️",
     cor: "#00BCD4",
-    ordem: 10,
     perguntas: [
       {
-        pergunta: "O que é uma cidade sustentável?",
+        pergunta: "Pensando em cidades mais verdes, como podemos explicar uma cidade sustentável?",
         alternativas: [
           "Cidade com muitos carros",
           "Cidade que cuida do planeta",
@@ -1206,10 +1537,11 @@ const PERGUNTAS = {
           "Cidade com indústrias"
         ],
         correta: 1,
+        dica: "Pense em usar recursos hoje sem prejudicar as pessoas de amanhã.",
         explicacao: "Cidade que equilibra vida boa e natureza."
       },
       {
-        pergunta: "O que são áreas verdes urbanas?",
+        pergunta: "Pensando em cidades mais verdes, como podemos explicar áreas verdes urbanas?",
         alternativas: [
           "Estacionamentos",
           "Parques e praças na cidade",
@@ -1217,10 +1549,11 @@ const PERGUNTAS = {
           "Campos de futebol"
         ],
         correta: 1,
+        dica: "Pense em solucoes que melhoram a vida das pessoas e reduzem impactos ambientais.",
         explicacao: "São espaços com natureza dentro da cidade."
       },
       {
-        pergunta: "O que é mobilidade urbana sustentável?",
+        pergunta: "Pensando em cidades mais verdes, como podemos explicar mobilidade urbana sustentável?",
         alternativas: [
           "Usar só carros",
           "Andar sem poluir",
@@ -1228,10 +1561,11 @@ const PERGUNTAS = {
           "Acabar com ônibus"
         ],
         correta: 1,
+        dica: "Pense em usar recursos hoje sem prejudicar as pessoas de amanhã.",
         explicacao: "Andar a pé, de bike ou transporte público."
       },
       {
-        pergunta: "O que são telhados verdes?",
+        pergunta: "Pensando em cidades mais verdes, como podemos explicar telhados verdes?",
         alternativas: [
           "Telhado pintado de verde",
           "Telhado com plantas",
@@ -1239,10 +1573,11 @@ const PERGUNTAS = {
           "Jardim no chão"
         ],
         correta: 1,
+        dica: "Pense em cuidar do solo, da água e dos alimentos ao mesmo tempo.",
         explicacao: "Telhado com plantas que ajuda o ambiente."
       },
       {
-        pergunta: "O que é cidade-esponja?",
+        pergunta: "Pensando em cidades mais verdes, como podemos explicar cidade-esponja?",
         alternativas: [
           "Cidade que absorve chuva",
           "Cidade submersa",
@@ -1250,10 +1585,11 @@ const PERGUNTAS = {
           "Cidade que flutua"
         ],
         correta: 0,
+        dica: "Observe se a alternativa protege rios, evita desperdicio ou melhora o tratamento.",
         explicacao: "Cidade que absorve água da chuva."
       },
       {
-        pergunta: "O que são ciclovias?",
+        pergunta: "Pensando em cidades mais verdes, como podemos explicar ciclovias?",
         alternativas: [
           "Estrada para carros",
           "Caminho só para bicicletas",
@@ -1261,16 +1597,23 @@ const PERGUNTAS = {
           "Pista de corrida"
         ],
         correta: 1,
+        dica: "Pense no que melhor protege cidades verdes e melhora a vida dos seres vivos.",
         explicacao: "Espaço seguro para andar de bicicleta."
       },
       {
-        pergunta: "Qual cidade brasileira é referência em sustentabilidade?",
-        alternativas: ["São Paulo", "Curitiba", "Manaus", "Belo Horizonte"],
+        pergunta: "Pensando em cidades mais verdes, qual cidade brasileira é referência em sustentabilidade?",
+        alternativas: [
+          "São Paulo",
+          "Curitiba",
+          "Manaus",
+          "Belo Horizonte"
+        ],
         correta: 1,
+        dica: "Pense em usar recursos hoje sem prejudicar as pessoas de amanhã.",
         explicacao: "Curitiba é modelo de cidade sustentável."
       },
       {
-        pergunta: "O que é eficiência energética em prédios?",
+        pergunta: "Pensando em cidades mais verdes, como podemos explicar eficiência energética em prédios?",
         alternativas: [
           "Usar mais energia",
           "Gastar menos energia",
@@ -1278,10 +1621,11 @@ const PERGUNTAS = {
           "Luzes sempre acesas"
         ],
         correta: 1,
+        dica: "Observe qual opcao fala de gases liberados por atividades humanas.",
         explicacao: "Prédios que gastam pouca energia."
       },
       {
-        pergunta: "O que é coleta seletiva?",
+        pergunta: "Pensando em cidades mais verdes, como podemos explicar coleta seletiva?",
         alternativas: [
           "Misturar todo lixo",
           "Separar o lixo reciclável",
@@ -1289,10 +1633,11 @@ const PERGUNTAS = {
           "Enterrar o lixo"
         ],
         correta: 1,
+        dica: "Pense no material que demora muito para se decompor e aparece em rios e mares.",
         explicacao: "Separar lixo que pode ser reciclado."
       },
       {
-        pergunta: "O que são corredores verdes urbanos?",
+        pergunta: "Pensando em cidades mais verdes, como podemos explicar corredores verdes urbanos?",
         alternativas: [
           "Avenidas com árvores",
           "Rotas verdes ligando parques",
@@ -1300,6 +1645,7 @@ const PERGUNTAS = {
           "Túneis no subsolo"
         ],
         correta: 1,
+        dica: "Pense em solucoes que melhoram a vida das pessoas e reduzem impactos ambientais.",
         explicacao: "Conectam áreas verdes pela cidade."
       }
     ]

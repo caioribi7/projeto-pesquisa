@@ -8,7 +8,9 @@
 const SUPABASE_CONFIG = {
   url: 'https://buddknzzrvunobjqgahn.supabase.co',
   anonKey: 'sb_publishable_oiqAfhB968VMoSJ1vVDTlw_aJ-gnCH2',
-  enabled: true,
+  // O jogo roda 100% local por padrão. Ative somente depois de revisar
+  // as políticas em docs/supabase_schema.sql para uso público.
+  enabled: false,
 };
 
 const supabaseClient = {

@@ -13,7 +13,9 @@ CREATE TABLE IF NOT EXISTS users (
   xp INTEGER DEFAULT 0,
   seeds INTEGER DEFAULT 0,
   created_at TIMESTAMPTZ DEFAULT now(),
-  last_login TIMESTAMPTZ DEFAULT now()
+  last_login TIMESTAMPTZ DEFAULT now(),
+  CONSTRAINT users_name_size CHECK (char_length(name) BETWEEN 2 AND 20),
+  CONSTRAINT users_progress_bounds CHECK (level BETWEEN 1 AND 100 AND xp BETWEEN 0 AND 100000 AND seeds BETWEEN 0 AND 100000)
 );
 
 CREATE INDEX IF NOT EXISTS idx_users_name ON users(name);
@@ -28,7 +30,9 @@ CREATE TABLE IF NOT EXISTS scores (
   score INTEGER NOT NULL,
   biome TEXT NOT NULL,
   difficulty TEXT NOT NULL DEFAULT 'medio',
-  created_at TIMESTAMPTZ DEFAULT now()
+  created_at TIMESTAMPTZ DEFAULT now(),
+  CONSTRAINT scores_score_bounds CHECK (score BETWEEN 0 AND 100),
+  CONSTRAINT scores_difficulty_known CHECK (difficulty IN ('facil', 'medio', 'dificil'))
 );
 
 CREATE INDEX IF NOT EXISTS idx_scores_score ON scores(score DESC);
@@ -54,10 +58,10 @@ ALTER TABLE users ENABLE ROW LEVEL SECURITY;
 ALTER TABLE scores ENABLE ROW LEVEL SECURITY;
 ALTER TABLE achievements ENABLE ROW LEVEL SECURITY;
 
--- Usuários
+-- Usuários: leitura e criação pública para demonstrações.
+-- Não libere UPDATE anônimo em produção; isso permite manipular ranking.
 CREATE POLICY "anon_select_users" ON users FOR SELECT USING (true);
 CREATE POLICY "anon_insert_users" ON users FOR INSERT WITH CHECK (true);
-CREATE POLICY "anon_update_users" ON users FOR UPDATE USING (true);
 
 -- Pontuações
 CREATE POLICY "anon_select_scores" ON scores FOR SELECT USING (true);

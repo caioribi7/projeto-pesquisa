@@ -87,8 +87,7 @@
         <div style="margin-top:12px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
           <button class="btn-crystal secondary small" onclick="showScreen('screen-roadmap')">🗺️ Mapa</button>
           <button class="btn-crystal secondary small" onclick="showScreen('screen-ranking')">🏆 Ranking</button>
-          <button class="btn-crystal secondary small" onclick="showScreen('screen-performance')">📈 Desempenho</button>
-          <button class="btn-crystal secondary small" onclick="showScreen('screen-about')">📖 Sobre</button>
+          <button class="btn-crystal secondary small" onclick="showScreen('screen-performance')">📊 Desempenho</button>
         </div>
         <div class="initial-quote">"O conhecimento é a semente que regenera o mundo."</div>
       </div>
@@ -125,15 +124,25 @@
           <div class="menu-item-label">Missões</div>
           <div class="menu-item-desc">Desafios diários</div>
         </div>
+        <div class="menu-item" onclick="showScreen('screen-study')">
+          <span class="menu-item-icon">🧠</span>
+          <div class="menu-item-label">Plano</div>
+          <div class="menu-item-desc">Revisão personalizada</div>
+        </div>
+        <div class="menu-item" onclick="showScreen('screen-minigame')">
+          <span class="menu-item-icon">♻️</span>
+          <div class="menu-item-label">MiniGame</div>
+          <div class="menu-item-desc">Separe resíduos</div>
+        </div>
         <div class="menu-item" onclick="showScreen('screen-ranking')">
           <span class="menu-item-icon">🏆</span>
           <div class="menu-item-label">Ranking</div>
           <div class="menu-item-desc">Classificação</div>
         </div>
         <div class="menu-item" onclick="showScreen('screen-performance')">
-          <span class="menu-item-icon">📈</span>
+          <span class="menu-item-icon">📊</span>
           <div class="menu-item-label">Desempenho</div>
-          <div class="menu-item-desc">Gráfico de evolução</div>
+          <div class="menu-item-desc">Médias dos biomas</div>
         </div>
         <div class="menu-item" onclick="showScreen('screen-achievements')">
           <span class="menu-item-icon">🎖️</span>
@@ -190,6 +199,8 @@
           <div class="quiz-question-text" id="quiz-question">Carregando...</div>
         </div>
         <div class="quiz-options" id="quiz-options"></div>
+        <button class="hint-btn" id="hint-btn" onclick="showQuestionHint()">💡 Ver pista</button>
+        <div class="learning-tip glass" id="learning-tip" aria-live="polite"></div>
         <div class="quiz-footer">
           <div class="quiz-combo" id="quiz-combo">🔥 Combo: 0</div>
           <div class="sprite sprite-eco sprite-eco-sm" id="quiz-eco">
@@ -239,9 +250,11 @@
             <div class="result-stat-label">Combo Máximo</div>
           </div>
         </div>
+        <div class="result-learning glass" id="result-learning"></div>
         <div class="result-phrase" id="result-phrase">"Cada acerto é uma árvore plantada no futuro."</div>
         <div class="result-buttons">
           <button class="btn-crystal" onclick="showScreen('screen-menu')">📋 Menu</button>
+          <button class="btn-crystal secondary" onclick="showScreen('screen-study')">🧠 Revisar</button>
           <button class="btn-crystal secondary" onclick="showScreen('screen-roadmap')">🗺️ Jornada</button>
           <button class="btn-crystal small" onclick="showBiomeSelector()">↻ Jogar Novamente</button>
         </div>
@@ -275,6 +288,47 @@
         <div id="missions-daily"></div>
         <div class="missions-section-title">🌳 Semanais</div>
         <div id="missions-weekly"></div>
+      </div>
+      <button class="back-btn" onclick="showScreen('screen-menu')">← Voltar</button>
+    </div>
+
+    <!-- SCREEN: STUDY PLAN -->
+    <div class="screen" id="screen-study">
+      <div class="study-container">
+        <div class="study-title">🧠 Plano de Estudo</div>
+        <div class="study-layout">
+          <div class="glass study-panel">
+            <div class="study-section-title">Próxima revisão</div>
+            <div id="study-recommendation"></div>
+          </div>
+          <div class="glass study-panel">
+            <div class="study-section-title">Glossário do Guardião</div>
+            <div id="glossary-list"></div>
+          </div>
+          <div class="glass study-panel wide">
+            <div class="study-section-title">Jardim de aprendizagem</div>
+            <div id="garden-view"></div>
+          </div>
+        </div>
+      </div>
+      <button class="back-btn" onclick="showScreen('screen-menu')">← Voltar</button>
+    </div>
+
+    <!-- SCREEN: MINIGAME -->
+    <div class="screen" id="screen-minigame">
+      <div class="minigame-container">
+        <div class="minigame-title">♻️ Oficina da Reciclagem</div>
+        <div class="minigame-subtitle">Escolha a lixeira correta para cada item.</div>
+        <div class="glass minigame-board">
+          <div class="minigame-item" id="minigame-item">Carregando...</div>
+          <div class="minigame-bins">
+            <button class="bin-btn" onclick="answerMiniGame('reciclavel')">♻️ Reciclável</button>
+            <button class="bin-btn" onclick="answerMiniGame('organico')">🍂 Orgânico</button>
+            <button class="bin-btn" onclick="answerMiniGame('perigoso')">⚠️ Perigoso</button>
+          </div>
+          <div class="minigame-feedback" id="minigame-feedback"></div>
+          <div class="minigame-score" id="minigame-score">0/0</div>
+        </div>
       </div>
       <button class="back-btn" onclick="showScreen('screen-menu')">← Voltar</button>
     </div>
@@ -330,19 +384,19 @@
     <div class="screen" id="screen-performance">
       <div class="perf-dashboard">
         <div class="perf-header">
-          <div class="perf-title">📊 Desempenho Geral</div>
-          <div class="perf-subtitle">Média de acertos por bioma · todos os jogadores</div>
+          <div class="perf-title">📊 Desempenho por Bioma</div>
+          <div class="perf-subtitle">Dados do jogador, da turma ou demonstração inicial</div>
         </div>
         <div class="perf-main">
-          <div class="perf-chart-area">
+          <div class="perf-chart-area" id="perf-chart-area">
             <canvas id="perf-chart" width="900" height="480"></canvas>
             <div class="perf-tooltip" id="perf-tooltip"></div>
-            <div class="perf-watermark">ECOQUEST</div>
+            <div class="perf-watermark">ECOQUEST · APRENDIZAGEM</div>
           </div>
-          <div class="perf-sidebar" id="perf-sidebar">
-            <div class="perf-sidebar-title">📈 Resumo</div>
-            <div class="perf-sidebar-stats" id="perf-stats"></div>
-          </div>
+          <div class="perf-sidebar" id="perf-sidebar"></div>
+        </div>
+        <div class="perf-actions">
+          <button class="btn-crystal small" onclick="exportPerfPDF()">📄 Exportar PDF</button>
         </div>
       </div>
       <button class="back-btn" onclick="showScreen('screen-menu')">← Voltar</button>

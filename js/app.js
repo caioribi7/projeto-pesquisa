@@ -23,6 +23,11 @@ let state = {
   totalQuestions: 10,
   isAnswering: false,
   performanceHistory: [],
+  reviewQueue: [],
+  lastQuizMistakes: [],
+  answeredByBiome: {},
+  correctByBiome: {},
+  minigame: { index: 0, score: 0, done: 0 },
 
   rankings: [],
   achievements: [],
@@ -35,6 +40,7 @@ let state = {
     weekly: [
       { id: 'w1', name: 'Complete 3 quizzes de florestas', icon: '🌲', done: 0, target: 3, reward: 500, completed: false },
       { id: 'w2', name: 'Mantenha combo de 10', icon: '🔥', done: 0, target: 10, reward: 300, completed: false },
+      { id: 'w3', name: 'Acerte 5 itens no minigame', icon: '♻️', done: 0, target: 5, reward: 180, completed: false },
     ]
   },
   quizCount: 0,
@@ -97,10 +103,42 @@ const MEDALS = [
 ];
 
 const DIFFICULTY_CONFIG = {
-  facil: { multiplier: 1, label: 'Fácil' },
-  medio: { multiplier: 1.5, label: 'Médio' },
-  dificil: { multiplier: 2, label: 'Difícil' },
+  facil: { multiplier: 1, label: 'Fácil', questions: 8 },
+  medio: { multiplier: 1.3, label: 'Médio', questions: 10 },
+  dificil: { multiplier: 1.6, label: 'Difícil', questions: 10 },
 };
+
+const GLOSSARY = [
+  { term: 'Bioma', text: 'Grande conjunto de vida, clima, solo, plantas e animais de uma região.' },
+  { term: 'Biodiversidade', text: 'Variedade de seres vivos em um ambiente.' },
+  { term: 'Efeito estufa', text: 'Camada de gases que segura parte do calor da Terra. O excesso aquece demais o planeta.' },
+  { term: 'Reciclagem', text: 'Transformar materiais usados em novos produtos.' },
+  { term: 'Manguezal', text: 'Ambiente perto do mar, muito importante para filhotes de peixes e caranguejos.' },
+  { term: 'Pegada de carbono', text: 'Quantidade de gases do efeito estufa ligada às nossas atividades.' },
+];
+
+const MINIGAME_ITEMS = [
+  { label: 'Garrafa plástica limpa', type: 'reciclavel', tip: 'Plástico limpo pode virar novo material.' },
+  { label: 'Casca de banana', type: 'organico', tip: 'Restos de alimentos podem virar adubo.' },
+  { label: 'Pilha usada', type: 'perigoso', tip: 'Pilhas precisam de coleta especial.' },
+  { label: 'Jornal antigo', type: 'reciclavel', tip: 'Papel seco é reciclável.' },
+  { label: 'Folhas secas', type: 'organico', tip: 'Folhas ajudam na compostagem.' },
+  { label: 'Lâmpada quebrada', type: 'perigoso', tip: 'Lâmpadas podem ter partes perigosas.' },
+];
+
+function escapeHTML(value) {
+  return String(value ?? '').replace(/[&<>"']/g, ch => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  }[ch]));
+}
+
+function normalizePlayerName(name) {
+  return name.replace(/[<>"/'`{}[\]\\]/g, '').replace(/\s+/g, ' ').trim().slice(0, 20);
+}
 
 // ─── SOUND (simple oscillator) ──────────────────────────────
 const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -335,7 +373,7 @@ function showScreen(screenId, direction) {
   screenHistory.push(screenId);
 
   const hud = document.getElementById('hud');
-  const showHud = !['screen-initial', 'screen-login', 'screen-result', 'screen-about', 'screen-achievements', 'screen-ranking', 'screen-performance', 'screen-missions', 'screen-settings', 'screen-biome-select', 'screen-roadmap'].includes(screenId);
+  const showHud = !['screen-initial', 'screen-login', 'screen-result', 'screen-about', 'screen-achievements', 'screen-ranking', 'screen-performance', 'screen-missions', 'screen-study', 'screen-minigame', 'screen-settings', 'screen-biome-select', 'screen-roadmap'].includes(screenId);
   hud.style.display = showHud ? 'flex' : 'none';
 
   updateHUD();
@@ -346,6 +384,8 @@ function showScreen(screenId, direction) {
   if (screenId === 'screen-missions') renderMissions();
   if (screenId === 'screen-roadmap') renderRoadmap();
   if (screenId === 'screen-performance') renderPerformance();
+  if (screenId === 'screen-study') renderStudyPlan();
+  if (screenId === 'screen-minigame') startMiniGame();
 }
 
 // ─── HUD ────────────────────────────────────────────────────
@@ -402,9 +442,10 @@ function startQuiz() {
 
   const biome = PERGUNTAS[state.currentBiome];
 
-  const allQuestions = [...biome.perguntas];
+  const allQuestions = getAdaptiveQuestions(state.currentBiome);
   const shuffled = shuffle(allQuestions);
-  state.currentQuestions = shuffled.slice(0, Math.min(10, shuffled.length));
+  const qTarget = DIFFICULTY_CONFIG[state.selectedDifficulty]?.questions || 10;
+  state.currentQuestions = shuffled.slice(0, Math.min(qTarget, shuffled.length));
   state.currentIndex = 0;
   state.score = 0;
   state.answersCorrect = 0;
@@ -414,6 +455,7 @@ function startQuiz() {
   state.totalQuestions = state.currentQuestions.length;
   state.quizFinished = false;
   state.waitingForExplanation = false;
+  state.lastQuizMistakes = [];
 
   document.getElementById('quiz-biome-icon').textContent = biome.icone;
   document.getElementById('quiz-biome-name').textContent = biome.nome;
@@ -440,6 +482,17 @@ function loadQuestion() {
 
   const optionsContainer = document.getElementById('quiz-options');
   optionsContainer.innerHTML = '';
+  const learningTip = document.getElementById('learning-tip');
+  if (learningTip) {
+    learningTip.classList.remove('visible', 'correct', 'wrong');
+    learningTip.textContent = q.dica || getQuestionHint(q);
+  }
+  const hintBtn = document.getElementById('hint-btn');
+  if (hintBtn) {
+    hintBtn.style.display = q.dica ? 'inline-flex' : 'none';
+    hintBtn.disabled = false;
+    hintBtn.textContent = '💡 Ver pista';
+  }
   document.getElementById('quiz-combo').textContent = `🔥 Combo: ${state.consecutiveCorrect}`;
 
   const letters = ['A', 'B', 'C', 'D'];
@@ -455,6 +508,20 @@ function loadQuestion() {
   });
 }
 
+function showQuestionHint() {
+  const learningTip = document.getElementById('learning-tip');
+  const hintBtn = document.getElementById('hint-btn');
+  const q = state.currentQuestions[state.currentIndex];
+  if (!learningTip || !q || state.isAnswering) return;
+  learningTip.textContent = q.dica || getQuestionHint(q);
+  learningTip.classList.add('visible');
+  learningTip.classList.remove('correct', 'wrong');
+  if (hintBtn) {
+    hintBtn.disabled = true;
+    hintBtn.textContent = '💡 Pista aberta';
+  }
+}
+
 function selectAnswer(index) {
   if (state.isAnswering) return;
   state.isAnswering = true;
@@ -462,18 +529,22 @@ function selectAnswer(index) {
   const q = state.currentQuestions[state.currentIndex];
   const options = document.querySelectorAll('.quiz-option');
   options.forEach(o => o.classList.add('disabled'));
+  const hintBtn = document.getElementById('hint-btn');
+  if (hintBtn) hintBtn.disabled = true;
 
   const rect = options[index].getBoundingClientRect();
+  const points = calculatePoints();
+  trackQuestionAttempt(q, index === q.correta);
 
   if (index === q.correta) {
     options[index].classList.add('correct');
     state.answersCorrect++;
     state.consecutiveCorrect++;
-    state.score += calculatePoints();
+    state.score += points;
     playSound('correct');
-    showFeedback(true);
+    showFeedback(true, q.explicacao);
     burstParticles(rect.left + rect.width / 2, rect.top + rect.height / 2, 'rgba(46, 204, 113, ');
-    showXPFloat(rect.left + rect.width / 2, rect.top, `+${calculatePoints()} XP`);
+    showXPFloat(rect.left + rect.width / 2, rect.top, `+${points} XP`);
     ecoReact('celebrate');
 
     if (state.consecutiveCorrect > state.maxCombo) {
@@ -486,6 +557,16 @@ function selectAnswer(index) {
     options[q.correta].classList.add('correct');
     state.answersWrong++;
     state.consecutiveCorrect = 0;
+    state.lastQuizMistakes.push({
+      biome: state.currentBiome,
+      question: q.pergunta,
+      correct: q.alternativas[q.correta],
+      explanation: q.explicacao,
+    });
+    state.reviewQueue = [
+      ...state.reviewQueue.filter(item => item.question !== q.pergunta),
+      { biome: state.currentBiome, question: q.pergunta, explanation: q.explicacao, date: new Date().toISOString() },
+    ].slice(-12);
     playSound('wrong');
     showFeedback(false, q.explicacao);
     burstParticles(rect.left + rect.width / 2, rect.top + rect.height / 2, 'rgba(231, 76, 60, ');
@@ -493,13 +574,13 @@ function selectAnswer(index) {
   }
 
   document.getElementById('quiz-combo').textContent = `🔥 Combo: ${state.consecutiveCorrect}`;
-  document.getElementById('quiz-xp').textContent = `⭐ XP: +${calculatePoints()}`;
+  document.getElementById('quiz-xp').textContent = `⭐ XP: +${points}`;
 
   if (index === q.correta) {
     setTimeout(() => {
       state.currentIndex++;
       loadQuestion();
-    }, 1000);
+    }, 1400);
   } else {
     state.waitingForExplanation = true;
   }
@@ -508,23 +589,35 @@ function selectAnswer(index) {
 function calculatePoints() {
   const base = 100;
   const comboBonus = Math.min(state.consecutiveCorrect, 10) * 10;
-  return base + comboBonus;
+  const multiplier = DIFFICULTY_CONFIG[state.selectedDifficulty]?.multiplier || 1;
+  return Math.round((base + comboBonus) * multiplier);
 }
 
 function showFeedback(correct, explanation) {
   const overlay = document.getElementById('explanation-overlay');
   const icon = document.getElementById('explanation-icon');
   const text = document.getElementById('explanation-text');
+  const learningTip = document.getElementById('learning-tip');
 
   if (correct) {
     icon.textContent = '✅';
-    text.textContent = 'Resposta correta! ✨';
+    text.textContent = 'Resposta correta! ' + (explanation || 'Continue observando as pistas da natureza.');
+    if (learningTip) {
+      learningTip.textContent = text.textContent;
+      learningTip.classList.add('visible', 'correct');
+      learningTip.classList.remove('wrong');
+    }
     setTimeout(() => {
       overlay.classList.remove('active');
     }, 800);
   } else {
     icon.textContent = '💡';
     text.textContent = explanation || 'A resposta correta está destacada em verde.';
+    if (learningTip) {
+      learningTip.textContent = 'Revise: ' + text.textContent;
+      learningTip.classList.add('visible', 'wrong');
+      learningTip.classList.remove('correct');
+    }
     overlay.classList.add('active');
   }
 }
@@ -593,7 +686,7 @@ function finishQuiz() {
 
   // Update quiz count
   state.quizCount++;
-  state.questionsAnswered += state.answersCorrect;
+  state.questionsAnswered += total;
 
   // Update biome-specific achievement progress
   if (state.currentBiome) {
@@ -601,8 +694,8 @@ function finishQuiz() {
       state.biomesPlayed.push(state.currentBiome);
     }
     const prev = state.biomeScores[state.currentBiome] || 0;
-    if (state.score > prev) {
-      state.biomeScores[state.currentBiome] = state.score;
+    if (percent > prev) {
+      state.biomeScores[state.currentBiome] = percent;
     }
     if (percent >= 60 && !state.biomesCompleted[state.currentBiome]) {
       state.biomesCompleted[state.currentBiome] = true;
@@ -610,7 +703,7 @@ function finishQuiz() {
 
     ACHIEVEMENTS_DATA.forEach(a => {
       if (a.category === state.currentBiome) {
-        a.progress = Math.min(a.target, a.progress + state.answersCorrect);
+        a.progress = Math.min(a.target, a.progress + total);
       }
     });
   }
@@ -638,9 +731,14 @@ function finishQuiz() {
 
   // Update missions
   state.missions.daily.forEach(m => {
-    if (m.id === 'd1') m.done += state.answersCorrect;
+    if (m.id === 'd1' && state.currentBiome === 'agua') m.done = Math.min(m.target, m.done + total);
     if (m.id === 'd2' && state.maxCombo >= 3) m.done = m.target;
     if (m.id === 'd3') m.done = Math.min(m.target, m.done + 1);
+    if (m.done >= m.target) m.completed = true;
+  });
+  state.missions.weekly.forEach(m => {
+    if (m.id === 'w1' && state.currentBiome === 'florestas' && percent >= 60) m.done = Math.min(m.target, m.done + 1);
+    if (m.id === 'w2' && state.maxCombo >= 10) m.done = m.target;
     if (m.done >= m.target) m.completed = true;
   });
 
@@ -714,6 +812,7 @@ function showResult(percent, xpEarned, leveledUp) {
 
   // Phrase
   document.getElementById('result-phrase').textContent = FRASES[Math.floor(Math.random() * FRASES.length)];
+  renderResultLearning(percent);
 
   // Level up
   if (leveledUp) {
@@ -850,7 +949,7 @@ async function buildRanking() {
     div.innerHTML = `
       <div style="font-size:1.5rem;margin-bottom:4px;">${d.label}</div>
       <div class="ranking-podium-avatar">🧑‍🌾</div>
-      <div class="ranking-podium-name">${d.item.name}</div>
+      <div class="ranking-podium-name">${escapeHTML(d.item.name)}</div>
       <div class="ranking-podium-score">${d.item.xp} XP</div>
       <div style="font-size:0.7rem;color:var(--moss-gray);">Nv. ${d.item.level} · ${achCount}🏅</div>
     `;
@@ -866,7 +965,7 @@ async function buildRanking() {
     row.innerHTML = `
       <div class="ranking-pos">#${i + 4}</div>
       <div class="ranking-avatar">🧑‍🌾</div>
-      <div class="ranking-name">${player.name}</div>
+      <div class="ranking-name">${escapeHTML(player.name)}</div>
       <div class="ranking-score-bar">
         <div class="ranking-score-fill" style="width:${(player.xp / maxXp) * 100}%"></div>
       </div>
@@ -918,77 +1017,263 @@ function renderMissions() {
   });
 }
 
-// ─── PERFORMANCE DASHBOARD ──────────────────────────────────
+// ─── EDUCATIONAL LAYER ─────────────────────────────────────
+function getAdaptiveQuestions(biomeId) {
+  const biome = PERGUNTAS[biomeId];
+  if (!biome) return [];
+
+  const base = [...biome.perguntas];
+  const reviewQuestions = state.reviewQueue
+    .filter(item => item.biome === biomeId)
+    .map(item => base.find(q => q.pergunta === item.question))
+    .filter(Boolean);
+
+  return [...reviewQuestions, ...base.filter(q => !reviewQuestions.includes(q))];
+}
+
+function getQuestionHint(q) {
+  return q.dica || 'Leia as alternativas e procure a que melhor protege a natureza e explica a causa do problema.';
+}
+
+function trackQuestionAttempt(q, correct) {
+  const biome = state.currentBiome || 'geral';
+  state.answeredByBiome[biome] = (state.answeredByBiome[biome] || 0) + 1;
+  if (correct) state.correctByBiome[biome] = (state.correctByBiome[biome] || 0) + 1;
+}
+
+function getWeakestBiome() {
+  const entries = Object.entries(state.answeredByBiome);
+  if (!entries.length) return null;
+  return entries
+    .map(([biome, answered]) => ({
+      biome,
+      answered,
+      correct: state.correctByBiome[biome] || 0,
+      avg: answered ? Math.round(((state.correctByBiome[biome] || 0) / answered) * 100) : 0,
+    }))
+    .sort((a, b) => a.avg - b.avg || b.answered - a.answered)[0];
+}
+
+function renderResultLearning(percent) {
+  const el = document.getElementById('result-learning');
+  if (!el) return;
+  const biome = PERGUNTAS[state.currentBiome];
+  const mistakes = state.lastQuizMistakes.slice(0, 3);
+  const recommendation = percent >= 80
+    ? `Você domina bem ${biome?.nome || 'este tema'}. Tente o nível médio ou difícil.`
+    : `Revise ${biome?.nome || 'este tema'} antes de avançar. O jogo guardou seus erros no Plano de Estudo.`;
+
+  const mistakeHtml = mistakes.length
+    ? mistakes.map(m => `<li><strong>${escapeHTML(m.correct)}</strong>: ${escapeHTML(m.explanation)}</li>`).join('')
+    : '<li>Nenhum erro neste quiz. Excelente foco.</li>';
+
+  el.innerHTML = `
+    <div class="learning-title">Relatório do Guardião</div>
+    <div class="learning-grid">
+      <div><strong>Recomendação:</strong> ${escapeHTML(recommendation)}</div>
+      <div><strong>Habilidade:</strong> ${percent >= 70 ? 'Entender e aplicar ideias ambientais' : 'Revisar conceitos básicos'}</div>
+    </div>
+    <ul class="learning-list">${mistakeHtml}</ul>
+  `;
+}
+
+function renderStudyPlan() {
+  const recommendation = document.getElementById('study-recommendation');
+  const glossary = document.getElementById('glossary-list');
+  const garden = document.getElementById('garden-view');
+  if (!recommendation || !glossary || !garden) return;
+
+  const weak = getWeakestBiome();
+  const review = state.reviewQueue.slice(-4).reverse();
+  const nextBiome = weak?.biome || state.currentBiome || 'florestas';
+  const nextLabel = PERGUNTAS[nextBiome]?.nome || 'Florestas';
+
+  recommendation.innerHTML = `
+    <div class="study-callout">
+      <div class="study-big">${weak ? `${weak.avg}%` : 'Novo'}</div>
+      <div>
+        <strong>${weak ? 'Tema para reforçar' : 'Comece sua jornada'}</strong>
+        <p>${weak ? `Revise ${escapeHTML(nextLabel)} e tente acertar as perguntas que errou.` : 'Jogue um quiz para o plano ficar personalizado.'}</p>
+      </div>
+    </div>
+    <button class="btn-crystal small" onclick="startReviewQuiz('${escapeHTML(nextBiome)}')">▶ Revisar agora</button>
+    <div class="review-list">
+      ${review.length ? review.map(item => `
+        <div class="review-item">
+          <strong>${escapeHTML(PERGUNTAS[item.biome]?.nome || item.biome)}</strong>
+          <span>${escapeHTML(item.explanation)}</span>
+        </div>
+      `).join('') : '<div class="review-item">Quando você errar, as revisões aparecem aqui.</div>'}
+    </div>
+  `;
+
+  glossary.innerHTML = GLOSSARY.map(item => `
+    <div class="glossary-item">
+      <strong>${escapeHTML(item.term)}</strong>
+      <span>${escapeHTML(item.text)}</span>
+    </div>
+  `).join('');
+
+  const biomes = Object.keys(PERGUNTAS);
+  garden.innerHTML = `
+    <div class="garden-grid">
+      ${biomes.map(key => {
+        const completed = state.biomesCompleted[key];
+        const played = state.biomesPlayed.includes(key);
+        const score = state.biomeScores[key] || 0;
+        return `
+          <div class="garden-plot ${completed ? 'grown' : played ? 'sprout' : ''}">
+            <span>${PERGUNTAS[key].icone}</span>
+            <strong>${escapeHTML(PERGUNTAS[key].nome)}</strong>
+            <small>${played ? `${score}%` : 'A plantar'}</small>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
+function startReviewQuiz(biomeId) {
+  state.currentBiome = biomeId;
+  state.selectedDifficulty = 'facil';
+  startQuiz();
+}
+
+function startMiniGame() {
+  state.minigame = { index: 0, score: 0, done: 0 };
+  renderMiniGameItem();
+}
+
+function renderMiniGameItem() {
+  const itemEl = document.getElementById('minigame-item');
+  const feedback = document.getElementById('minigame-feedback');
+  const score = document.getElementById('minigame-score');
+  if (!itemEl || !feedback || !score) return;
+
+  if (state.minigame.index >= MINIGAME_ITEMS.length) {
+    itemEl.textContent = 'Oficina concluída!';
+    feedback.textContent = `Você acertou ${state.minigame.score} de ${MINIGAME_ITEMS.length}.`;
+    score.textContent = `${state.minigame.score}/${MINIGAME_ITEMS.length}`;
+    state.xp += state.minigame.score * 30;
+    state.seeds += state.minigame.score;
+    const weekly = state.missions.weekly.find(m => m.id === 'w3');
+    if (weekly) {
+      weekly.done = Math.min(weekly.target, weekly.done + state.minigame.score);
+      weekly.completed = weekly.done >= weekly.target;
+    }
+    saveGame();
+    updateHUD();
+    return;
+  }
+
+  const item = MINIGAME_ITEMS[state.minigame.index];
+  itemEl.textContent = item.label;
+  feedback.textContent = 'Observe o item e escolha uma lixeira.';
+  score.textContent = `${state.minigame.score}/${state.minigame.done}`;
+}
+
+function answerMiniGame(type) {
+  if (state.minigame.index >= MINIGAME_ITEMS.length) return;
+  const item = MINIGAME_ITEMS[state.minigame.index];
+  const feedback = document.getElementById('minigame-feedback');
+  const correct = item.type === type;
+  if (correct) {
+    state.minigame.score++;
+    playSound('correct');
+  } else {
+    playSound('wrong');
+  }
+  state.minigame.done++;
+  if (feedback) {
+    feedback.textContent = `${correct ? 'Certo!' : 'Quase!'} ${item.tip}`;
+    feedback.style.color = correct ? 'var(--emerald-glow)' : 'var(--amber-spark)';
+  }
+  state.minigame.index++;
+  setTimeout(renderMiniGameItem, 900);
+}
+
+// ─── PERFORMANCE DASHBOARD (demo mock) ──────────────────────
+const MOCK_PERF = {
+  overallAvg: 73,
+  totalQuizzes: 184,
+  totalUsers: 28,
+  biomeAverages: [
+    { biome: 'florestas', avg: 88, count: 22 },
+    { biome: 'animais', avg: 85, count: 18 },
+    { biome: 'agua', avg: 82, count: 15 },
+    { biome: 'reciclagem', avg: 79, count: 20 },
+    { biome: 'oceanos', avg: 76, count: 14 },
+    { biome: 'biodiversidade', avg: 74, count: 16 },
+    { biome: 'sustentabilidade', avg: 71, count: 12 },
+    { biome: 'energia', avg: 68, count: 13 },
+    { biome: 'clima', avg: 65, count: 17 },
+    { biome: 'poluicao', avg: 62, count: 11 },
+    { biome: 'agricultura', avg: 58, count: 9 },
+    { biome: 'geologia', avg: 55, count: 7 },
+    { biome: 'cidades', avg: 52, count: 10 },
+  ],
+};
+
 let perfAnimId = null;
 let perfHoveredBar = -1;
 let perfBarRects = [];
 let perfGeneration = 0;
 
+async function getPerformanceData() {
+  if (SUPABASE_CONFIG.enabled) {
+    const remote = await supabaseClient.getGlobalPerformance();
+    if (remote && remote.biomeAverages?.length) return { ...remote, source: 'Dados reais' };
+  }
+
+  const localData = Object.entries(state.answeredByBiome).map(([biome, count]) => {
+    const correct = state.correctByBiome[biome] || 0;
+    return { biome, avg: count ? Math.round((correct / count) * 100) : 0, count };
+  });
+
+  if (localData.length) {
+    const totalAnswered = Object.values(state.answeredByBiome).reduce((sum, n) => sum + n, 0);
+    const totalCorrect = Object.values(state.correctByBiome).reduce((sum, n) => sum + n, 0);
+    return {
+      overallAvg: totalAnswered ? Math.round((totalCorrect / totalAnswered) * 100) : 0,
+      totalQuizzes: state.quizCount,
+      totalUsers: 1,
+      biomeAverages: localData,
+      source: 'Seu progresso',
+    };
+  }
+
+  return { ...MOCK_PERF, source: 'Demo' };
+}
+
 function renderPerformance() {
   perfGeneration++;
-  const statsEl = document.getElementById('perf-stats');
-  // Hide tooltip from any previous render
   const tooltip = document.getElementById('perf-tooltip');
   if (tooltip) tooltip.classList.remove('visible');
-  // Clean old canvas listeners
   const oldCanvas = document.getElementById('perf-chart');
   if (oldCanvas) {
     const clone = oldCanvas.cloneNode(true);
     oldCanvas.parentNode?.replaceChild(clone, oldCanvas);
   }
-
-  statsEl.innerHTML = Array(5).fill(0).map(() =>
-    '<div class="perf-stat-card"><div class="perf-stat-label">---</div><div class="perf-stat-value">--</div></div>'
-  ).join('') +
-    '<div class="perf-icons-row" style="opacity:0.3;">⏳</div>';
-
   if (perfAnimId) { cancelAnimationFrame(perfAnimId); perfAnimId = null; }
-
   requestAnimationFrame(() => buildPerfDashboard());
 }
 
 async function buildPerfDashboard() {
-  const statsEl = document.getElementById('perf-stats');
   const canvas = document.getElementById('perf-chart');
   const tooltip = document.getElementById('perf-tooltip');
-  if (!statsEl || !canvas || !tooltip) return;
+  if (!canvas || !tooltip) return;
 
   const rect = canvas.getBoundingClientRect();
   if (rect.width === 0 || rect.height === 0) {
     setTimeout(() => buildPerfDashboard(), 200);
     return;
   }
-
   const gen = perfGeneration;
 
-  let perfData = null;
-  if (SUPABASE_CONFIG.enabled) {
-    try { perfData = await supabaseClient.getGlobalPerformance(); } catch (_) {}
-  }
-  if (!perfData && state.performanceHistory.length > 0) {
-    const byBiome = {};
-    state.performanceHistory.forEach(d => {
-      const b = d.biome || 'geral';
-      if (!byBiome[b]) byBiome[b] = { sum: 0, count: 0 };
-      byBiome[b].sum += d.score; byBiome[b].count++;
-    });
-    perfData = {
-      overallAvg: Math.round(state.performanceHistory.reduce((s, d) => s + d.score, 0) / state.performanceHistory.length),
-      totalQuizzes: state.performanceHistory.length, totalUsers: 1,
-      biomeAverages: Object.entries(byBiome).map(([b, d]) => ({ biome: b, avg: Math.round(d.sum / d.count), count: d.count })),
-    };
-  }
-  if (!perfData || !perfData.biomeAverages.length) {
-    statsEl.innerHTML = '<div style="text-align:center;color:var(--moss-gray);padding:30px;">Nenhum dado disponível ainda 🌱</div>';
-    return;
-  }
+  const perfData = await getPerformanceData();
+  const data = [...perfData.biomeAverages].sort((a, b) => b.avg - a.avg);
+  const overall = perfData.overallAvg;
 
-  if (gen !== perfGeneration) return;
-
-  const data = perfData.biomeAverages.sort((a, b) => b.avg - a.avg);
-  const overall = Math.min(perfData.overallAvg, 100);
-
-  // ── Canvas setup ──
   const dpr = window.devicePixelRatio || 1;
   canvas.width = rect.width * dpr;
   canvas.height = rect.height * dpr;
@@ -1070,7 +1355,7 @@ async function buildPerfDashboard() {
     });
   }
 
-  // ── Animation state ──
+  // ── Animation ──
   const startTime = performance.now();
   const ANIM_DUR = 1200;
   const BAR_DELAY = 80;
@@ -1080,14 +1365,12 @@ async function buildPerfDashboard() {
     return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
   }
   function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
-  function lerp(a, b, t) { return a + (b - a) * t; }
 
   function drawFrame(now) {
     if (gen !== perfGeneration) return;
     const elapsed = now - startTime;
     const progress = Math.min(1, elapsed / ANIM_DUR);
 
-    // ── Clear ──
     const bgGrad = c.createLinearGradient(0, 0, 0, H);
     bgGrad.addColorStop(0, 'rgba(10, 18, 26, 0.98)');
     bgGrad.addColorStop(0.4, 'rgba(13, 27, 20, 0.98)');
@@ -1095,7 +1378,6 @@ async function buildPerfDashboard() {
     c.fillStyle = bgGrad;
     c.fillRect(0, 0, W, H);
 
-    // ── Parallax stars ──
     const px = (targetMX || 0) * 4;
     const py = (targetMY || 0) * 3;
     stars.forEach(s => {
@@ -1108,7 +1390,6 @@ async function buildPerfDashboard() {
       c.fill();
     });
 
-    // ── Mountains ──
     c.beginPath();
     c.moveTo(0, H);
     mtPts.forEach(p => {
@@ -1123,24 +1404,15 @@ async function buildPerfDashboard() {
     c.fillStyle = mtGrad;
     c.fill();
 
-    // ── Ground line ──
     c.strokeStyle = 'rgba(46,204,113,0.06)';
     c.lineWidth = 1;
-    c.beginPath();
-    c.moveTo(0, H - 1);
-    c.lineTo(W, H - 1);
-    c.stroke();
+    c.beginPath(); c.moveTo(0, H - 1); c.lineTo(W, H - 1); c.stroke();
 
-    // ── Grid ──
     for (let i = 0; i <= 4; i++) {
       const y = pad.top + (chartH / 4) * i;
       c.strokeStyle = `rgba(46,204,113,${0.03 + 0.02 * (1 - i / 4)})`;
       c.lineWidth = 0.5;
-      c.beginPath();
-      c.moveTo(pad.left, y);
-      c.lineTo(W - pad.right, y);
-      c.stroke();
-
+      c.beginPath(); c.moveTo(pad.left, y); c.lineTo(W - pad.right, y); c.stroke();
       const pct = Math.round(100 - (100 / 4) * i);
       c.fillStyle = 'rgba(255,255,255,0.06)';
       c.font = '7px monospace';
@@ -1148,20 +1420,14 @@ async function buildPerfDashboard() {
       c.fillText(pct, 2, y + 3);
     }
 
-    // ── Overall avg line (animated) ──
     const avgY = pad.top + chartH - (overall / 100) * chartH;
     const lineProg = easeOutCubic(Math.min(1, progress * 1.3));
     const lineEndX = pad.left + (W - pad.left - pad.right) * lineProg;
-
     c.setLineDash([3, 4]);
     c.strokeStyle = 'rgba(255,255,255,0.08)';
     c.lineWidth = 1;
-    c.beginPath();
-    c.moveTo(pad.left, avgY);
-    c.lineTo(lineEndX, avgY);
-    c.stroke();
+    c.beginPath(); c.moveTo(pad.left, avgY); c.lineTo(lineEndX, avgY); c.stroke();
     c.setLineDash([]);
-
     if (lineProg > 0.3) {
       c.fillStyle = 'rgba(255,255,255,0.08)';
       c.font = '6px monospace';
@@ -1169,7 +1435,6 @@ async function buildPerfDashboard() {
       c.fillText('média ' + overall + '%', Math.max(lineEndX, 50) - 6, avgY - 3);
     }
 
-    // ── Bars ──
     perfBarRects = [];
     data.forEach((d, i) => {
       const x = startX + i * (barW + barGap);
@@ -1181,51 +1446,42 @@ async function buildPerfDashboard() {
       const y = pad.top + chartH - barH;
       const isHover = perfHoveredBar === i;
 
-      // Glow on hover
       if (isHover) {
-        const glowGrad = c.createRadialGradient(x + barW / 2, y + barH / 2, 0, x + barW / 2, y + barH / 2, barW * 2);
-        glowGrad.addColorStop(0, 'rgba(46,204,113,0.1)');
-        glowGrad.addColorStop(1, 'rgba(46,204,113,0)');
-        c.fillStyle = glowGrad;
+        const glow = c.createRadialGradient(x + barW / 2, y + barH / 2, 0, x + barW / 2, y + barH / 2, barW * 2);
+        glow.addColorStop(0, 'rgba(46,204,113,0.1)');
+        glow.addColorStop(1, 'rgba(46,204,113,0)');
+        c.fillStyle = glow;
         c.fillRect(x - barW, y - 10, barW * 3, barH + 20);
       }
 
-      // Bar shadow
       c.shadowColor = 'rgba(46,204,113,0.08)';
       c.shadowBlur = isHover ? 12 : 4;
-
       const grad = c.createLinearGradient(x, y, x, pad.top + chartH);
       grad.addColorStop(0, `rgba(46,204,113,${isHover ? 0.95 : 0.75})`);
       grad.addColorStop(0.5, `rgba(26,188,156,${isHover ? 0.6 : 0.4})`);
       grad.addColorStop(1, `rgba(26,188,156,${isHover ? 0.3 : 0.15})`);
       c.fillStyle = grad;
-
-      const r = 2;
+      const cr = 2;
       c.beginPath();
-      c.moveTo(x + r, y);
-      c.lineTo(x + barW - r, y);
-      c.quadraticCurveTo(x + barW, y, x + barW, y + r);
+      c.moveTo(x + cr, y);
+      c.lineTo(x + barW - cr, y);
+      c.quadraticCurveTo(x + barW, y, x + barW, y + cr);
       c.lineTo(x + barW, pad.top + chartH);
       c.lineTo(x, pad.top + chartH);
-      c.lineTo(x, y + r);
-      c.quadraticCurveTo(x, y, x + r, y);
+      c.lineTo(x, y + cr);
+      c.quadraticCurveTo(x, y, x + cr, y);
       c.closePath();
       c.fill();
       c.shadowBlur = 0;
 
-      // Bar highlight line on top
       if (barH > 4) {
         c.strokeStyle = `rgba(255,255,255,${isHover ? 0.25 : 0.08})`;
         c.lineWidth = 1;
-        c.beginPath();
-        c.moveTo(x + 2, y + 1);
-        c.lineTo(x + barW - 2, y + 1);
-        c.stroke();
+        c.beginPath(); c.moveTo(x + 2, y + 1); c.lineTo(x + barW - 2, y + 1); c.stroke();
       }
 
       perfBarRects.push({ x, y, w: barW, h: barH });
 
-      // Value label
       if (barH > 18 && eased > 0.6) {
         c.fillStyle = 'rgba(255,255,255,0.65)';
         c.font = 'bold 8px monospace';
@@ -1233,7 +1489,6 @@ async function buildPerfDashboard() {
         c.fillText(d.avg + '%', x + barW / 2, y + 10);
       }
 
-      // Icon
       const bi2 = PERGUNTAS[d.biome];
       const icon = bi2 ? bi2.icone : '🌍';
       c.font = '11px monospace';
@@ -1243,15 +1498,10 @@ async function buildPerfDashboard() {
       c.globalAlpha = 1;
     });
 
-    // ── Bottom label line ──
     c.strokeStyle = 'rgba(46,204,113,0.03)';
     c.lineWidth = 1;
-    c.beginPath();
-    c.moveTo(pad.left, pad.top + chartH + 2);
-    c.lineTo(W - pad.right, pad.top + chartH + 2);
-    c.stroke();
+    c.beginPath(); c.moveTo(pad.left, pad.top + chartH + 2); c.lineTo(W - pad.right, pad.top + chartH + 2); c.stroke();
 
-    // ── Continue animation ──
     if (progress < 1) {
       perfAnimId = requestAnimationFrame(drawFrame);
     } else {
@@ -1260,54 +1510,53 @@ async function buildPerfDashboard() {
   }
 
   perfAnimId = requestAnimationFrame(drawFrame);
-  drawSidebarBase(perfData, data);
+  drawPerfSidebar(perfData, data);
 }
 
-function drawSidebarBase(perfData, data) {
+function drawPerfSidebar(perf, data) {
   const best = data[0];
   const worst = data[data.length - 1];
   const iconsRow = data.map(d => PERGUNTAS[d.biome]?.icone || '🌍').join('');
 
-  document.getElementById('perf-stats').innerHTML = `
-    <div class="perf-stat-card highlight">
-      <div class="perf-stat-label">📊 Média Geral</div>
-      <div class="perf-stat-value" id="stat-overall">0%</div>
+  document.getElementById('perf-sidebar').innerHTML = `
+    <div class="perf-sidebar-title">📈 Resumo · ${escapeHTML(perf.source || 'Dados')}</div>
+    <div class="perf-sidebar-stats" id="perf-stats">
+      <div class="perf-stat-card highlight">
+        <div class="perf-stat-label">📊 Média Geral</div>
+        <div class="perf-stat-value" id="stat-overall">0%</div>
+      </div>
+      <div class="perf-stat-card">
+        <div class="perf-stat-label">🎯 Quizzes</div>
+        <div class="perf-stat-value" id="stat-quizzes">0</div>
+      </div>
+      <div class="perf-stat-card">
+        <div class="perf-stat-label">👥 Jogadores</div>
+        <div class="perf-stat-value" id="stat-players">0</div>
+      </div>
+      <div class="perf-stat-card highlight">
+        <div class="perf-stat-label">🏆 Melhor Bioma</div>
+        <div class="perf-stat-value">${best.avg}%</div>
+        <div style="font-size:0.6rem;color:var(--moss-gray);">${PERGUNTAS[best.biome]?.icone || ''} ${PERGUNTAS[best.biome]?.nome || best.biome}</div>
+      </div>
+      <div class="perf-stat-card warn">
+        <div class="perf-stat-label">🌱 Melhorar</div>
+        <div class="perf-stat-value">${worst.avg}%</div>
+        <div style="font-size:0.6rem;color:var(--moss-gray);">${PERGUNTAS[worst.biome]?.icone || ''} ${PERGUNTAS[worst.biome]?.nome || worst.biome}</div>
+      </div>
+      <div class="perf-icons-row">${iconsRow}</div>
     </div>
-    <div class="perf-stat-card">
-      <div class="perf-stat-label">🎯 Quizzes</div>
-      <div class="perf-stat-value" id="stat-quizzes">0</div>
-    </div>
-    <div class="perf-stat-card">
-      <div class="perf-stat-label">👥 Jogadores</div>
-      <div class="perf-stat-value" id="stat-players">0</div>
-    </div>
-    <div class="perf-stat-card highlight">
-      <div class="perf-stat-label">🏆 Melhor Bioma</div>
-      <div class="perf-stat-value" id="stat-best">${best ? best.avg + '%' : '-'}</div>
-      <div style="font-size:0.6rem;color:var(--moss-gray);">${best ? (PERGUNTAS[best.biome]?.icone || '') + ' ' + (PERGUNTAS[best.biome]?.nome || best.biome) : ''}</div>
-    </div>
-    <div class="perf-stat-card warn">
-      <div class="perf-stat-label">🌱 Melhorar</div>
-      <div class="perf-stat-value" id="stat-worst">${worst && worst.avg < 100 ? worst.avg + '%' : '-'}</div>
-      <div style="font-size:0.6rem;color:var(--moss-gray);">${worst ? (PERGUNTAS[worst.biome]?.icone || '') + ' ' + (PERGUNTAS[worst.biome]?.nome || worst.biome) : ''}</div>
-    </div>
-    <div class="perf-icons-row">${iconsRow}</div>
   `;
 
-  animateStats(perfData, data);
+  animatePerfCounters(perf);
 }
 
-function animateStats(perfData, data) {
+function animatePerfCounters(perf) {
   const elOverall = document.getElementById('stat-overall');
   const elQuizzes = document.getElementById('stat-quizzes');
   const elPlayers = document.getElementById('stat-players');
   if (!elOverall) return;
 
-  const targets = {
-    overall: perfData.overallAvg,
-    quizzes: perfData.totalQuizzes,
-    players: perfData.totalUsers,
-  };
+  const targets = { overall: perf.overallAvg, quizzes: perf.totalQuizzes, players: perf.totalUsers };
   const dur = 1000;
   const t0 = performance.now();
 
@@ -1325,6 +1574,10 @@ function animateStats(perfData, data) {
     }
   }
   requestAnimationFrame(tick);
+}
+
+function exportPerfPDF() {
+  window.print();
 }
 
 // ─── SETTINGS ───────────────────────────────────────────────
@@ -1359,6 +1612,9 @@ function saveGame() {
     biomesCompleted: state.biomesCompleted,
     biomeScores: state.biomeScores,
     performanceHistory: state.performanceHistory,
+    reviewQueue: state.reviewQueue,
+    answeredByBiome: state.answeredByBiome,
+    correctByBiome: state.correctByBiome,
   };
 
   localStorage.setItem('ecoquest_' + state.playerName, JSON.stringify(data));
@@ -1410,6 +1666,9 @@ async function loadGame(name) {
     state.biomesCompleted = data.biomesCompleted || {};
     state.biomeScores = data.biomeScores || {};
     state.performanceHistory = data.performanceHistory || [];
+    state.reviewQueue = data.reviewQueue || [];
+    state.answeredByBiome = data.answeredByBiome || {};
+    state.correctByBiome = data.correctByBiome || {};
 
     if (data.achievementsProgress) {
       data.achievementsProgress.forEach(ap => {
@@ -1437,6 +1696,10 @@ function resetState() {
   state.biomesCompleted = {};
   state.biomeScores = {};
   state.performanceHistory = [];
+  state.reviewQueue = [];
+  state.lastQuizMistakes = [];
+  state.answeredByBiome = {};
+  state.correctByBiome = {};
   ACHIEVEMENTS_DATA.forEach(a => a.progress = 0);
   state.missions.daily.forEach(m => { m.done = 0; m.completed = false; });
   state.missions.weekly.forEach(m => { m.done = 0; m.completed = false; });
@@ -1446,7 +1709,8 @@ function doLogin() {
   const input = document.getElementById('login-name');
   const status = document.getElementById('login-status');
   const btn = document.getElementById('login-btn');
-  const name = input.value.trim();
+  const name = normalizePlayerName(input.value);
+  input.value = name;
 
   if (!name || name.length < 2) {
     status.textContent = 'Digite um nome com pelo menos 2 letras';
@@ -1629,7 +1893,8 @@ async function syncWithSupabase() {
   try {
     const userId = await supabaseClient.syncGameState(state);
     if (userId) {
-      await supabaseClient.saveScore(userId, state.xp, state.currentBiome || 'geral', 'medio');
+      const score = state.biomeScores[state.currentBiome] || 0;
+      await supabaseClient.saveScore(userId, score, state.currentBiome || 'geral', state.selectedDifficulty || 'medio');
 
       for (const achId of state.achievements) {
         await supabaseClient.unlockAchievement(userId, achId);
