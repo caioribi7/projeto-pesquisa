@@ -2043,74 +2043,18 @@ function cleanRepassaQuestionText(text) {
   return toSentenceCase(value);
 }
 
-function extractRepassaFocus(questionText, biomeName) {
-  let focus = cleanRepassaQuestionText(questionText)
-    .replace(/\?$/, '')
-    .replace(/^O que significa\s+/i, '')
-    .replace(/^Qual é\s+/i, '')
-    .replace(/^Qual\s+/i, '')
-    .replace(/^Quanto da\s+/i, '')
-    .replace(/^Quanto do\s+/i, '')
-    .replace(/^Quanto tempo\s+/i, '')
-    .replace(/^Cerca de quantas\s+/i, '')
-    .replace(/^Como chamamos\s+/i, '')
-    .replace(/^Quantas\s+/i, '')
-    .replace(/^A principal causa de\s+/i, '')
-    .trim();
-
-  if (!focus || focus.length < 4) return biomeName;
-  return focus.charAt(0).toLowerCase() + focus.slice(1);
-}
-
-function buildRepassaVariations(biomeKey, biome, question, index) {
-  const focus = extractRepassaFocus(question.pergunta, biome.nome);
-  const correct = question.alternativas[question.correta];
-  const explanation = String(question.explicacao || '').replace(/\s+/g, ' ').trim();
-
-  return [
-    {
-      key: `${biomeKey}-${index}-resumo`,
-      type: 'Compreensão',
-      pergunta: `A ideia central é: ${explanation} Qual alternativa resume melhor essa informação?`,
-      alternativas: question.alternativas,
-      correta: question.correta,
-      explicacao: `A alternativa correta é ${correct}. ${explanation}`,
-    },
-    {
-      key: `${biomeKey}-${index}-aplicacao`,
-      type: 'Aplicação',
-      pergunta: `Em uma conversa sobre ${biome.nome}, alguém precisa explicar ${focus}. Qual resposta seria a mais correta?`,
-      alternativas: question.alternativas,
-      correta: question.correta,
-      explicacao: `A melhor resposta é ${correct}. ${explanation}`,
-    },
-    {
-      key: `${biomeKey}-${index}-desafio`,
-      type: 'Desafio rápido',
-      pergunta: `Sem decorar a frase da pergunta anterior: qual alternativa se conecta diretamente a ${focus}?`,
-      alternativas: question.alternativas,
-      correta: question.correta,
-      explicacao: `${correct} se conecta ao tema porque: ${explanation}`,
-    },
-  ];
-}
-
 function buildRepassaPool(biomeKey) {
   const biome = PERGUNTAS[biomeKey];
   if (!biome) return [];
 
-  return biome.perguntas.flatMap((question, index) => {
-    const original = {
-      key: `${biomeKey}-${index}-original`,
-      type: 'Pergunta anterior',
-      pergunta: cleanRepassaQuestionText(question.pergunta),
-      alternativas: question.alternativas,
-      correta: question.correta,
-      explicacao: question.explicacao,
-    };
-
-    return [original, ...buildRepassaVariations(biomeKey, biome, question, index)];
-  });
+  return biome.perguntas.map((question, index) => ({
+    key: `${biomeKey}-${index}`,
+    type: 'Banco novo · 5º ano',
+    pergunta: cleanRepassaQuestionText(question.pergunta),
+    alternativas: question.alternativas,
+    correta: question.correta,
+    explicacao: question.explicacao,
+  }));
 }
 
 function drawRepassaQuestion() {
