@@ -374,6 +374,7 @@ function showScreen(screenId, direction) {
 
   currentScreen = screenId;
   screenHistory.push(screenId);
+  document.body.classList.toggle('repassa-mode', screenId === 'screen-passa-repassa');
 
   const hud = document.getElementById('hud');
   const showHud = !['screen-initial', 'screen-login', 'screen-result', 'screen-about', 'screen-achievements', 'screen-ranking', 'screen-performance', 'screen-missions', 'screen-study', 'screen-minigame', 'screen-settings', 'screen-biome-select', 'screen-roadmap', 'screen-passa-repassa'].includes(screenId);
@@ -1955,7 +1956,7 @@ function renderRepassaPlayers(team) {
     input.className = 'repassa-player';
     input.maxLength = 18;
     input.placeholder = `Jogador ${i}`;
-    input.value = team === 'a' ? `A${i}` : `B${i}`;
+    input.value = '';
     input.setAttribute('aria-label', `Jogador ${i} do Time ${team.toUpperCase()}`);
     container.appendChild(input);
   }

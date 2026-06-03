@@ -2734,75 +2734,158 @@ html, body {
 /* ============================================
    SCREEN: PASSA OU REPASSA
    ============================================ */
+#screen-passa-repassa {
+  justify-content: flex-start;
+  padding: 18px 22px 22px;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(46,204,113,0.1), transparent 34%),
+    radial-gradient(circle at 82% 18%, rgba(26,188,156,0.08), transparent 32%),
+    linear-gradient(180deg, rgba(10,14,26,0.1), rgba(13,27,20,0.24));
+}
+
+#screen-passa-repassa .back-btn {
+  top: auto;
+  left: 22px;
+  bottom: 18px;
+  z-index: 5;
+  opacity: 0.62;
+}
+
+#screen-passa-repassa .back-btn:hover {
+  opacity: 1;
+}
+
+.repassa-mode .hud {
+  display: none !important;
+}
+
 .repassa-stage {
-  width: min(1500px, 100%);
-  min-height: 100%;
+  width: min(1680px, 100%);
+  height: 100%;
+  min-height: 0;
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: minmax(170px, auto) minmax(0, 1fr);
   gap: 18px;
-  padding: 10px 0;
+  padding: 0;
 }
 
-.repassa-scoreboard,
-.repassa-main {
+.repassa-topbar,
+.repassa-main,
+.repassa-score-row,
+.repassa-players,
+.repassa-controls {
   display: grid;
-  gap: 16px;
 }
 
-.repassa-scoreboard {
-  grid-template-columns: minmax(250px, 1fr) minmax(280px, 0.85fr) minmax(250px, 1fr);
-  align-items: stretch;
+.repassa-topbar {
+  grid-template-columns: minmax(290px, 1fr) minmax(360px, 0.85fr) minmax(290px, 1fr);
+  gap: 14px;
+}
+
+.repassa-main {
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
+  gap: 18px;
+  min-height: 0;
 }
 
 .repassa-team,
-.repassa-center,
-.repassa-wheel-panel,
+.repassa-title-card,
+.repassa-command-panel,
 .repassa-question-panel {
-  border: 1px solid rgba(46,204,113,0.18);
+  position: relative;
+  border: 1px solid rgba(46,204,113,0.2);
   border-radius: 8px;
-  background: rgba(10,14,26,0.78);
-  box-shadow: 0 18px 48px rgba(0,0,0,0.34), inset 0 1px 0 rgba(255,255,255,0.04);
+  background:
+    linear-gradient(180deg, rgba(13,27,20,0.9), rgba(10,14,26,0.86)),
+    radial-gradient(circle at 50% 0%, rgba(46,204,113,0.18), transparent 52%);
+  box-shadow:
+    0 18px 48px rgba(0,0,0,0.34),
+    inset 0 1px 0 rgba(255,255,255,0.04),
+    0 0 24px rgba(46,204,113,0.08);
+  overflow: hidden;
+}
+
+.repassa-team::before,
+.repassa-title-card::before,
+.repassa-command-panel::before,
+.repassa-question-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent, rgba(255,255,255,0.035), transparent),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.018) 0 1px, transparent 1px 14px);
+  opacity: 0.8;
 }
 
 .repassa-team {
+  min-width: 0;
   padding: 14px;
   display: grid;
-  gap: 12px;
-}
-
-.repassa-team-head {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
+  grid-template-rows: auto auto 1fr;
   gap: 12px;
 }
 
 .repassa-team-name {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  border: 1px solid rgba(255,255,255,0.08);
+  min-height: 46px;
+  border: 1px solid rgba(46,204,113,0.18);
   border-radius: 8px;
-  padding: 12px;
-  background: rgba(255,255,255,0.05);
+  padding: 10px 12px;
+  background: rgba(10,14,26,0.5);
   color: var(--spore-white);
   font-family: var(--font-display);
-  font-size: clamp(1rem, 1.6vw, 1.55rem);
+  font-size: clamp(1rem, 1.35vw, 1.4rem);
+  text-align: center;
   outline: none;
+  text-transform: uppercase;
+  box-shadow: inset 0 0 18px rgba(0,0,0,0.18);
+}
+
+.repassa-score-row {
+  position: relative;
+  z-index: 1;
+  grid-template-columns: 48px minmax(110px, 1fr) 48px;
+  gap: 10px;
+  align-items: stretch;
 }
 
 .repassa-score {
-  min-width: 104px;
-  min-height: 88px;
+  min-height: 86px;
   display: grid;
   place-items: center;
   border-radius: 8px;
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 4.2vw, 4.9rem);
+  font-size: clamp(2.8rem, 5vw, 5.7rem);
   color: var(--deep-void);
   background: linear-gradient(135deg, var(--amber-spark), #F7D774);
   box-shadow: 0 0 28px rgba(243,156,18,0.32);
+  line-height: 1;
+}
+
+.repassa-score-btn {
+  border: 1px solid rgba(26,188,156,0.35);
+  border-radius: 8px;
+  background: rgba(26,188,156,0.08);
+  color: var(--cyan-biolume);
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.repassa-score-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--emerald-glow);
+  background: rgba(46,204,113,0.12);
 }
 
 .repassa-players {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 8px;
@@ -2812,32 +2895,16 @@ html, body {
   min-width: 0;
   border: 1px solid rgba(46,204,113,0.12);
   border-radius: 8px;
-  padding: 10px;
-  background: rgba(13,27,20,0.72);
+  padding: 10px 8px;
+  background: rgba(13,27,20,0.68);
   color: var(--spore-white);
-  font-size: clamp(0.88rem, 1.2vw, 1.08rem);
+  font-size: clamp(0.78rem, 1vw, 0.98rem);
+  text-align: center;
   outline: none;
 }
 
-.repassa-score-actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-
-.repassa-score-actions button {
-  min-height: 44px;
-  border: 1px solid rgba(46,204,113,0.16);
-  border-radius: 8px;
-  background: rgba(255,255,255,0.06);
-  color: var(--spore-white);
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  cursor: pointer;
-}
-
-.repassa-center {
-  padding: 14px;
+.repassa-title-card {
+  padding: 16px;
   display: grid;
   place-items: center;
   text-align: center;
@@ -2853,15 +2920,17 @@ html, body {
 
 .repassa-kicker {
   color: var(--cyan-biolume);
-  font-size: clamp(0.75rem, 1vw, 1rem);
+  font-size: clamp(0.7rem, 0.9vw, 0.92rem);
+  text-transform: uppercase;
 }
 
-.repassa-center h1 {
+.repassa-title-card h1 {
   color: var(--spore-white);
   font-family: var(--font-display);
-  font-size: clamp(1.9rem, 3.4vw, 4.4rem);
-  line-height: 1;
+  font-size: clamp(1.65rem, 2.7vw, 3.4rem);
+  line-height: 1.05;
   text-transform: uppercase;
+  text-shadow: 0 0 20px rgba(46,204,113,0.24);
 }
 
 .repassa-round {
@@ -2869,39 +2938,46 @@ html, body {
   font-size: clamp(0.9rem, 1.4vw, 1.25rem);
 }
 
-.repassa-main {
-  grid-template-columns: minmax(310px, 0.78fr) minmax(520px, 1.45fr);
+.repassa-command-panel {
   min-height: 0;
-}
-
-.repassa-wheel-panel {
   padding: 18px;
-  position: relative;
   display: grid;
   justify-items: center;
-  align-content: center;
+  align-content: start;
+  grid-template-rows: auto auto 1fr;
   gap: 14px;
-  overflow: hidden;
+}
+
+.repassa-wheel-shell {
+  position: relative;
+  width: min(100%, 310px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
 }
 
 .repassa-pointer {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 0;
   height: 0;
-  border-left: 18px solid transparent;
-  border-right: 18px solid transparent;
-  border-top: 30px solid var(--amber-spark);
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-top: 28px solid var(--amber-spark);
   filter: drop-shadow(0 0 10px rgba(243,156,18,0.55));
   z-index: 2;
 }
 
 .repassa-wheel {
-  width: min(38vw, 410px);
-  height: min(38vw, 410px);
-  min-width: 280px;
-  min-height: 280px;
+  width: 92%;
+  height: 92%;
+  min-width: 0;
+  min-height: 0;
   position: relative;
   border-radius: 50%;
-  border: 10px solid rgba(232,245,233,0.12);
+  border: 9px solid rgba(232,245,233,0.12);
   background: conic-gradient(
     #2ECC71 0deg 32.7deg,
     #1ABC9C 32.7deg 65.4deg,
@@ -2937,73 +3013,101 @@ html, body {
   color: var(--deep-void);
   font-weight: 800;
   text-shadow: 0 1px 0 rgba(255,255,255,0.25);
-  font-size: clamp(1.15rem, 1.55vw, 1.65rem);
+  font-size: clamp(1rem, 1.25vw, 1.35rem);
   z-index: 1;
 }
 
 .repassa-biome-result {
-  min-height: 42px;
+  width: 100%;
+  min-height: 58px;
+  padding: 10px;
   display: grid;
   place-items: center;
   text-align: center;
   color: var(--emerald-glow);
   font-size: clamp(0.9rem, 1.3vw, 1.2rem);
+  border: 1px solid rgba(46,204,113,0.14);
+  border-radius: 8px;
+  background: rgba(10,14,26,0.48);
 }
 
 .repassa-question-panel {
-  padding: 20px;
+  min-height: 0;
+  padding: 18px;
   display: grid;
-  grid-template-rows: auto minmax(130px, auto) 1fr auto auto;
+  grid-template-rows: auto minmax(138px, auto) minmax(0, 1fr) auto;
   gap: 16px;
 }
 
 .repassa-question-meta {
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: space-between;
   gap: 12px;
   color: var(--cyan-biolume);
   font-size: clamp(0.82rem, 1.1vw, 1rem);
+  text-transform: uppercase;
 }
 
 .repassa-question {
-  min-height: 150px;
+  position: relative;
+  z-index: 1;
+  min-height: 178px;
   display: flex;
   align-items: center;
   border-radius: 8px;
-  padding: 18px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.08);
+  padding: 22px;
+  background:
+    radial-gradient(circle at 8% 15%, rgba(46,204,113,0.12), transparent 40%),
+    rgba(255,255,255,0.055);
+  border: 1px solid rgba(46,204,113,0.16);
   color: var(--spore-white);
   font-weight: 800;
   line-height: 1.18;
-  font-size: clamp(1.7rem, 3vw, 3.35rem);
+  font-size: clamp(2rem, 3.15vw, 3.65rem);
+  box-shadow: inset 0 0 34px rgba(0,0,0,0.18);
 }
 
 .repassa-options {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
+  min-height: 0;
 }
 
 .repassa-option {
-  min-height: 82px;
+  min-height: 96px;
   display: flex;
   align-items: center;
   gap: 12px;
   border-radius: 8px;
-  padding: 14px;
-  background: rgba(13,27,20,0.76);
+  padding: 16px;
+  background: rgba(13,27,20,0.72);
   border: 1px solid rgba(46,204,113,0.14);
-  font-size: clamp(1rem, 1.45vw, 1.35rem);
+  font-size: clamp(1.05rem, 1.45vw, 1.45rem);
   font-weight: 700;
+  box-shadow: inset 0 0 22px rgba(0,0,0,0.12);
 }
 
 .repassa-option strong {
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: rgba(243,156,18,0.12);
+  border: 1px solid rgba(243,156,18,0.28);
   color: var(--amber-spark);
   font-family: var(--font-display);
 }
 
 .repassa-answer {
+  position: relative;
+  z-index: 1;
   min-height: 48px;
   border-radius: 8px;
   padding: 12px 14px;
@@ -3020,15 +3124,20 @@ html, body {
 }
 
 .repassa-controls {
-  display: flex;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
-  flex-wrap: wrap;
+  align-self: end;
 }
 
 .repassa-controls .btn-crystal {
-  flex: 1 1 180px;
+  width: 100%;
   padding-left: 16px;
   padding-right: 16px;
+  min-height: 56px;
+  font-size: 0.82rem;
 }
 
 /* ============================================
@@ -3116,22 +3225,47 @@ html, body {
   .study-layout,
   .learning-grid,
   .minigame-bins,
-  .repassa-scoreboard,
+  .repassa-topbar,
   .repassa-main,
   .repassa-options {
     grid-template-columns: 1fr;
   }
 
+  #screen-passa-repassa {
+    justify-content: flex-start;
+    padding: 12px;
+  }
+
   .repassa-stage {
+    height: auto;
+    min-height: 100%;
+    grid-template-rows: auto auto;
     gap: 12px;
+  }
+
+  .repassa-topbar {
+    grid-template-columns: 1fr;
+  }
+
+  .repassa-main {
+    grid-template-columns: 1fr;
   }
 
   .repassa-players {
     grid-template-columns: 1fr;
   }
 
+  .repassa-wheel-shell {
+    width: min(72vw, 300px);
+  }
+
   .repassa-question {
     min-height: 120px;
+    font-size: 1.5rem;
+  }
+
+  .repassa-controls {
+    grid-template-columns: 1fr;
   }
 }
 
